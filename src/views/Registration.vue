@@ -23,7 +23,15 @@
 
 <style scoped>
 .main{
-   margin: auto 0;
+    font-family: 'Roboto Mono', monospace;
+   display: flex;
+   margin: auto;
+   background-color: black;
+   align-items: center;
+   justify-content: center;
+   color: aliceblue;
+   width: 100%;
+   height: 100vh; 
 
 }
 </style>
