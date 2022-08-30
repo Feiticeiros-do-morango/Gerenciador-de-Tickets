@@ -5,12 +5,15 @@
     <div>
         <input type="text" placeholder="Digite seu e-mail">
     </div>
+    <br>
     <div>
         <input type="text" placeholder="Digite seu user name">
     </div>
+    <br>
     <div>
         <input type="password" placeholder="Digite sua senha">
     </div>
+    <br>
     <div>
         <input type="password" placeholder="Confirme sua senha">
     </div>
