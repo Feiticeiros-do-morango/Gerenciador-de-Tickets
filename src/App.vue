@@ -8,5 +8,8 @@ export default {
   components: {},
 };
 </script>
-<style scoped>
+<style>
+*{
+  margin: 0;
+}
 </style>

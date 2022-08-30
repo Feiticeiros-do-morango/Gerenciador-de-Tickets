@@ -47,12 +47,15 @@ body{
    height: 100vh; 
 }
 .main p{
-   font-size: 15px
+   font-size: 15px;
+   padding:15px
 }
 .main h5{
    font-size:10px;
    font-family: italic;
-   margin-left:30%
+   margin-left:30%;
+   padding-bottom:10px;
+   font-weight: 400;
 }
 .componente-login{
 margin-top: 3%;
@@ -78,8 +81,7 @@ input{
 }
 button{
    width: 50%;
- 
-   padding: 10px;
+   padding: 15px;
    border: 1px solid white;
    border-radius: 10px;
    background-color:black ;
@@ -90,11 +92,12 @@ button{
 .login button{  
    border: 1px solid #378BED;
    border-radius: 10px;
-   padding: 10px;
+   padding-top: 15px;
    margin: auto;
    text-align: center;
    background-color:black;
    color:#378BED ;
+   margin-top:5px;
      
 }
 .cadastra{
