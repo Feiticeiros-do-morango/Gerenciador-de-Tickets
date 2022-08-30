@@ -6,13 +6,16 @@
         <input type="text" placeholder="Digite seu e-mail">
     </div>
     <br>
+    <br>
     <div>
         <input type="text" placeholder="Digite seu user name">
     </div>
     <br>
+    <br>
     <div>
         <input type="password" placeholder="Digite sua senha">
     </div>
+    <br>
     <br>
     <div>
         <input type="password" placeholder="Confirme sua senha">
