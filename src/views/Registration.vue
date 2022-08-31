@@ -1,43 +1,28 @@
 <template>
     <div class="main">
-    <h1>Cadastre-se</h1>
-       <p>Preencha os campos corretamente</p>
-    <div>
-        <input type="text" placeholder="Digite seu e-mail">
+     <p>Login</p>
+     <p>Digite seu Login e Senha</p>
+     <input type="text"  placeholder="Nome ou e-mail">
+     <br>
+     <br>
+     <input type="text"  placeholder="Senha">
+     <p>Esqueceu a Senha?</p>
+     <p>Login</p>
+     <div class="google">
+     <input type="text" placeholder=" sign-in with Google">
+     </div>
+     <p>Não é um membro ainda?Cadastre-se</p>
     </div>
-    <br>
-    <br>
-    <div>
-        <input type="text" placeholder="Digite seu user name">
-    </div>
-    <br>
-    <br>
-    <div>
-        <input type="password" placeholder="Digite sua senha">
-    </div>
-    <br>
-    <br>
-    <div>
-        <input type="password" placeholder="Confirme sua senha">
-    </div>
-    <p>Cadastrar</p>
-
-
-    </div>
-</template>
-
-
+ </template>
+ 
+ <script>
+ export default {
+     
+ }
+ </script>
+ 
 <style scoped>
-.main{
-    font-family: 'Roboto Mono', monospace;
-   
-   margin: auto;
-   background-color: black;
-   align-items: center;
-   justify-content: center;
-   color: aliceblue;
-   width: 100%;
-   height: 100vh;
-
+.main {
+    
 }
 </style>
