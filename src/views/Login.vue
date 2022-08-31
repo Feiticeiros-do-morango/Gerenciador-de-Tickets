@@ -30,11 +30,6 @@ export default {
 <style scoped>
 
 
-body{
- background-color: black;
-
-}
-
 .main{
    font-family: 'Roboto Mono', monospace;
    display: flex;
@@ -78,7 +73,6 @@ input{
 }
 button{
    width: 50%;
- 
    padding: 10px;
    border: 1px solid white;
    border-radius: 10px;
