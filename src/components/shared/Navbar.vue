@@ -42,7 +42,7 @@ export default {};
   font-size: 12px;
 }
 .navbar {
-  
+  width: 20%;
   height: 100vh;
   font-family: 'Roboto Mono';
   font-size: 16px;
