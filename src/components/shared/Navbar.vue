@@ -33,16 +33,19 @@ export default {};
 }
 .identificacao p {
   margin: 0;
+  font-size: 14px;
 }
 .informacao {
   display: flex;
   justify-content: space-between;
   margin: 5% 12%;
+  font-size: 12px;
 }
 .navbar {
   width: 20%;
-  height: 98vh;
-  font-family: "Roboto Mono";
+  height: 100vh;
+  font-family: 'Roboto Mono';
+  font-size: 16px;
   background-color: black;
   color: white;
   margin-left: 0;
@@ -50,15 +53,18 @@ export default {};
 
 .itens li {
   list-style: none;
-  padding: 5%;
+  padding: 12%;
 }
 .dados {
-    margin-top: 40vh;
-    margin-left:10vh;
+    margin: auto;
+    text-align: center;
+    width: 20%;
+    height: 10%;
+    position: fixed;
+    bottom:0;
+  
 }
-.dados p{
-    vertical-align: bottom;
-    margin-bottom: 0;
-    margin-top:2% ;
-}
+   
+
+
 </style>
