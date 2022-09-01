@@ -2,7 +2,8 @@
    <div class="main">
       <div class="componente-login">
     <h1>Login</h1>
-    <p>Digite seu Login e Senha</p>
+    <p></p>
+    <input type="text" placeholder="Digite seu Login e Senha">
    <button>Nome ou e-mail</button>
     <br>
     <br>
@@ -30,16 +31,13 @@ export default {
 <style scoped>
 
 
-body{
- background-color: black;
 
-}
 
 .main{
    font-family: 'Roboto Mono', monospace;
    display: flex;
    margin: auto;
-   background-color: black;
+   background-color: #040414;
    align-items: center;
    justify-content: center;
    color: aliceblue;
