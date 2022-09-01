@@ -239,4 +239,38 @@ export default {};
   line-height: 12px;
   color: #378bed;
 }
+button{
+   width: 50%;
+ 
+   padding: 10px;
+   border: 1px solid white;
+   border-radius: 10px;
+   background-color:black ;
+   color: white;
+   text-align: left;
+   font-size: 10px;
+}
+.login button{  
+   border: 1px solid #378BED;
+   border-radius: 10px;
+   padding: 10px;
+   margin: auto;
+   text-align: center;
+   background-color:black;
+   color:#378BED ;
+     
+}
+.cadastra{
+   justify-content: space-between ;
+}
+.cadastra p{
+   font-family: italic;
+   font-size: 10px;
+
+   
+}
+.cadastra span{
+   color:#378BED  ;
+}
+
 </style>
