@@ -8,26 +8,101 @@
       <span>Projeto</span>
       <span>Time</span>
     </div>
-    <div class="itens">
-      <ul>
-        <li>Dashboard</li>
-        <li>Meus Tickets</li>
-        <li>Times</li>
-        <li>Projetos</li>
-        <li>Estatísticas</li>
-        <li>Configuração</li>
-      </ul>
+    <div>
+      <PanelMenu :model="items" />
     </div>
     <div class="dados">
       <p>Nome</p>
       <p>Empresa</p>
     </div>
+    <div class="main">
+
+    </div>
   </div>
 </template>
 <script>
-export default {};
+import PanelMenu from "primevue/panelmenu";
+
+export default {
+  components: { PanelMenu },
+  data() {
+    return {
+      items: [
+        {
+          label: "Dashboard",
+          icon: "pi pi-fw pi-file",
+          items: [
+            {
+              label: "Criar Ticket",
+              icon: "pi pi-fw pi-plus",
+              to:"/ticketView",
+             
+            },
+          ],
+        },
+        {
+          label: "Meus Tickets",
+          icon: "pi pi-fw pi-file",
+          
+          items: [
+            
+          ],
+        },
+        {
+          label: "Times",
+          icon: "pi pi-fw pi-file",
+          items: [
+            {
+              label: "Time A"
+           
+            },
+            {
+              label: "Time B"
+             
+            },
+
+          ],
+        },
+        {
+          label: "Projetos",
+          icon: "pi pi-fw pi-file",
+          items: [
+            {
+              label: "Projeto A",
+              icon: "",
+            },
+             {
+              label: "Projeto B",
+              icon: "",
+            },
+             {
+              label: "Projeto C",
+              icon: "",
+            }
+          ],
+        },
+        {
+          label: "Estatísticas",
+          icon: "pi pi-fw pi-file",
+          items: [
+           
+          ],
+        },
+        {
+          label: "Configuração",
+          icon: "pi pi-fw pi-file",
+          items: [
+           
+          ],
+        },
+      ],
+    };
+  },
+};
 </script>
+
 <style scoped>
+
 .identificacao {
   padding-left: 25%;
 }
@@ -42,11 +117,10 @@ export default {};
   font-size: 12px;
 }
 .navbar {
-  
   height: 100vh;
-  font-family: 'Roboto Mono';
+  font-family: "Roboto Mono";
   font-size: 16px;
-  background-color: black;
+  background-color: rgb(1, 1, 52);
   color: white;
   margin-left: 0;
 }
@@ -56,15 +130,19 @@ export default {};
   padding: 12%;
 }
 .dados {
-    margin: auto;
-    text-align: center;
-    width: 20%;
-    height: 10%;
-    position: fixed;
-    bottom:0;
-  
+  margin: auto;
+  text-align: center;
+  width: 20%;
+  height: 10%;
+  position: fixed;
+  bottom: 0;
 }
-   
+</style>
 
-
+<style lang="scss" scoped>
+::v-deep .p-panelmenu {
+  .p-panelmenu-header > a {
+    background: none;
+  }
+}
 </style>

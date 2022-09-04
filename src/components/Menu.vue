@@ -60,7 +60,7 @@ font-size: 10px;
     
 }
 .andamento{
-    background: blue;
+  
     height: 8vh;
     width: 30vh;
 }

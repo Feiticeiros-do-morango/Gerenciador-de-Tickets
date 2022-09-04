@@ -9,6 +9,9 @@ export default {
 };
 </script>
 <style>
+@import 'primevue/resources/themes/lara-dark-blue/theme.css ';
+@import 'primevue/resources/primevue.min.css';
+@import 'primeicons/primeicons.css';
   * {
     margin: 0;
     padding: 0;
