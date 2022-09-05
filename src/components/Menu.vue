@@ -1,4 +1,5 @@
 <template>
+
   <div class="container">
     <div class="tecnologia">
       <ul>
@@ -23,6 +24,7 @@
       </ul>
     </div>
   </div>
+ 
 </template>
 
 <script>
@@ -34,27 +36,29 @@ export default {
 
 <style scoped>
 .container {
-  background-color: #b0b0b0;
- min-width: 60px;
- width: 100%;
-  height: 10vh;
+  background-color: #F2F2F2;
+  width: 100%;
+  height: 70%;
   display: flex;
-  justify-content: space-between;
+  justify-content: left;
   align-items: center;
 }
+
+
 .tecnologia button {
-  width: 8vh;
+  width: 10vh;
   height: 2vh;
-  margin-left: 1vh;
+  margin-left: 3vh;
   margin-top: 1vh;
   border-radius: 5vh;
   border: none;
   font-family: "Roboto Mono";
   font-size: 10px;
+  background-color: #D9D9D9;
 }
 .p-inputtext{
     padding: 0.1rem 0.75rem;
-    background: #DEDEDE;
+    background: #D9D9D9;
     border: none;
 }
 .p-inputtext:enabled:focus{
@@ -71,19 +75,22 @@ export default {
 .andamento {
   height: 8vh;
   width: 30vh;
+
 }
 .andamento button {
-  width: 10vh;
+  width: 15vh;
   height: 2vh;
   font-size: 10px;
-  margin-left: 1vh;
-  margin-top: 1vh;
+  margin-top: 1.5vh;
   border-radius: 5vh;
   flex-direction: row;
   border: none;
   font-family: "Roboto Mono";
+  background-color: #D9D9D9;
 }
 .andamento ul {
   list-style: none;
+  padding: 0.05px;
+  margin-right: 10px;
 }
 </style>

@@ -8,7 +8,7 @@
       <Menu />
     </div>
     <div class="background">
-teste
+
     </div>
   </div>
 </template>
@@ -23,8 +23,15 @@ export default {
 * {
   margin: 0;
 }
-.background{
-  background-image: url("https://static.vecteezy.com/ti/vetor-gratis/t2/2741376-abstract-banner-web-template-design-background-white-and-grey-squares-layer-with-halftone-vetor.jpg");
+.component{
+position: fixed;
+bottom: 0%;
+background-image: url("../assets/background.jpg");
+background-size: 35vh;
+margin-right:30vh ;
+width: 100%;
+height: 100%;
+
 }
 .component {
   display: flex;
@@ -32,10 +39,11 @@ export default {
   position: relative;
 }
 .menu {
-  width: 80%;
+  width: 100%;
+  height: 40%;
 }
 .navbar {
   height: 100vh;
-  width: 20vw;
+  width: 50%;
 }
 </style>
