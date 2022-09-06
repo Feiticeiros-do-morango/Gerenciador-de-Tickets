@@ -2,7 +2,7 @@
   <div class="main">
     <div class="login-form">
       <div class="text-area">
-        <h1>login</h1>
+        <h1>Login</h1>
         <p>Coloque seu login e senha</p>
       </div>
       <div class="input-area">
@@ -65,8 +65,8 @@ export default {};
   align-items: center;
 }
 .login-form {
-  width: 302px;
-  height: 340px;
+  width: 340px;
+  height: 450px;
   padding: 0px 10px 0px 10px;
   display: flex;
   flex-direction: column;
@@ -83,7 +83,7 @@ export default {};
   font-family: "Roboto Mono";
   font-style: normal;
   font-weight: 700;
-  font-size: 40px;
+  font-size: 44px;
   line-height: 63px;
   text-align: center;
 }
@@ -169,6 +169,7 @@ export default {};
   justify-content: center;
   align-items: center;
   margin-top: 15px;
+  margin-bottom: 5px;
 }
 .login-button button {
   width: 100%;
@@ -178,6 +179,7 @@ export default {};
   color: #378cedb9;
   border: 1.9px solid #378bed;
   border-radius: 4.5px;
+  text-align: center;
   font-family: "Roboto Mono";
   font-style: normal;
   font-weight: 700;

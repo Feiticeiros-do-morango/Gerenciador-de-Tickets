@@ -1,77 +1,169 @@
 <template>
-    <div class="main">
-     <h1>Cadastre-se</h1>
-     <br>
-     <p>Preencha os campos corretamente</p>
-     <br>
-     <input type="text"  placeholder="Digite seu e-mail">
-     <br>
-     <br>
-     <input type="text"  placeholder="Digite seu user name">
-     <br>
-     <br>
-     <input type="password" placeholder="Digite sua senha">
-     <br>
-     <br>
-     <input type="password" placeholder="Confirme sua senha">
-     <br>
-     <br>
-     <button>Cadastrar</button>
-     </div>
-     
-    
- </template>
- 
- <script>
- export default {
-     
- }
- </script>
- 
+    <div class="main-registration">
+        <div class="registration-form">
+            <div class="text-area">
+                <h1>Cadastre-se</h1>
+                <p>Preencha os campos corretamente</p>
+            </div>
+            <div class="input-area">
+                <div class="input-wrapper">
+                    <div class="icon">
+                        <iconify-icon icon="charm:at-sign"></iconify-icon>
+                    </div>
+                    <input type="text" name="email" id="email" placeholder="Digite seu email">
+                </div>
+
+                <div class="input-wrapper">
+                    <div class="icon">
+                        <iconify-icon icon="akar-icons:person"></iconify-icon>
+                    </div>
+                    <input type="text" name="user" id="username" placeholder="Digite seu UserName">
+                </div>
+                <div class="input-wrapper">
+                    <div class="icon">
+                        <iconify-icon icon="akar-icons:key"></iconify-icon>
+                    </div>
+                    <input type="password" name="senha" id="password" placeholder="Digite sua senha">
+                </div>
+                <div class="input-wrapper" id="margin">
+                    <div class="icon">
+                        <iconify-icon icon="akar-icons:key"></iconify-icon>
+                    </div>
+                    <input type="text" name="email" id="email" placeholder="Confirme sua senha">
+                </div>
+            </div>
+            <div class="registration-button">
+                <button>Cadastrar</button>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+export default {
+
+}
+</script>
+
 <style scoped>
-    .main {
-      
-     font-family: 'Roboto Mono', monospace;
-     display: flex;
-     flex-direction:column;
-     justify-content: center;
-     align-items: center;
-     background-color: #040414;
-     color:aliceblue;
-     width: 100%;
-     height: 100vh; 
-        
-    }
-    .main h1{
-     font-size: 30px;
-     
-    }
+.main-registration {
+    width: 100%;
+    height: 100vh;
+    background-color: #040414;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-    .main p{
-     font-size: 10px;
-     
-    }
-    input{
-      
+.registration-form {
+    width: 340px;
+    height: 450px;
+    padding: 0px 10px 0px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-     width: 20%;
-     height: 5%;
-     font-family: 'Roboto Mono', monospace;
-     color:aliceblue;
-     border: 1px solid white;
-     border-radius: 10px;
-     background-color:#040414;
-    }
-    button{
-        width: 20%;
- 
-   padding: 10px;
-   border: 1px solid #378BED;
-   border-radius: 10px;
-   background-color:#040414;
-   color: #378BED;
-   text-align: left;
-   font-size: 10px;
-    }
-  
+.text-area {
+    width: 100%;
+    height: 15vh;
+    margin-bottom: 30px;
+    color: #ffffff;
+    overflow: hidden;
+}
+
+.text-area h1 {
+    font-family: "Roboto Mono";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 44px;
+    line-height: 63px;
+    text-align: center;
+}
+
+.text-area p {
+    font-family: "Roboto Mono";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 24px;
+    text-align: center;
+}
+
+.input-area {
+    width: 100%;
+    height: 25vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.input-wrapper {
+    width: 100%;
+    height: 6vh;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    border-radius: 4.5px;
+    border: 1.9px solid #ffffff;
+    margin-bottom: 10px;
+}
+
+.input-wrapper input {
+    width: 90%;
+    height: 100%;
+    font-family: "Roboto Mono";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 22px;
+    color: #ffffffe5;
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+#margin {
+    margin-bottom: 0;
+}
+
+.icon {
+    width: 10%;
+    height: 100%;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.registration-button {
+    width: 100%;
+    height: 5.5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+.registration-button button {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  background: transparent;
+  color: #378cedb9;
+  border: 1.9px solid #378bed;
+  border-radius: 4.5px;
+  text-align: center;
+  font-family: "Roboto Mono";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 16px;
+  transition: 0.5s ease-out;
+}
+.registration-button button:hover {
+  background: #0d0d7489;
+  transition: 0.5s ease;
+}
 </style>
