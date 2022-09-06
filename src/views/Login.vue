@@ -186,7 +186,7 @@ export default {};
   transition: 0.5s ease-out;
 }
 .login-button button:hover {
-  background: #060624c2;
+  background: #0d0d7489;
   transition: 0.5s ease;
 }
 .login-with-google button {
@@ -208,7 +208,7 @@ export default {};
   transition: 0.5s ease-out;
 }
 .login-with-google button:hover {
-  background: #3a3b3e7a;
+  background: #3a3b3eb7;
   transition: 0.5s ease;
 }
 .icon-google {
