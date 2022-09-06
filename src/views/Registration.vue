@@ -17,7 +17,7 @@
                     <div class="icon">
                         <iconify-icon icon="akar-icons:person"></iconify-icon>
                     </div>
-                    <input type="text" name="user" id="username" placeholder="Digite seu UserName">
+                    <input type="text" name="user" id="username" placeholder="Digite seu User Name">
                 </div>
                 <div class="input-wrapper">
                     <div class="icon">
@@ -29,7 +29,7 @@
                     <div class="icon">
                         <iconify-icon icon="akar-icons:key"></iconify-icon>
                     </div>
-                    <input type="text" name="email" id="email" placeholder="Confirme sua senha">
+                    <input type="text" name="confirm" id="confirm" placeholder="Confirme sua senha">
                 </div>
             </div>
             <div class="registration-button">
