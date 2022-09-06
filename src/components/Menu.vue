@@ -1,30 +1,28 @@
 <template>
-
   <div class="container">
-    <div class="tecnologia">
-      <ul>
-        <button><li>Dev</li></button>
-        <button><li>Infra</li></button>
-        <button><li>Eng</li></button>
-        <button><li>Design</li></button>
-      </ul>
+    <div class="tecnologia menu">
+      <button>Dev</button>
+      <button>Infra</button>
+      <button>Eng</button>
+      <button>Design</button>
     </div>
-    <div class="pesquisa">
+    <div class="pesquisa menu">
       <span class="p-input-icon-right">
         <i class="pi pi-search" />
         <InputText type="text" v-model="value4" />
       </span>
     </div>
     <div class="andamento">
-      <ul>
-        <button><li>Disponíveis</li></button>
-        <button><li>Em Progresso</li></button>
-        <button><li>Análise</li></button>
-        <button><li>Finalizados</li></button>
-      </ul>
+      <div>
+        <button>Disponíveis</button>
+        <button>Em Progresso</button>
+      </div>
+      <div>
+        <button>Análise</button>
+        <button>Finalizados</button>
+      </div>
     </div>
   </div>
- 
 </template>
 
 <script>
@@ -36,61 +34,76 @@ export default {
 
 <style scoped>
 .container {
-  background-color: #F2F2F2;
+  background-color: #f2f2f2;
   width: 100%;
-  height: 70%;
-  display: flex;
-  justify-content: left;
-  align-items: center;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 4fr 4fr 4fr;
+  grid-template-areas: "tecnologia pesquisa andamento";
 }
 
+.menu {
+  display: flex;
+  margin: auto;
+  text-align: center;
+}
+
+.tecnologia {
+  grid-area: tecnologia;
+}
 
 .tecnologia button {
-  width: 10vh;
-  height: 2vh;
+  width: 15vh;
+  height: 4vh;
+  min-width: 68px;
+  min-height: 20px;
   margin-left: 3vh;
-  margin-top: 1vh;
   border-radius: 5vh;
   border: none;
   font-family: "Roboto Mono";
   font-size: 10px;
-  background-color: #D9D9D9;
-}
-.p-inputtext{
-    padding: 0.1rem 0.75rem;
-    background: #D9D9D9;
-    border: none;
-}
-.p-inputtext:enabled:focus{
-   border-color: transparent;
-       box-shadow: 0 0 0 0;
-}
-.p-inputtext:enabled:hover{
-   border-color: transparent;
+  background-color: #d9d9d9;
 }
 
-.tecnologia ul {
-  list-style: none;
+.pesquisa {
+  grid-area: pesquisa;
 }
+
 .andamento {
-  height: 8vh;
-  width: 30vh;
+  grid-area: andamento;
+  margin: auto;
+  text-align: center;
+}
 
+.andamento div {
+  display: flex;
+  gap: 10px;
+  margin-top: 5px;
 }
 .andamento button {
-  width: 15vh;
-  height: 2vh;
+  width: 20vh;
+  height: 4vh;
+  min-width: 98px;
+  min-height: 20px;
   font-size: 10px;
-  margin-top: 1.5vh;
   border-radius: 5vh;
   flex-direction: row;
   border: none;
   font-family: "Roboto Mono";
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
 }
-.andamento ul {
-  list-style: none;
-  padding: 0.05px;
-  margin-right: 10px;
+
+.p-inputtext {
+  padding: 0.1rem 0.75rem;
+  background: #d9d9d9;
+  border: none;
+  grid-area: andamento;
+}
+.p-inputtext:enabled:focus {
+  border-color: transparent;
+  box-shadow: 0 0 0 0;
+}
+.p-inputtext:enabled:hover {
+  border-color: transparent;
 }
 </style>
