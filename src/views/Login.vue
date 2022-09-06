@@ -2,7 +2,7 @@
   <div class="main">
     <div class="login-form">
       <div class="text-area">
-        <h1>login</h1>
+        <h1>Login</h1>
         <p>Coloque seu login e senha</p>
       </div>
       <div class="input-area">
@@ -65,8 +65,8 @@ export default {};
   align-items: center;
 }
 .login-form {
-  width: 302px;
-  height: 340px;
+  width: 340px;
+  height: 450px;
   padding: 0px 10px 0px 10px;
   display: flex;
   flex-direction: column;
@@ -83,7 +83,7 @@ export default {};
   font-family: "Roboto Mono";
   font-style: normal;
   font-weight: 700;
-  font-size: 40px;
+  font-size: 44px;
   line-height: 63px;
   text-align: center;
 }
@@ -169,6 +169,7 @@ export default {};
   justify-content: center;
   align-items: center;
   margin-top: 15px;
+  margin-bottom: 5px;
 }
 .login-button button {
   width: 100%;
@@ -178,6 +179,7 @@ export default {};
   color: #378cedb9;
   border: 1.9px solid #378bed;
   border-radius: 4.5px;
+  text-align: center;
   font-family: "Roboto Mono";
   font-style: normal;
   font-weight: 700;
@@ -186,7 +188,7 @@ export default {};
   transition: 0.5s ease-out;
 }
 .login-button button:hover {
-  background: #060624c2;
+  background: #0d0d7489;
   transition: 0.5s ease;
 }
 .login-with-google button {
@@ -208,7 +210,7 @@ export default {};
   transition: 0.5s ease-out;
 }
 .login-with-google button:hover {
-  background: #3a3b3e7a;
+  background: #3a3b3eb7;
   transition: 0.5s ease;
 }
 .icon-google {
@@ -239,4 +241,38 @@ export default {};
   line-height: 12px;
   color: #378bed;
 }
+button{
+   width: 50%;
+ 
+   padding: 10px;
+   border: 1px solid white;
+   border-radius: 10px;
+   background-color:black ;
+   color: white;
+   text-align: left;
+   font-size: 10px;
+}
+.login button{  
+   border: 1px solid #378BED;
+   border-radius: 10px;
+   padding: 10px;
+   margin: auto;
+   text-align: center;
+   background-color:black;
+   color:#378BED ;
+     
+}
+.cadastra{
+   justify-content: space-between ;
+}
+.cadastra p{
+   font-family: italic;
+   font-size: 10px;
+
+   
+}
+.cadastra span{
+   color:#378BED  ;
+}
+
 </style>

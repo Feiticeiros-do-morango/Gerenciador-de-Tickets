@@ -10,6 +10,7 @@ import Projects from '../views/Projects.vue'
 import Statistics from '../views/Statistics.vue'
 import Settings from '../views/Settings.vue'
 import TicketView from '../views/TicketView.vue'
+import PasswordRecovery from '../views/PasswordRecovery.vue'
 
 
 Vue.use(Router)
@@ -25,6 +26,7 @@ export default new Router({
     { path: '/projects', component: Projects},
     { path: '/statistics', component: Statistics},
     { path: '/settings', component: Settings },
-    { path: '/ticketView', component: TicketView}
+    { path: '/ticketView', component: TicketView},
+    { path: '/recovery', component: PasswordRecovery}
   ]
 })
