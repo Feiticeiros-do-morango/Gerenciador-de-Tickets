@@ -13,7 +13,8 @@
     </div>
     <div class="dados">
       <p>Nome</p>
-      <p>Empresa</p>
+     <p>Empresa</p>
+      
     </div>
     <div class="main">
 
@@ -130,8 +131,9 @@ export default {
   padding: 12%;
 }
 .dados {
-  margin: auto;
-  text-align: center;
+  display: flex;
+justify-content: center;
+align-items: center;
   width: 20%;
   height: 10%;
   position: fixed;
@@ -142,7 +144,10 @@ export default {
 <style lang="scss" scoped>
 ::v-deep .p-panelmenu {
   .p-panelmenu-header > a {
-    background: none;
+    border: none;
+  }
+  a:not(.p-panelmenu-header){
+    border-top:1px solid gray;
   }
 }
 </style>

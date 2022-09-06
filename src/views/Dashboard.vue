@@ -20,11 +20,10 @@ export default {
 }
 
 .background {
-  background: url("../assets/background.png"), rgba(193, 193, 193, 0.84);
+  background: url("../assets/background.png"), rgb(193, 193, 193);
   background-size: 50%;
   box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 30px 30px 0px 0px;
-
   grid-area: conteudo;
 }
 .component {

@@ -35,8 +35,10 @@ export default {
 <style scoped>
 .container {
   background-color: #f2f2f2;
+  
   width: 100%;
   height: 100%;
+ 
   display: grid;
   grid-template-columns: 4fr 4fr 4fr;
   grid-template-areas: "tecnologia pesquisa andamento";
@@ -46,19 +48,30 @@ export default {
   display: flex;
   margin: auto;
   text-align: center;
+ max-width: 20vh;
+  max-height: 10vh;
+ 
+  
 }
 
 .tecnologia {
   grid-area: tecnologia;
+  display: flex;
+  margin: auto;
+  text-align: center;
+  padding-right:80%
 }
 
+
+
 .tecnologia button {
+
   width: 15vh;
   height: 4vh;
-  min-width: 68px;
+  min-width: 50px;
   min-height: 20px;
   margin-left: 3vh;
-  border-radius: 5vh;
+  border-radius: 2vh;
   border: none;
   font-family: "Roboto Mono";
   font-size: 10px;
@@ -81,10 +94,10 @@ export default {
   margin-top: 5px;
 }
 .andamento button {
-  width: 20vh;
+  width: 15vh;
   height: 4vh;
-  min-width: 98px;
-  min-height: 20px;
+  min-width: 70px;
+  min-height: 10px;
   font-size: 10px;
   border-radius: 5vh;
   flex-direction: row;
