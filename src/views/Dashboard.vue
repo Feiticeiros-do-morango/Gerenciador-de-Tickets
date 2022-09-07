@@ -17,6 +17,7 @@ export default {
   grid-area: cabecalho;
   width: 100%;
   height: 100%;
+  max-height: 100px;
 }
 
 .background {
@@ -28,7 +29,7 @@ export default {
 }
 .component {
   display: grid;
-  grid-template-rows: 2fr 10fr;
+  grid-template-rows: 1fr 11fr;
 
   grid-template-areas:
     "cabecalho cabecalho"

@@ -1,14 +1,14 @@
 <template>
-  <div>
-    <div class="component">
-      <div class="navbar">
-        <Navbar />
-      </div>
-      <div class="container">
-        <router-view></router-view>
-      </div>
+
+  <div class="component">
+    <div class="navbar">
+      <Navbar />
+    </div>
+    <div class="container">
+      <router-view></router-view>
     </div>
   </div>
+
 </template>
 <script>
 import Navbar from "@/components/shared/Navbar.vue";

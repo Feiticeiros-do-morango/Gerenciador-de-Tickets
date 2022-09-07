@@ -35,10 +35,8 @@ export default {
 <style scoped>
 .container {
   background-color: #f2f2f2;
-  
   width: 100%;
   height: 100%;
- 
   display: grid;
   grid-template-columns: 4fr 4fr 4fr;
   grid-template-areas: "tecnologia pesquisa andamento";
@@ -48,10 +46,7 @@ export default {
   display: flex;
   margin: auto;
   text-align: center;
- max-width: 20vh;
-  max-height: 10vh;
- 
-  
+
 }
 
 .tecnologia {
@@ -59,19 +54,19 @@ export default {
   display: flex;
   margin: auto;
   text-align: center;
-  padding-right:80%
+   width: 80%;
+
 }
 
 
 
 .tecnologia button {
-
-  width: 15vh;
-  height: 4vh;
+  width: 10vh;
+  height: 3vh;
   min-width: 50px;
   min-height: 20px;
   margin-left: 3vh;
-  border-radius: 2vh;
+  border-radius: 1vh;
   border: none;
   font-family: "Roboto Mono";
   font-size: 10px;
@@ -80,12 +75,18 @@ export default {
 
 .pesquisa {
   grid-area: pesquisa;
+  width: 80%;
+
+}
+.pesquisa span{
+  width: 100%;
 }
 
 .andamento {
   grid-area: andamento;
   margin: auto;
   text-align: center;
+   width: 80%;
 }
 
 .andamento div {
@@ -94,12 +95,12 @@ export default {
   margin-top: 5px;
 }
 .andamento button {
-  width: 15vh;
-  height: 4vh;
+  width: 20vh;
+  height: 3vh;
   min-width: 70px;
   min-height: 10px;
   font-size: 10px;
-  border-radius: 5vh;
+  border-radius: 1vh;
   flex-direction: row;
   border: none;
   font-family: "Roboto Mono";
@@ -107,10 +108,12 @@ export default {
 }
 
 .p-inputtext {
+  width: 100%;
   padding: 0.1rem 0.75rem;
   background: #d9d9d9;
   border: none;
   grid-area: andamento;
+
 }
 .p-inputtext:enabled:focus {
   border-color: transparent;

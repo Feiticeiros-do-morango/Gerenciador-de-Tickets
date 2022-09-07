@@ -12,13 +12,9 @@
       <PanelMenu :model="items" />
     </div>
     <div class="dados">
-      <p>Nome</p>
-     <p>Empresa</p>
-      
+      <p>Nome Empresa</p>
     </div>
-    <div class="main">
-
-    </div>
+   
   </div>
 </template>
 <script>
@@ -36,32 +32,26 @@ export default {
             {
               label: "Criar Ticket",
               icon: "pi pi-fw pi-plus",
-              to:"/ticketView",
-             
+              to: "/ticketView",
             },
           ],
         },
         {
           label: "Meus Tickets",
           icon: "pi pi-fw pi-file",
-          
-          items: [
-            
-          ],
+
+          items: [],
         },
         {
           label: "Times",
           icon: "pi pi-fw pi-file",
           items: [
             {
-              label: "Time A"
-           
+              label: "Time A",
             },
             {
-              label: "Time B"
-             
+              label: "Time B",
             },
-
           ],
         },
         {
@@ -72,29 +62,25 @@ export default {
               label: "Projeto A",
               icon: "",
             },
-             {
+            {
               label: "Projeto B",
               icon: "",
             },
-             {
+            {
               label: "Projeto C",
               icon: "",
-            }
+            },
           ],
         },
         {
           label: "Estatísticas",
           icon: "pi pi-fw pi-file",
-          items: [
-           
-          ],
+          items: [],
         },
         {
           label: "Configuração",
           icon: "pi pi-fw pi-file",
-          items: [
-           
-          ],
+          items: [],
         },
       ],
     };
@@ -103,7 +89,6 @@ export default {
 </script>
 
 <style scoped>
-
 .identificacao {
   padding-left: 25%;
 }
@@ -131,13 +116,15 @@ export default {
   padding: 12%;
 }
 .dados {
-  display: flex;
-justify-content: center;
-align-items: center;
-  width: 20%;
-  height: 10%;
   position: fixed;
   bottom: 0;
+  margin-bottom: 1vh;
+  margin-left:12vh;
+  max-width:10vh
+
+}
+.dados p{
+  word-wrap: break-word;
 }
 </style>
 
@@ -145,9 +132,11 @@ align-items: center;
 ::v-deep .p-panelmenu {
   .p-panelmenu-header > a {
     border: none;
+    background: none;
   }
-  a:not(.p-panelmenu-header){
-    border-top:1px solid gray;
+  
+  a:not(.p-panelmenu-header) {
+    border-top: 1px solid gray;
   }
 }
 </style>
