@@ -12,7 +12,12 @@
       <PanelMenu :model="items" />
     </div>
     <div class="dados">
-      <p>Nome Empresa</p>
+      <p>Nome</p>
+     <p>Empresa</p>
+      
+    </div>
+    <div class="main">
+
     </div>
    
   </div>
@@ -116,6 +121,10 @@ export default {
   padding: 12%;
 }
 .dados {
+  display: flex;
+  flex-flow: column-wrap;
+  width: 40%;
+  height: 12vh;
   position: fixed;
   bottom: 0;
   margin-bottom: 1vh;
