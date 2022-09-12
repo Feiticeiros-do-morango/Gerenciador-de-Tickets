@@ -1,8 +1,12 @@
 <template>
   <div class="navbar">
     <div class="identificacao">
-      <p>Nome Completo</p>
+      <div class="avatar">
+    <p Nome Completo><iconify-icon icon="carbon:user-avatar"></iconify-icon></p>
+          </div>
+     
       <p>Cargo</p>
+    
     </div>
     <div class="informacao">
       <span>Projeto</span>
@@ -24,9 +28,9 @@
 </template>
 <script>
 import PanelMenu from "primevue/panelmenu";
-
+import { Icon } from '@iconify/vue2';
 export default {
-  components: { PanelMenu },
+  components: { PanelMenu, Icon },
   data() {
     return {
       items: [
@@ -45,7 +49,7 @@ export default {
           label: "Meus Tickets",
           icon: "pi pi-fw pi-file",
 
-          items: [],
+
         },
         {
           label: "Times",
@@ -80,7 +84,7 @@ export default {
         {
           label: "Estatísticas",
           icon: "pi pi-fw pi-file",
-          items: [],
+          
         },
         {
           label: "Configuração",
@@ -100,6 +104,11 @@ export default {
 .identificacao p {
   margin: 0;
   font-size: 14px;
+}
+.avatar{
+ display: flex;
+ align-items: center;
+ width: 30%;
 }
 .informacao {
   display: flex;
@@ -140,10 +149,14 @@ export default {
 <style lang="scss" scoped>
 ::v-deep .p-panelmenu {
   .p-panelmenu-header > a {
-    border: none;
+    border: transparent;
     background: none;
   }
-  
+  #pv_id_5_header{
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+  }
   a:not(.p-panelmenu-header) {
     border-top: 1px solid gray;
   }

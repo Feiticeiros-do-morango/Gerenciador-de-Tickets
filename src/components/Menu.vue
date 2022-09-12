@@ -38,8 +38,10 @@ export default {
   width: 100%;
   height: 100%;
   display: grid;
+  margin-bottom:15px;
   grid-template-columns: 4fr 4fr 4fr;
   grid-template-areas: "tecnologia pesquisa andamento";
+
 }
 
 .menu {

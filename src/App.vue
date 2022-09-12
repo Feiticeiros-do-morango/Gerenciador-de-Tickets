@@ -20,7 +20,11 @@
       <TabPanel header=""> </TabPanel>
       <TabPanel header=""> </TabPanel>
       <TabPanel header=""> </TabPanel>
-        <TabPanel header=""> </TabPanel>
+      <TabPanel header=""> </TabPanel>
+      <TabPanel header=""> </TabPanel>
+      <TabPanel header=""> </TabPanel>
+      <TabPanel header=""> </TabPanel>
+      
     </TabView>
   </div>
 </template>
@@ -60,14 +64,11 @@ export default {
 background-color:#AAA9A9 ;
 color: #030303;
 border-color:none
-
 }
 .p-tabview-nav-link{
-
 }
 .p-tabview .p-tabview-nav li .p-tabview-nav-link {
   border:none;
-
   border-top-right-radius: 15px;
   border-top-left-radius: 15px;
   font-weight: 300;
@@ -83,7 +84,6 @@ background-color:#AAA9A9 ;
 color: #030303;
 border-color:none;
 width: 100px;
-
 }
 .p-tabview .p-tabview-panels {
   background-color:#F2F2F2 ;
@@ -92,5 +92,8 @@ width: 100px;
 .p-tabview .p-tabview-nav{
   border: none;
 }
+
+
+
 
 </style>
