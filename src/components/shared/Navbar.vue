@@ -1,39 +1,116 @@
 <template>
   <div class="navbar">
     <div class="identificacao">
-      <p>Nome Completo</p>
-      <p>Cargo</p>
+      <div class="avatar">
+        <Icon icon="carbon:user-avatar" width="40" height="40" />
+      </div>
+      <div class="perfil">
+        <div class="nome">
+          <p>Nome Completo</p>
+        </div>
+        <div class="cargo">
+          <p>Cargo</p>
+        </div>
+      </div>
     </div>
+
     <div class="informacao">
       <span>Projeto</span>
       <span>Time</span>
     </div>
-    <div class="itens">
-      <ul>
-        <li>Dashboard</li>
-        <li>Meus Tickets</li>
-        <li>Times</li>
-        <li>Projetos</li>
-        <li>Estatísticas</li>
-        <li>Configuração</li>
-      </ul>
+    <div>
+      <PanelMenu :model="items" />
     </div>
     <div class="dados">
       <p>Nome</p>
       <p>Empresa</p>
     </div>
+    <div class="main"></div>
   </div>
 </template>
 <script>
-export default {};
+import PanelMenu from "primevue/panelmenu";
+import { Icon } from "@iconify/vue2";
+
+export default {
+  components: { PanelMenu, Icon },
+  data() {
+    return {
+      items: [
+        {
+          label: "Dashboard",
+          icon: "pi pi-fw pi-file",
+          items: [
+            {
+              label: "Criar Ticket",
+              icon: "pi pi-fw pi-plus",
+              to: "/ticketView",
+            },
+          ],
+        },
+        {
+          label: "Meus Tickets",
+          icon: "pi pi-fw pi-file",
+        },
+        {
+          label: "Times",
+          icon: "pi pi-fw pi-file",
+          items: [
+            {
+              label: "Time A",
+            },
+            {
+              label: "Time B",
+            },
+          ],
+        },
+        {
+          label: "Projetos",
+          icon: "pi pi-fw pi-file",
+          items: [
+            {
+              label: "Projeto A",
+              icon: "",
+            },
+            {
+              label: "Projeto B",
+              icon: "",
+            },
+            {
+              label: "Projeto C",
+              icon: "",
+            },
+          ],
+        },
+        {
+          label: "Estatísticas",
+          icon: "pi pi-fw pi-file",
+        },
+        {
+          label: "Configuração",
+          icon: "pi pi-fw pi-file",
+          items: [],
+        },
+      ],
+    };
+  },
+};
 </script>
+
 <style scoped>
 .identificacao {
-  padding-left: 25%;
+  display: flex;
+  gap: 10px;
+  padding-top: 2vh;
 }
 .identificacao p {
   margin: 0;
   font-size: 14px;
+}
+
+.cargo {
+  font-size: 14px;
+  margin: auto;
 }
 .informacao {
   display: flex;
@@ -42,11 +119,10 @@ export default {};
   font-size: 12px;
 }
 .navbar {
-  
   height: 100vh;
-  font-family: 'Roboto Mono';
+  font-family: "Roboto Mono";
   font-size: 16px;
-  background-color: black;
+  background-color: rgb(1, 1, 52);
   color: white;
   margin-left: 0;
 }
@@ -56,15 +132,37 @@ export default {};
   padding: 12%;
 }
 .dados {
-    margin: auto;
-    text-align: center;
-    width: 20%;
-    height: 10%;
-    position: fixed;
-    bottom:0;
-  
+  display: flex;
+  flex-flow: column-wrap;
+  width: 40%;
+  height: 12vh;
+  position: fixed;
+  bottom: 0;
+  margin-bottom: 1vh;
+  margin-left: 12vh;
+  max-width: 10vh;
 }
-   
+.dados p {
+  word-wrap: break-word;
+}
+</style>
 
-
+<style lang="scss" scoped>
+::v-deep .p-panelmenu {
+  .p-panelmenu-header > a {
+    border: transparent;
+    background: none;
+  }
+  #pv_id_5_header {
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+  }
+  a:not(.p-panelmenu-header) {
+    border-top: 1px solid gray;
+  }
+  .p-panelmenu .p-panelmenu-header > a:focus {
+    box-shadow: 0 0 0 0.2rem rgb(255 255 255 / 3%);
+  }
+}
 </style>

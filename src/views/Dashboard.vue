@@ -1,45 +1,38 @@
 <template>
-<div class="component">
-
-  <div class="navbar">
-  <Navbar />
+  <div class="component">
+    <div class="menu">
+      <Menu />
+    </div>
+    <div class="background"></div>
   </div>
-
-  <div class="menu">
-  <Menu />
-  </div>
-
-  </div>
-  
-  
 </template>
 <script>
-import Navbar from "@/components/shared/Navbar.vue";
-import Menu from "@/components/Menu.vue"
+import Menu from "@/components/Menu.vue";
 export default {
-  components: { Navbar,Menu}
+  components: { Menu },
 };
 </script>
 <style scoped>
-*{
-  margin: 0;
+.menu {
+  grid-area: cabecalho;
+  width: 100%;
+  height: 100%;
+  max-height: 100px;
 }
-.component{
-  display: flex;
- 
-  position: relative;
-  
+
+.background {
+  background: url("../assets/background.png"), rgb(193, 193, 193);
+  background-size: 50%;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 30px 30px 0px 0px;
+  grid-area: conteudo;
 }
-.menu{
-  width: 80%;
- 
- 
- 
- 
-}
-.navbar{
- height: 100vh;
- width: 20vw;
- 
+.component {
+  display: grid;
+  grid-template-rows: 1fr 11fr;
+
+  grid-template-areas:
+    "cabecalho cabecalho"
+    "conteudo conteudo ";
 }
 </style>
