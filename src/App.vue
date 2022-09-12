@@ -21,9 +21,7 @@
       <TabPanel header=""> </TabPanel>
       <TabPanel header=""> </TabPanel>
       <TabPanel header=""> </TabPanel>
-      <TabPanel header=""> </TabPanel>
-      <TabPanel header=""> </TabPanel>
-      <TabPanel header=""> </TabPanel>
+   
       
     </TabView>
   </div>
@@ -65,7 +63,12 @@ background-color:#AAA9A9 ;
 color: #030303;
 border-color:none
 }
-.p-tabview-nav-link{
+.p-tabview-nav-content{
+  margin-top:1vh;
+}
+
+.p-component{
+    background:rgb(1, 1, 52);
 }
 .p-tabview .p-tabview-nav li .p-tabview-nav-link {
   border:none;
@@ -74,7 +77,8 @@ border-color:none
   font-weight: 300;
   font-size:15px;
   height: 100%;
-   margin-right:1px;
+  margin-right:2px;
+
 }
 .p-tabview .p-tabview-nav li:not(.p-highlight):not(.p-disabled):hover .p-tabview-nav-link{
   background-color: gray;
@@ -93,7 +97,9 @@ width: 100px;
   border: none;
 }
 
-
+.p-tabview .p-tabview-nav li{
+  height: 5vh;
+}
 
 
 </style>

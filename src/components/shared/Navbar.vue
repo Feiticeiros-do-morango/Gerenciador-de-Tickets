@@ -2,12 +2,18 @@
   <div class="navbar">
     <div class="identificacao">
       <div class="avatar">
-    <p Nome Completo><iconify-icon icon="carbon:user-avatar"></iconify-icon></p>
-          </div>
-     
-      <p>Cargo</p>
-    
+        <Icon icon="carbon:user-avatar" width="40" height="40" />
+      </div>
+      <div class="perfil">
+        <div class="nome">
+          <p>Nome Completo</p>
+        </div>
+        <div class="cargo">
+          <p>Cargo</p>
+        </div>
+      </div>
     </div>
+
     <div class="informacao">
       <span>Projeto</span>
       <span>Time</span>
@@ -17,18 +23,15 @@
     </div>
     <div class="dados">
       <p>Nome</p>
-     <p>Empresa</p>
-      
+      <p>Empresa</p>
     </div>
-    <div class="main">
-
-    </div>
-   
+    <div class="main"></div>
   </div>
 </template>
 <script>
 import PanelMenu from "primevue/panelmenu";
-import { Icon } from '@iconify/vue2';
+import { Icon } from "@iconify/vue2";
+
 export default {
   components: { PanelMenu, Icon },
   data() {
@@ -48,8 +51,6 @@ export default {
         {
           label: "Meus Tickets",
           icon: "pi pi-fw pi-file",
-
-
         },
         {
           label: "Times",
@@ -84,7 +85,6 @@ export default {
         {
           label: "Estatísticas",
           icon: "pi pi-fw pi-file",
-          
         },
         {
           label: "Configuração",
@@ -99,16 +99,18 @@ export default {
 
 <style scoped>
 .identificacao {
-  padding-left: 25%;
+  display: flex;
+  gap: 10px;
+  padding-top: 2vh;
 }
 .identificacao p {
   margin: 0;
   font-size: 14px;
 }
-.avatar{
- display: flex;
- align-items: center;
- width: 30%;
+
+.cargo {
+  font-size: 14px;
+  margin: auto;
 }
 .informacao {
   display: flex;
@@ -137,11 +139,10 @@ export default {
   position: fixed;
   bottom: 0;
   margin-bottom: 1vh;
-  margin-left:12vh;
-  max-width:10vh
-
+  margin-left: 12vh;
+  max-width: 10vh;
 }
-.dados p{
+.dados p {
   word-wrap: break-word;
 }
 </style>
@@ -152,13 +153,16 @@ export default {
     border: transparent;
     background: none;
   }
-  #pv_id_5_header{
+  #pv_id_5_header {
     box-shadow: 0 0 0 0;
     border: 0 none;
     outline: 0;
   }
   a:not(.p-panelmenu-header) {
     border-top: 1px solid gray;
+  }
+  .p-panelmenu .p-panelmenu-header > a:focus {
+    box-shadow: 0 0 0 0.2rem rgb(255 255 255 / 3%);
   }
 }
 </style>
