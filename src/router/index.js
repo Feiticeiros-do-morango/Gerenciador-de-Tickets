@@ -18,15 +18,9 @@ Vue.use(Router)
 export default new Router({
   mode: 'history',
   routes: [
-<<<<<<< Updated upstream
-    { path: '/registration', component: Registration},
-    { path: '/login', component: LoginView },
-    { path: '/', component: Dashboard },
-=======
     { path: '/registration', name: "registration" , component: Registration},
     { path: '/login', name: "login", component: LoginView },
     { path: '/', name: "Dashboard" ,component: Dashboard },
->>>>>>> Stashed changes
     { path: '/myTickets', component: MyTickets},
     { path: '/teams', name: "teams", component: Teams },
     { path: '/projects', component: Projects},
