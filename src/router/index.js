@@ -17,14 +17,15 @@ Vue.use(Router)
 export default new Router({
   mode: 'history',
   routes: [
-    { path: '/registration', component: Registration},
+    { path: '/registration', component: Registration },
     { path: '/login', component: LoginView },
     { path: '/', component: Dashboard },
-    { path: '/myTickets', component: MyTickets},
+    { path: '/myTickets', component: MyTickets },
     { path: '/teams', component: Teams },
-    { path: '/projects', component: Projects},
-    { path: '/statistics', component: Statistics},
+    { path: '/projects', component: Projects },
+    { path: '/statistics', component: Statistics },
     { path: '/settings', component: Settings },
-    { path: '/ticketView', component: TicketView}
+    { path: '/ticketView', component: TicketView },
+   
   ]
 })
