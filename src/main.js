@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router/index'
-<<<<<<< Updated upstream
-=======
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
@@ -21,7 +19,6 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 export { db }
->>>>>>> Stashed changes
 
 new Vue({
 	router,
