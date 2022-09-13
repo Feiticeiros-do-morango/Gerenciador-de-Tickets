@@ -1,17 +1,4 @@
 <template>
-<<<<<<< Updated upstream
-   <div class="main">
-    <p>Login</p>
-    <p>Digite seu Login e Senha</p>
-    <input type="text"  placeholder="Nome ou e-mail">
-    <br>
-    <br>
-    <input type="text"  placeholder="Senha">
-    <p>Esqueceu a Senha?</p>
-    <p>Login</p>
-    <div class="google">
-    <input type="text" placeholder=" sign-in with Google">
-=======
   <div class="main">
     <div class="login-form">
       <div class="text-area">
@@ -69,7 +56,6 @@
         <a href="/registration"><p>Cadastre-se!</p></a>
         
       </div>
->>>>>>> Stashed changes
     </div>
     <p>Não é um membro ainda?Cadastre-se</p>
    </div>
@@ -78,9 +64,6 @@
 <script>
   import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 export default {
-<<<<<<< Updated upstream
-    
-=======
   name: "Login",
   data() {
     return {
@@ -98,17 +81,10 @@ export default {
       })
     }
   },
->>>>>>> Stashed changes
 }
 </script>
 
 <style scoped>
-<<<<<<< Updated upstream
-
-.main{
-   font-family: 'Roboto Mono', monospace;
-  
-=======
 .main {
   width: 100%;
   height: 100vh;
@@ -322,7 +298,6 @@ button{
    font-family: italic;
    font-size: 10px;
    text-decoration: none;
->>>>>>> Stashed changes
 }
 .google{
    font-family: 'PT Sans', sans-serif;
