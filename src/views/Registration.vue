@@ -1,9 +1,5 @@
 <template>
-<h1> registration </h1>
-
-<<<<<<< Updated upstream
-=======
-                <div class="input-wrapper">
+         <div class="input-wrapper">
                     <div class="icon">
                         <iconify-icon icon="akar-icons:person"></iconify-icon>
                     </div>
@@ -28,13 +24,8 @@
             </div>
         </form>
     </div>
->>>>>>> Stashed changes
 </template>
 <script>
-<<<<<<< Updated upstream
-export default {
-  
-=======
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { collection, addDoc, doc, setDoc } from "firebase/firestore";
 import { db } from "../main"
@@ -70,14 +61,10 @@ export default {
             } );
     }
     },
->>>>>>> Stashed changes
 }
 </script>
 <style scoped>
 
-<<<<<<< Updated upstream
-</style>
-=======
 .registration-form {
     width: 340px;
     height: 450px;
@@ -192,4 +179,3 @@ export default {
     transition: 0.5s ease;
 }
 </style>
->>>>>>> Stashed changes
