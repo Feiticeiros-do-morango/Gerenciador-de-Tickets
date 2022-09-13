@@ -1,28 +1,29 @@
 <template>
-         <div class="input-wrapper">
-                    <div class="icon">
-                        <iconify-icon icon="akar-icons:person"></iconify-icon>
-                    </div>
-                    <input type="text" name="user" id="username" placeholder="Digite seu User Name" v-model="UserName">
+    <div class="main">
+        <form class="registration-form">
+            <div class="input-wrapper">
+                <div class="icon">
+                    <iconify-icon icon="akar-icons:person"></iconify-icon>
                 </div>
-                <div class="input-wrapper">
-                    <div class="icon">
-                        <iconify-icon icon="akar-icons:key"></iconify-icon>
-                    </div>
-                    <input type="password" name="senha" id="password" placeholder="Digite sua senha" v-model="senha">
-                </div>
-                <div class="input-wrapper" id="margin">
-                    <div class="icon">
-                        <iconify-icon icon="akar-icons:key"></iconify-icon>
-                    </div>
-                    <input type="password" name="confirm" id="confirm" placeholder="Confirme sua senha"
-                        v-model="confirmSenha">
-                </div>
+                <input type="text" name="user" id="username" placeholder="Digite seu User Name" v-model="UserName">
             </div>
-            <div class="registration-button">
-                <button @click="registro()">Cadastrar</button>
+            <div class="input-wrapper">
+                <div class="icon">
+                    <iconify-icon icon="akar-icons:key"></iconify-icon>
+                </div>
+                <input type="password" name="senha" id="password" placeholder="Digite sua senha" v-model="senha">
+            </div>
+            <div class="input-wrapper" id="margin">
+                <div class="icon">
+                    <iconify-icon icon="akar-icons:key"></iconify-icon>
+                </div>
+                <input type="password" name="confirm" id="confirm" placeholder="Confirme sua senha"
+                    v-model="confirmSenha">
             </div>
         </form>
+        <div class="registration-button">
+            <button @click="registro()">Cadastrar</button>
+        </div>
     </div>
 </template>
 <script>
@@ -52,18 +53,26 @@ export default {
                 this.$router.replace("login");
             })
             console.log(this.confirmSenha)
-            await addDoc(collection(db, "usuarios",),{
+            await addDoc(collection(db, "usuarios",), {
                 email: this.email,
                 senha: this.senha,
                 UserName: this.UserName,
                 confirmSenha: this.confirmSenha
-                
-            } );
-    }
+
+            });
+        }
     },
 }
 </script>
 <style scoped>
+.main {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: ;
+}
 
 .registration-form {
     width: 340px;

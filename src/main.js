@@ -20,6 +20,7 @@ const db = getFirestore(app);
 
 export { db }
 
+
 new Vue({
 	router,
 	render: h => h(App),
