@@ -1,60 +1,83 @@
 <template>
-    <div class="main-registration">
-        <div class="registration-form">
-            <div class="text-area">
-                <h1>Cadastre-se</h1>
-                <p>Preencha os campos corretamente</p>
-            </div>
-            <div class="input-area">
-                <div class="input-wrapper">
-                    <div class="icon">
-                        <iconify-icon icon="charm:at-sign"></iconify-icon>
-                    </div>
-                    <input type="text" name="email" id="email" placeholder="Digite seu email">
-                </div>
+<h1> registration </h1>
 
+<<<<<<< Updated upstream
+=======
                 <div class="input-wrapper">
                     <div class="icon">
                         <iconify-icon icon="akar-icons:person"></iconify-icon>
                     </div>
-                    <input type="text" name="user" id="username" placeholder="Digite seu User Name">
+                    <input type="text" name="user" id="username" placeholder="Digite seu User Name" v-model="UserName">
                 </div>
                 <div class="input-wrapper">
                     <div class="icon">
                         <iconify-icon icon="akar-icons:key"></iconify-icon>
                     </div>
-                    <input type="password" name="senha" id="password" placeholder="Digite sua senha">
+                    <input type="password" name="senha" id="password" placeholder="Digite sua senha" v-model="senha">
                 </div>
                 <div class="input-wrapper" id="margin">
                     <div class="icon">
                         <iconify-icon icon="akar-icons:key"></iconify-icon>
                     </div>
-                    <input type="text" name="confirm" id="confirm" placeholder="Confirme sua senha">
+                    <input type="password" name="confirm" id="confirm" placeholder="Confirme sua senha"
+                        v-model="confirmSenha">
                 </div>
             </div>
             <div class="registration-button">
-                <button>Cadastrar</button>
+                <button @click="registro()">Cadastrar</button>
             </div>
-        </div>
+        </form>
     </div>
+>>>>>>> Stashed changes
 </template>
-
 <script>
+<<<<<<< Updated upstream
 export default {
+  
+=======
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { collection, addDoc, doc, setDoc } from "firebase/firestore";
+import { db } from "../main"
 
+export default {
+    name: "Registro",
+    data() {
+        return {
+            userinfo: {
+                email: "",
+                UserName: "",
+                senha: "",
+                confirmSenha: ""
+
+            }
+
+        };
+    },
+    methods: {
+        async registro() {
+            const auth = getAuth();
+            createUserWithEmailAndPassword(auth, this.email, this.senha).then((userCredential) => {
+                //registrado
+                this.$router.replace("login");
+            })
+            console.log(this.confirmSenha)
+            await addDoc(collection(db, "usuarios",),{
+                email: this.email,
+                senha: this.senha,
+                UserName: this.UserName,
+                confirmSenha: this.confirmSenha
+                
+            } );
+    }
+    },
+>>>>>>> Stashed changes
 }
 </script>
-
 <style scoped>
-.main-registration {
-    width: 100%;
-    height: 100vh;
-    background-color: #040414;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
+<<<<<<< Updated upstream
+</style>
+=======
 .registration-form {
     width: 340px;
     height: 450px;
@@ -146,24 +169,27 @@ export default {
     margin-top: 15px;
     margin-bottom: 5px;
 }
+
 .registration-button button {
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-  background: transparent;
-  color: #378cedb9;
-  border: 1.9px solid #378bed;
-  border-radius: 4.5px;
-  text-align: center;
-  font-family: "Roboto Mono";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 12px;
-  line-height: 16px;
-  transition: 0.5s ease-out;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    background: transparent;
+    color: #378cedb9;
+    border: 1.9px solid #378bed;
+    border-radius: 4.5px;
+    text-align: center;
+    font-family: "Roboto Mono";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 16px;
+    transition: 0.5s ease-out;
 }
+
 .registration-button button:hover {
-  background: #0d0d7489;
-  transition: 0.5s ease;
+    background: #0d0d7489;
+    transition: 0.5s ease;
 }
 </style>
+>>>>>>> Stashed changes

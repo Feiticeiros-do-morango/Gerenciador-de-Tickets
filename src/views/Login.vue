@@ -15,23 +15,31 @@
             name="user"
             id="user"
             placeholder="Usuário ou E-mail"
+            v-model="email"
           />
         </div>
         <div class="input-wrapper">
           <div class="icon">
             <iconify-icon icon="akar-icons:key"></iconify-icon>
           </div>
-          <input type="password" name="user" id="user" placeholder="Senha" />
+          <input 
+          type="password" 
+          name="user"
+          id="user" 
+          placeholder="Senha" 
+          v-model="senha"
+          />
         </div>
         <div class="recovery">
-          <p>Esqueceu a senha?</p>
+          <a href="/Recovery"><p>Esqueceu a senha?
+          </p></a>
         </div>
       </div>
       <div class="login-button">
-        <button>Login</button>
+        <button @click="loginRequest()">Login</button>
       </div>
       <div class="login-with-google">
-        <button>
+        <button @click="signInWithGoogle">
           <div class="icon-google">
             <iconify-icon
               inline
@@ -45,14 +53,35 @@
       </div>
       <div class="account-cadastra-se">
         <h1>Não é um membro ainda?</h1>
-        <p>Cadastre-se!</p>
+        <a href="/registration"><p>Cadastre-se!</p></a>
+        
       </div>
     </div>
-  </div>
+    <p>Não é um membro ainda?Cadastre-se</p>
+   </div>
 </template>
 
 <script>
-export default {};
+  import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+export default {
+  name: "Login",
+  data() {
+    return {
+      email: "",
+      password: ""
+    };
+  },
+  methods: {
+    loginRequest() {
+      const auth = getAuth();
+
+      signInWithEmailAndPassword(auth, this.email, this.senha).then((userCredential) => {
+        //logado
+        this.$router.replace("teams")
+      })
+    }
+  },
+}
 </script>
 
 <style scoped>
@@ -265,14 +294,12 @@ button{
 .cadastra{
    justify-content: space-between ;
 }
-.cadastra p{
+.cadastra p,a { 
    font-family: italic;
    font-size: 10px;
-
-   
+   text-decoration: none;
 }
-.cadastra span{
-   color:#378BED  ;
+.google{
+   font-family: 'PT Sans', sans-serif;
 }
-
 </style>
