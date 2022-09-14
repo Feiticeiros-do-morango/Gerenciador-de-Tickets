@@ -33,7 +33,7 @@ import PanelMenu from "primevue/panelmenu";
 import { Icon } from "@iconify/vue2";
 
 export default {
-  components: { PanelMenu, Icon },
+  components: { PanelMenu },
   data() {
     return {
       items: [

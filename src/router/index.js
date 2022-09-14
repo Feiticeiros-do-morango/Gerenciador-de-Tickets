@@ -20,13 +20,13 @@ export default new Router({
   routes: [
     { path: '/registration', name: "registration" , component: Registration},
     { path: '/login', name: "login", component: LoginView },
-    { path: '/', name: "Dashboard" ,component: Dashboard },
+    { path: '/', name: "dashboard" ,component: Dashboard },
     { path: '/myTickets', component: MyTickets},
     { path: '/teams', name: "teams", component: Teams },
-    { path: '/projects', component: Projects},
+    { path: '/projects', name:"projects",  component: Projects},
     { path: '/statistics', component: Statistics},
     { path: '/settings', component: Settings },
     { path: '/ticketView', component: TicketView},
-    { path: '/recovery', component: PasswordRecovery}
+    { path: '/recovery', name: "recovery",  component: PasswordRecovery}
   ]
 })

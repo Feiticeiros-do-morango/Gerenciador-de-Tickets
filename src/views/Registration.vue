@@ -1,4 +1,5 @@
 <template>
+<<<<<<< Updated upstream
     <h1> registration </h1>
 
     <div class="input-wrapper">
@@ -24,47 +25,139 @@
         <button @click="registro()">Cadastrar</button>
     </div>
     </form>
+=======
+    <div class="main">
+        <form class="registration-form" @submit.prevent="registrar()">
+            <div class="text-area">
+                <h1>Cadastre-se</h1>
+                <p>Preencha os campos corretamente</p>
+            </div>
+            <div class="input-area">
+                <div class="input-wrapper">
+                    <div class="icon">
+                        <iconify-icon icon="dashicons:email-alt"></iconify-icon>
+                    </div>
+                    <input 
+                    type="text" 
+                    name="email" 
+                    id="email" 
+                    placeholder="Digite seu Email" 
+                    v-model="state.email" >
+                </div>
+                <div class="input-wrapper">
+                    <div class="icon">
+                        <iconify-icon icon="akar-icons:person"></iconify-icon>
+                    </div>
+                    <input 
+                    type="text" 
+                    name="user" 
+                    id="username" 
+                    placeholder="Digite seu UserName" 
+                    v-model="state.UserName">
+                </div>
+                <div class="input-wrapper">
+                    <div class="icon">
+                        <iconify-icon icon="akar-icons:key"></iconify-icon>
+                    </div>
+                    <input 
+                    type="password" 
+                    name="senha" 
+                    id="password" 
+                    placeholder="Digite sua senha" 
+                    v-model="state.senha">
+                </div>
+                <div class="input-wrapper" id="margin">
+                    <div class="icon">
+                        <iconify-icon icon="akar-icons:key"></iconify-icon>
+                    </div>
+                    <input 
+                    type="password" 
+                    name="confirm" 
+                    id="confirm" 
+                    placeholder="Confirme sua senha "
+                    v-model="state.confirmSenha">
+                </div>
+            </div>
+            <div class="registration-button">
+            <button @click="registrar()">Cadastrar</button>
+        </div>
+        </form>
+>>>>>>> Stashed changes
     </div>
 </template>
 <script>
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { collection, addDoc, doc, setDoc } from "firebase/firestore";
 import { db } from "../main"
+import { reactive, computed } from 'vue'
+import { useVuelidate } from '@vuelidate/core'
+import { required, email, sameAs, minLength } from '@vuelidate/validators'
 
 export default {
-    name: "Registro",
-    data() {
-        return {
-            userinfo: {
-                email: "",
-                UserName: "",
-                senha: "",
-                confirmSenha: ""
+    setup (){
+        const state = reactive ({
+            email: '',
+            UserName: '',
+            senha: '',
+            confirmSenha: ''
 
+        })
+        const rules = computed(() => {
+            return {
+                email: { required, email},
+                UserName: { required, minLength: minLength(3)},
+                senha: { required, minLength: minLength(6)},
+                confirmSenha: { required, sameAs: sameAs(state.senha)}
             }
+        })
 
-        };
+        const v$ = useVuelidate(rules, state)
+
+        return { 
+            state, 
+            v$,
+        }
     },
     methods: {
-        async registro() {
+        async registrar() {
             const auth = getAuth();
+            this.v$.$validate()
+            if (!this.v$.$error) {
+                alert("Formulário funcionou")
+            } else {
+                alert("Formulário falhou")
+            }
             createUserWithEmailAndPassword(auth, this.email, this.senha).then((userCredential) => {
                 //registrado
-                this.$router.replace("login");
+                this.goTologin();
             })
             console.log(this.confirmSenha)
-            await addDoc(collection(db, "usuarios",), {
+            await addDoc(collection(db, "usuarios"), {
                 email: this.email,
                 senha: this.senha,
-                UserName: this.UserName,
-                confirmSenha: this.confirmSenha
-
+                UserName: this.UserName
             });
+        },
+        goTologin() {
+            this.$router.push({ name: "login"})
         }
+        
     },
 }
 </script>
 <style scoped>
+<<<<<<< Updated upstream
+=======
+.main {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #040414;
+}
+
+>>>>>>> Stashed changes
 .registration-form {
     width: 340px;
     height: 450px;
@@ -177,5 +270,11 @@ export default {
 .registration-button button:hover {
     background: #0d0d7489;
     transition: 0.5s ease;
+}
+.error {
+    border: 1px solid #880606;
+}
+.error-color {
+    color: #880606;
 }
 </style>

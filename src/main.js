@@ -15,6 +15,10 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
+// Initialize vuelidate
+import Vuelidate from 'vuelidate'
+Vue.use(Vuelidate);
+
 // Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app);
 

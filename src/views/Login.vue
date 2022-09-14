@@ -54,10 +54,8 @@
       <div class="account-cadastra-se">
         <h1>Não é um membro ainda?</h1>
         <a href="/registration"><p>Cadastre-se!</p></a>
-        
       </div>
     </div>
-    <p>Não é um membro ainda?Cadastre-se</p>
    </div>
 </template>
 
@@ -74,10 +72,10 @@ export default {
   methods: {
     loginRequest() {
       const auth = getAuth();
-
       signInWithEmailAndPassword(auth, this.email, this.senha).then((userCredential) => {
         //logado
-        this.$router.replace("teams")
+        console.log("logado")
+        this.$router.replace("teams");
       })
     }
   },
