@@ -1,31 +1,4 @@
 <template>
-<<<<<<< Updated upstream
-    <h1> registration </h1>
-
-    <div class="input-wrapper">
-        <div class="icon">
-            <iconify-icon icon="akar-icons:person"></iconify-icon>
-        </div>
-        <input type="text" name="user" id="username" placeholder="Digite seu User Name" v-model="UserName">
-    </div>
-    <div class="input-wrapper">
-        <div class="icon">
-            <iconify-icon icon="akar-icons:key"></iconify-icon>
-        </div>
-        <input type="password" name="senha" id="password" placeholder="Digite sua senha" v-model="senha">
-    </div>
-    <div class="input-wrapper" id="margin">
-        <div class="icon">
-            <iconify-icon icon="akar-icons:key"></iconify-icon>
-        </div>
-        <input type="password" name="confirm" id="confirm" placeholder="Confirme sua senha" v-model="confirmSenha">
-    </div>
-    </div>
-    <div class="registration-button">
-        <button @click="registro()">Cadastrar</button>
-    </div>
-    </form>
-=======
     <div class="main">
         <form class="registration-form" @submit.prevent="registrar()">
             <div class="text-area">
@@ -44,6 +17,9 @@
                     placeholder="Digite seu Email" 
                     v-model="state.email" >
                 </div>
+                <span v-if="v$.email.$error">
+                        {{ v$.email.$errors[0].$message }}
+                    </span>
                 <div class="input-wrapper">
                     <div class="icon">
                         <iconify-icon icon="akar-icons:person"></iconify-icon>
@@ -55,6 +31,9 @@
                     placeholder="Digite seu UserName" 
                     v-model="state.UserName">
                 </div>
+                <span v-if="v$.UserName.$error">
+                        {{ v$.UserName.$errors[0].$message }}
+                    </span>
                 <div class="input-wrapper">
                     <div class="icon">
                         <iconify-icon icon="akar-icons:key"></iconify-icon>
@@ -66,6 +45,9 @@
                     placeholder="Digite sua senha" 
                     v-model="state.senha">
                 </div>
+                <span v-if="v$.senha.$error">
+                        {{ v$.senha.$errors[0].$message }}
+                    </span>
                 <div class="input-wrapper" id="margin">
                     <div class="icon">
                         <iconify-icon icon="akar-icons:key"></iconify-icon>
@@ -77,12 +59,14 @@
                     placeholder="Confirme sua senha "
                     v-model="state.confirmSenha">
                 </div>
+                <span v-if="v$.confirmSenha.$error">
+                        {{ v$.confirmSenha.$errors[0].$message }}
+                    </span>
             </div>
             <div class="registration-button">
             <button @click="registrar()">Cadastrar</button>
         </div>
         </form>
->>>>>>> Stashed changes
     </div>
 </template>
 <script>
@@ -127,15 +111,18 @@ export default {
             } else {
                 alert("Formulário falhou")
             }
-            createUserWithEmailAndPassword(auth, this.email, this.senha).then((userCredential) => {
+            createUserWithEmailAndPassword(auth, this.state.email, this.state.senha).then((userCredential) => {
                 //registrado
                 this.goTologin();
             })
-            console.log(this.confirmSenha)
+            console.log(this.state.email)
+            console.log(this.state.senha)
+            console.log(this.state.UserName)
+            console.log(this.state.confirmSenha)
             await addDoc(collection(db, "usuarios"), {
-                email: this.email,
-                senha: this.senha,
-                UserName: this.UserName
+                email: this.state.email,
+                senha: this.state.senha,
+                UserName: this.state.UserName
             });
         },
         goTologin() {
@@ -146,8 +133,6 @@ export default {
 }
 </script>
 <style scoped>
-<<<<<<< Updated upstream
-=======
 .main {
     width: 100%;
     height: 100vh;
@@ -157,7 +142,6 @@ export default {
     background: #040414;
 }
 
->>>>>>> Stashed changes
 .registration-form {
     width: 340px;
     height: 450px;
@@ -271,10 +255,7 @@ export default {
     background: #0d0d7489;
     transition: 0.5s ease;
 }
-.error {
-    border: 1px solid #880606;
-}
-.error-color {
-    color: #880606;
+span {
+    color: #fff;
 }
 </style>
