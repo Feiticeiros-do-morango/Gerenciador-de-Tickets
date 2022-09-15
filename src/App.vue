@@ -1,27 +1,29 @@
 <template>
   <div class="component">
-    <div v-if="logado" class="navbar">
+    <div class="navbar">
       <Navbar />
     </div>
-    <router-view>
-      <TabView>
-        <TabPanel header="Dashboard">
-          <div class="container"></div>
-        </TabPanel>
-        <TabPanel header=""> </TabPanel>
-        <TabPanel header=" "> </TabPanel>
-        <TabPanel header=""> </TabPanel>
-        <TabPanel header=""> </TabPanel>
-        <TabPanel header=""> </TabPanel>
-        <TabPanel header=""> </TabPanel>
-        <TabPanel header=""> </TabPanel>
-        <TabPanel header=""> </TabPanel>
-        <TabPanel header=""> </TabPanel>
-        <TabPanel header=""> </TabPanel>
-        <TabPanel header=""> </TabPanel>
-        <TabPanel header=""> </TabPanel>
-      </TabView>
-    </router-view>
+    <TabView>
+      <TabPanel header="Dashboard">
+        <div class="container">
+          <router-view></router-view>
+        </div>
+      </TabPanel>
+      <TabPanel header=""> </TabPanel>
+      <TabPanel header=" "> </TabPanel>
+      <TabPanel header=""> </TabPanel>
+      <TabPanel header=""> </TabPanel>
+      <TabPanel header=""> </TabPanel>
+      <TabPanel header=""> </TabPanel>
+      <TabPanel header=""> </TabPanel>
+      <TabPanel header=""> </TabPanel>
+      <TabPanel header=""> </TabPanel>
+      <TabPanel header=""> </TabPanel>
+      <TabPanel header=""> </TabPanel>
+      <TabPanel header=""> </TabPanel>
+   
+      
+    </TabView>
   </div>
 </template>
 <script>
@@ -31,9 +33,6 @@ import TabPanel from "primevue/tabpanel";
 
 export default {
   components: { Navbar, TabView, TabPanel },
-  data() {
-    return { logado: false };
-  },
 };
 </script>
 <style>
@@ -60,50 +59,47 @@ export default {
   grid-template-areas: "navegacao container";
 }
 .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
-  background-color: #aaa9a9;
-  color: #030303;
-  border-color: none;
+background-color:#AAA9A9 ;
+color: #030303;
+border-color:none
 }
-.p-tabview-nav-content {
-  margin-top: 1vh;
+.p-tabview-nav-content{
+  margin-top:1vh;
 }
 
-.p-component {
-  background: rgb(1, 1, 52);
+.p-component{
+    background:rgb(1, 1, 52);
 }
 .p-tabview .p-tabview-nav li .p-tabview-nav-link {
-  border: none;
+  border:none;
   border-top-right-radius: 15px;
   border-top-left-radius: 15px;
   font-weight: 300;
-  font-size: 15px;
+  font-size:15px;
   height: 100%;
-  margin-right: 2px;
+  margin-right:2px;
+
 }
-.p-tabview
-  .p-tabview-nav
-  li:not(.p-highlight):not(.p-disabled):hover
-  .p-tabview-nav-link {
+.p-tabview .p-tabview-nav li:not(.p-highlight):not(.p-disabled):hover .p-tabview-nav-link{
   background-color: gray;
 }
-.p-tabview
-  .p-tabview-nav
-  li:not(.p-highlight):not(.p-disabled)
-  .p-tabview-nav-link {
-  background-color: #aaa9a9;
-  color: #030303;
-  border-color: none;
-  width: 100px;
+.p-tabview .p-tabview-nav li:not(.p-highlight):not(.p-disabled) .p-tabview-nav-link {
+background-color:#AAA9A9 ;
+color: #030303;
+border-color:none;
+width: 100px;
 }
 .p-tabview .p-tabview-panels {
-  background-color: #f2f2f2;
+  background-color:#F2F2F2 ;
   padding: 0px;
 }
-.p-tabview .p-tabview-nav {
+.p-tabview .p-tabview-nav{
   border: none;
 }
 
-.p-tabview .p-tabview-nav li {
+.p-tabview .p-tabview-nav li{
   height: 5vh;
 }
+
+
 </style>
