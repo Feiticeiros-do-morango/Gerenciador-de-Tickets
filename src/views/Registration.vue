@@ -1,6 +1,6 @@
 <template>
     <div class="main">
-        <form class="registration-form" @submit.prevent="registrar()">
+        <form class="registration-form" @submit.prevent="registrar">
             <div class="text-area">
                 <h1>Cadastre-se</h1>
                 <p>Preencha os campos corretamente</p>
@@ -17,9 +17,6 @@
                     placeholder="Digite seu Email" 
                     v-model="state.email" >
                 </div>
-                <span v-if="v$.email.$error">
-                        {{ v$.email.$errors[0].$message }}
-                    </span>
                 <div class="input-wrapper">
                     <div class="icon">
                         <iconify-icon icon="akar-icons:person"></iconify-icon>
@@ -31,9 +28,6 @@
                     placeholder="Digite seu UserName" 
                     v-model="state.UserName">
                 </div>
-                <span v-if="v$.UserName.$error">
-                        {{ v$.UserName.$errors[0].$message }}
-                    </span>
                 <div class="input-wrapper">
                     <div class="icon">
                         <iconify-icon icon="akar-icons:key"></iconify-icon>
@@ -45,9 +39,6 @@
                     placeholder="Digite sua senha" 
                     v-model="state.senha">
                 </div>
-                <span v-if="v$.senha.$error">
-                        {{ v$.senha.$errors[0].$message }}
-                    </span>
                 <div class="input-wrapper" id="margin">
                     <div class="icon">
                         <iconify-icon icon="akar-icons:key"></iconify-icon>
@@ -59,34 +50,33 @@
                     placeholder="Confirme sua senha "
                     v-model="state.confirmSenha">
                 </div>
-                <span v-if="v$.confirmSenha.$error">
-                        {{ v$.confirmSenha.$errors[0].$message }}
-                    </span>
             </div>
             <div class="registration-button">
-            <button @click="registrar()">Cadastrar</button>
+            <button @click="registrar">Cadastrar</button>
         </div>
+        <div class="comeback">
+                <router-link to="/login"><p>Voltar</p></router-link>
+            </div>
         </form>
     </div>
 </template>
 <script>
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { collection, addDoc, doc, setDoc } from "firebase/firestore";
-import { db } from "../main"
+import { collection, addDoc, } from "firebase/firestore";
+import { db, auth } from "../Firebase/index"
 import { reactive, computed } from 'vue'
 import { useVuelidate } from '@vuelidate/core'
 import { required, email, sameAs, minLength } from '@vuelidate/validators'
 
 export default {
     setup (){
-        const state = reactive ({
+        const state = reactive ({ // pega todos os valores dos inputs do html
             email: '',
             UserName: '',
             senha: '',
             confirmSenha: ''
-
         })
-        const rules = computed(() => {
+        const rules = computed(() => { // coloca regras para cada input
             return {
                 email: { required, email},
                 UserName: { required, minLength: minLength(3)},
@@ -96,37 +86,41 @@ export default {
         })
 
         const v$ = useVuelidate(rules, state)
-
+        
+        
         return { 
             state, 
             v$,
+            
         }
     },
     methods: {
-        async registrar() {
+        
+        registrar () {
             const auth = getAuth();
             this.v$.$validate()
             if (!this.v$.$error) {
-                alert("Formulário funcionou")
+                createUserWithEmailAndPassword(auth, this.state.email, this.state.senha)
+                .then( (data) => {
+                    alert("Conta criada")
+                    this.saveOnDatabase();
+                    this.goTologin();
+                    
+                })
+
             } else {
-                alert("Formulário falhou")
+                alert("Falhou")
             }
-            createUserWithEmailAndPassword(auth, this.state.email, this.state.senha).then((userCredential) => {
-                //registrado
-                this.goTologin();
-            })
-            console.log(this.state.email)
-            console.log(this.state.senha)
-            console.log(this.state.UserName)
-            console.log(this.state.confirmSenha)
+        },
+        goTologin() {
+            this.$router.push({ name: "login"})
+        },
+        async saveOnDatabase() {
             await addDoc(collection(db, "usuarios"), {
                 email: this.state.email,
                 senha: this.state.senha,
                 UserName: this.state.UserName
             });
-        },
-        goTologin() {
-            this.$router.push({ name: "login"})
         }
         
     },
@@ -144,7 +138,8 @@ export default {
 
 .registration-form {
     width: 340px;
-    height: 450px;
+    height: 500px;
+    
     padding: 0px 10px 0px 10px;
     display: flex;
     flex-direction: column;
@@ -154,7 +149,7 @@ export default {
 .text-area {
     width: 100%;
     height: 15vh;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     color: #ffffff;
     overflow: hidden;
 }
@@ -179,7 +174,7 @@ export default {
 
 .input-area {
     width: 100%;
-    height: 25vh;
+    height: 30vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -194,7 +189,7 @@ export default {
     align-items: center;
     border-radius: 4.5px;
     border: 1.9px solid #ffffff;
-    margin-bottom: 10px;
+    margin-bottom: 25px;
 }
 
 .input-wrapper input {
@@ -257,5 +252,25 @@ export default {
 }
 span {
     color: #fff;
+}
+.comeback {
+    width: 100%;
+    height: 5.5vh;
+    margin-top: 10px;
+    color: #ffffffb1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.comeback p,a {
+    font-family: "Roboto Mono";
+    font-style: normal;
+    color: #ffffffb1;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 24px;
+    text-align: center;
+    cursor: pointer;
 }
 </style>

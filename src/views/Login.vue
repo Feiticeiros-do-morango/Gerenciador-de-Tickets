@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <div class="login-form">
+    <form class="login-form" @submit.prevent="login()">
       <div class="text-area">
         <h1>Login</h1>
         <p>Coloque seu login e senha</p>
@@ -10,75 +10,89 @@
           <div class="icon">
             <iconify-icon icon="akar-icons:person"></iconify-icon>
           </div>
-          <input
-            type="text"
-            name="user"
-            id="user"
-            placeholder="Usuário ou E-mail"
-            v-model="email"
-          />
+          <input type="text" name="email" id="email" placeholder="Usuário ou E-mail" v-model="state.email" />
         </div>
         <div class="input-wrapper">
           <div class="icon">
             <iconify-icon icon="akar-icons:key"></iconify-icon>
           </div>
-          <input 
-          type="password" 
-          name="user"
-          id="user" 
-          placeholder="Senha" 
-          v-model="senha"
-          />
+          <input type="password" name="senha" id="senha" placeholder="Senha" v-model="state.senha" />
         </div>
         <div class="recovery">
-          <a href="/Recovery"><p>Esqueceu a senha?
-          </p></a>
+          <router-link to="/recovery">
+            <p>Esqueceu a senha?
+            </p>
+          </router-link>
         </div>
       </div>
       <div class="login-button">
-        <button @click="loginRequest()">Login</button>
+        <button @click="login()">Login</button>
       </div>
       <div class="login-with-google">
-        <button @click="signInWithGoogle">
+        <button @click="loginWithGoogle()">
           <div class="icon-google">
-            <iconify-icon
-              inline
-              icon="flat-color-icons:google"
-              width="20"
-              height="20"
-            ></iconify-icon>
+            <iconify-icon inline icon="flat-color-icons:google" width="20" height="20"></iconify-icon>
           </div>
           Sign-in With Google
         </button>
       </div>
       <div class="account-cadastra-se">
         <h1>Não é um membro ainda?</h1>
-        <a href="/registration"><p>Cadastre-se!</p></a>
+        <router-link to="/registration"><p>Cadastre-se!</p></router-link>
       </div>
-    </div>
-   </div>
+    </form>
+  </div>
 </template>
 
 <script>
-  import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { ref, reactive, computed } from "vue"
+import { useVuelidate } from '@vuelidate/core'
+import { required, email, minLength } from '@vuelidate/validators'
+
+
+
 export default {
-  name: "Login",
-  data() {
-    return {
-      email: "",
-      password: ""
-    };
-  },
+  setup (){
+        const state = reactive ({
+            email: '',
+            senha: ''
+
+        })
+        const rules = computed(() => {
+            return {
+                email: { required, email},
+                senha: { required, minLength: minLength(6)},
+            }
+        })
+
+        const v$ = useVuelidate(rules, state)
+
+        return { 
+            state, 
+            v$,
+        
+        }
+    },
   methods: {
-    loginRequest() {
-      const auth = getAuth();
-      signInWithEmailAndPassword(auth, this.email, this.senha).then((userCredential) => {
-        //logado
-        console.log("logado")
-        this.$router.replace("teams");
+    login() {
+      const auth = getAuth()
+      signInWithEmailAndPassword(auth, this.state.email, this.state.senha).then((data) => {
+        this.goToDashboard();
       })
+    },
+    loginWithGoogle() {
+      const provider = new GoogleAuthProvider();
+      signInWithPopup(getAuth(), provider)
+      .then((result) => {
+        console.log(result.user);
+        this.goToDashboard();
+      })
+    },
+    goToDashboard() {
+      this.$router.push({ name: "dashboard"})
     }
-  },
+  }
 }
 </script>
 
@@ -91,14 +105,16 @@ export default {
   justify-content: center;
   align-items: center;
 }
+
 .login-form {
   width: 340px;
-  height: 450px;
+  height: 500px;
   padding: 0px 10px 0px 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .text-area {
   width: 100%;
   height: 15vh;
@@ -106,6 +122,7 @@ export default {
   color: #ffffff;
   overflow: hidden;
 }
+
 .text-area h1 {
   font-family: "Roboto Mono";
   font-style: normal;
@@ -114,6 +131,7 @@ export default {
   line-height: 63px;
   text-align: center;
 }
+
 .text-area p {
   font-family: "Roboto Mono";
   font-style: normal;
@@ -122,6 +140,7 @@ export default {
   line-height: 24px;
   text-align: center;
 }
+
 .input-area {
   width: 100%;
   height: 15vh;
@@ -129,6 +148,7 @@ export default {
   flex-direction: column;
   justify-content: center;
 }
+
 .input-wrapper {
   width: 100%;
   height: 12vh;
@@ -138,9 +158,14 @@ export default {
   border-radius: 4.5px;
   border: 1.9px solid #ffffff;
 }
+.imput-wrapper p {
+  color: #ffffff;
+}
+
 #margin {
   margin-bottom: 15px;
 }
+
 .input-wrapper input {
   width: 90%;
   height: 100%;
@@ -154,6 +179,7 @@ export default {
   border: none;
   outline: none;
 }
+
 .input-wrapper input::placeholder {
   font-family: "Roboto Mono";
   font-style: normal;
@@ -163,6 +189,7 @@ export default {
   color: #ffffffa8;
   user-select: none;
 }
+
 .icon {
   width: 10%;
   height: 100%;
@@ -171,6 +198,7 @@ export default {
   justify-content: center;
   align-items: center;
 }
+
 .recovery {
   width: 100%;
   height: 5vh;
@@ -178,6 +206,7 @@ export default {
   justify-content: right;
   align-items: center;
 }
+
 .recovery p {
   cursor: pointer;
   font-family: "Roboto Mono";
@@ -188,6 +217,7 @@ export default {
   color: #ffffff;
   margin-right: 2.5px;
 }
+
 .login-button,
 .login-with-google {
   width: 100%;
@@ -198,6 +228,7 @@ export default {
   margin-top: 15px;
   margin-bottom: 5px;
 }
+
 .login-button button {
   width: 100%;
   height: 100%;
@@ -214,10 +245,12 @@ export default {
   line-height: 16px;
   transition: 0.5s ease-out;
 }
+
 .login-button button:hover {
   background: #0d0d7489;
   transition: 0.5s ease;
 }
+
 .login-with-google button {
   width: 100%;
   height: 100%;
@@ -236,13 +269,16 @@ export default {
   color: #ffffff;
   transition: 0.5s ease-out;
 }
+
 .login-with-google button:hover {
   background: #3a3b3eb7;
   transition: 0.5s ease;
 }
+
 .icon-google {
   margin-right: 10px;
 }
+
 .account-cadastra-se {
   width: 100%;
   height: 4vh;
@@ -250,6 +286,7 @@ export default {
   justify-content: center;
   align-items: center;
 }
+
 .account-cadastra-se h1 {
   font-family: "Roboto Mono";
   font-style: italic;
@@ -259,6 +296,7 @@ export default {
   color: #ffffff;
   margin-right: 5px;
 }
+
 .account-cadastra-se p {
   cursor: pointer;
   font-family: "Roboto Mono";
@@ -268,36 +306,42 @@ export default {
   line-height: 12px;
   color: #378bed;
 }
-button{
-   width: 50%;
- 
-   padding: 10px;
-   border: 1px solid white;
-   border-radius: 10px;
-   background-color:black ;
-   color: white;
-   text-align: left;
-   font-size: 10px;
+
+button {
+  width: 50%;
+
+  padding: 10px;
+  border: 1px solid white;
+  border-radius: 10px;
+  background-color: black;
+  color: white;
+  text-align: left;
+  font-size: 10px;
 }
-.login button{  
-   border: 1px solid #378BED;
-   border-radius: 10px;
-   padding: 10px;
-   margin: auto;
-   text-align: center;
-   background-color:black;
-   color:#378BED ;
-     
+
+.login button {
+  border: 1px solid #378BED;
+  border-radius: 10px;
+  padding: 10px;
+  margin: auto;
+  text-align: center;
+  background-color: black;
+  color: #378BED;
+
 }
-.cadastra{
-   justify-content: space-between ;
+
+.cadastra {
+  justify-content: space-between;
 }
-.cadastra p,a { 
-   font-family: italic;
-   font-size: 10px;
-   text-decoration: none;
+
+.cadastra p,
+a {
+  font-family: italic;
+  font-size: 10px;
+  text-decoration: none;
 }
-.google{
-   font-family: 'PT Sans', sans-serif;
+
+.google {
+  font-family: 'PT Sans', sans-serif;
 }
 </style>

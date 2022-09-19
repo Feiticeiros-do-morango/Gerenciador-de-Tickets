@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="comeback">
-                <p>Voltar</p>
+                <router-link to="/login"><p>Voltar</p></router-link>
             </div>
         </div>
     </div>
@@ -176,9 +176,11 @@ export default {
     justify-content: center;
     align-items: center;
 }
-.comeback p {
+.comeback p,a {
     font-family: "Roboto Mono";
     font-style: normal;
+    color: #ffffffb1;
+    text-decoration: none;
     font-weight: 700;
     font-size: 14px;
     line-height: 24px;
