@@ -1,7 +1,10 @@
 <template>
 <div class="container">   
 <div class="sectionA">
+  <div class="icon">
+  </div>
   <div class="inicio">
+    <Icon icon="iconoir:keyframe" width="30" />
    <h1>NOVO TICKET</h1>
    <button>Branches</button>
    </div>
@@ -22,17 +25,25 @@
   </div>
     </div>
 <div class="sectionB">
+  <div class="colaboracao">
   <p>Colaboradores</p>
+  </div>
+  <div class="comentarios">
   <p>Comentários...</p>
+  </div>
+  <div class="fechamento">
   <p>Fechado em: 20/08/2022</p>
-
+  </div>
 </div>
     </div>
 </template>
 
 <script>
+import { Icon } from '@iconify/vue2';
 export default {
-    
+    components: {
+		Icon,
+	},
 }
 </script>
 
@@ -40,7 +51,8 @@ export default {
 .container{
     width: 100%;
     height: 94vh;
-    background-image: url('../assets/backgroundTicktView.jpg');
+    background-image: url('../assets/telaok.png');
+    backdrop-filter:opacity(50%) ;
     background-size:205vh;
     box-shadow: inset 0px 4px 4px rgba(184, 182, 182, 0.25);
     border-radius: 30px 30px 0px 0px;
@@ -49,10 +61,17 @@ export default {
     grid-template-areas: "sectionA sectionB";
   
 }
+.icon{
+  margin-top: 2vh;
+}
 .inicio{
   display: flex;
-  gap:50vh;
+  gap:15vh;
+  margin:0;
   color: black
+}
+.inicio h1{
+ font-size:12px ;
 }
 .inicio button{
   border-radius: 20px;
@@ -74,7 +93,7 @@ export default {
   color: gray;
 }
 .quadrado{
-background: rgb(207, 206, 206);
+background:  rgb(207, 206, 206);
 width: 60%;
 height: 50%;
 margin-top:4vh;
@@ -93,8 +112,26 @@ border-radius: 10px;
     color:black;
     display: flex;
     flex-direction: column;
-    gap:20vh
+    gap:15vh
+}
+.colaboracao p{
+  margin-top:3vh;
+}
+.comentarios{
+background: rgb(207, 206, 206);
+width: 65%;
+height: 50%;
+margin-top:1vh;
+border-radius: 10px;
+}
 
+.comentarios p{
+  padding-top:1vh;
+  padding-left: 1vh;
+}
+.fechamento{
+  margin-left:32vh;
+  padding-top:8vh;
 }
 
 

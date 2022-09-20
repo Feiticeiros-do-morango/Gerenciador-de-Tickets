@@ -1,12 +1,14 @@
 <template>
   <div class="component">
-    <div v-if="logado" class="navbar">
+    <div class="navbar">
       <Navbar />
     </div>
-    <router-view>
+    
       <TabView>
         <TabPanel header="Dashboard">
-          <div class="container"></div>
+          <div class="container">
+            <router-view> </router-view>
+          </div>
         </TabPanel>
         <TabPanel header=""> </TabPanel>
         <TabPanel header=" "> </TabPanel>
@@ -21,7 +23,7 @@
         <TabPanel header=""> </TabPanel>
         <TabPanel header=""> </TabPanel>
       </TabView>
-    </router-view>
+   
   </div>
 </template>
 <script>
@@ -32,7 +34,7 @@ import TabPanel from "primevue/tabpanel";
 export default {
   components: { Navbar, TabView, TabPanel },
   data() {
-    return { logado: false };
+    return { logado: true };
   },
 };
 </script>
