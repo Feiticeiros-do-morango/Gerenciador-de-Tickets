@@ -38,7 +38,14 @@
       </div>
       <div class="account-cadastra-se">
         <h1>Não é um membro ainda?</h1>
-        <router-link to="/registration"><p>Cadastre-se!</p></router-link>
+        <router-link to="/registration">
+          <p>Cadastre-se!</p>
+        </router-link>
+      </div>
+      <div class="comeback">
+        <router-link to="/">
+          <p>Voltar</p>
+        </router-link>
       </div>
     </form>
   </div>
@@ -53,27 +60,27 @@ import { required, email, minLength } from '@vuelidate/validators'
 
 
 export default {
-  setup (){
-        const state = reactive ({
-            email: '',
-            senha: ''
+  setup() {
+    const state = reactive({
+      email: '',
+      senha: ''
 
-        })
-        const rules = computed(() => {
-            return {
-                email: { required, email},
-                senha: { required, minLength: minLength(6)},
-            }
-        })
+    })
+    const rules = computed(() => {
+      return {
+        email: { required, email },
+        senha: { required, minLength: minLength(6) },
+      }
+    })
 
-        const v$ = useVuelidate(rules, state)
+    const v$ = useVuelidate(rules, state)
 
-        return { 
-            state, 
-            v$,
-        
-        }
-    },
+    return {
+      state,
+      v$,
+
+    }
+  },
   methods: {
     login() {
       const auth = getAuth()
@@ -84,13 +91,13 @@ export default {
     loginWithGoogle() {
       const provider = new GoogleAuthProvider();
       signInWithPopup(getAuth(), provider)
-      .then((result) => {
-        console.log(result.user);
-        this.goToDashboard();
-      })
+        .then((result) => {
+          console.log(result.user);
+          this.goToDashboard();
+        })
     },
     goToDashboard() {
-      this.$router.push({ name: "dashboard"})
+      this.$router.push({ name: "dashboard" })
     }
   }
 }
@@ -158,6 +165,7 @@ export default {
   border-radius: 4.5px;
   border: 1.9px solid #ffffff;
 }
+
 .imput-wrapper p {
   color: #ffffff;
 }
@@ -343,5 +351,28 @@ a {
 
 .google {
   font-family: 'PT Sans', sans-serif;
+}
+
+.comeback {
+  width: 100%;
+  height: 5.5vh;
+  margin-top: 10px;
+  color: #ffffffb1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.comeback p,
+a {
+  font-family: "Roboto Mono";
+  font-style: normal;
+  color: #ffffffb1;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 24px;
+  text-align: center;
+  cursor: pointer;
 }
 </style>

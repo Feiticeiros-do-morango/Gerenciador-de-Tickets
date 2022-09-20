@@ -10,52 +10,37 @@
                     <div class="icon">
                         <iconify-icon icon="dashicons:email-alt"></iconify-icon>
                     </div>
-                    <input 
-                    type="text" 
-                    name="email" 
-                    id="email" 
-                    placeholder="Digite seu Email" 
-                    v-model="state.email" >
+                    <input type="text" name="email" id="email" placeholder="Digite seu Email" v-model="state.email">
                 </div>
                 <div class="input-wrapper">
                     <div class="icon">
                         <iconify-icon icon="akar-icons:person"></iconify-icon>
                     </div>
-                    <input 
-                    type="text" 
-                    name="user" 
-                    id="username" 
-                    placeholder="Digite seu UserName" 
-                    v-model="state.UserName">
+                    <input type="text" name="user" id="username" placeholder="Digite seu UserName"
+                        v-model="state.UserName">
                 </div>
                 <div class="input-wrapper">
                     <div class="icon">
                         <iconify-icon icon="akar-icons:key"></iconify-icon>
                     </div>
-                    <input 
-                    type="password" 
-                    name="senha" 
-                    id="password" 
-                    placeholder="Digite sua senha" 
-                    v-model="state.senha">
+                    <input type="password" name="senha" id="password" placeholder="Digite sua senha"
+                        v-model="state.senha">
                 </div>
                 <div class="input-wrapper" id="margin">
                     <div class="icon">
                         <iconify-icon icon="akar-icons:key"></iconify-icon>
                     </div>
-                    <input 
-                    type="password" 
-                    name="confirm" 
-                    id="confirm" 
-                    placeholder="Confirme sua senha "
-                    v-model="state.confirmSenha">
+                    <input type="password" name="confirm" id="confirm" placeholder="Confirme sua senha "
+                        v-model="state.confirmSenha">
                 </div>
             </div>
             <div class="registration-button">
-            <button @click="registrar">Cadastrar</button>
-        </div>
-        <div class="comeback">
-                <router-link to="/login"><p>Voltar</p></router-link>
+                <button @click="registrar">Cadastrar</button>
+            </div>
+            <div class="comeback">
+                <router-link to="/login">
+                    <p>Voltar</p>
+                </router-link>
             </div>
         </form>
     </div>
@@ -69,51 +54,53 @@ import { useVuelidate } from '@vuelidate/core'
 import { required, email, sameAs, minLength } from '@vuelidate/validators'
 
 export default {
-    setup (){
-        const state = reactive ({ // pega todos os valores dos inputs do html
-            email: '',
-            UserName: '',
-            senha: '',
-            confirmSenha: ''
+    setup() {
+        const state = reactive({ // pega todos os valores dos inputs do html
+                email: '',
+                UserName: '',
+                senha: '',
+                confirmSenha: ''
+
+
         })
         const rules = computed(() => { // coloca regras para cada input
             return {
-                email: { required, email},
-                UserName: { required, minLength: minLength(3)},
-                senha: { required, minLength: minLength(6)},
-                confirmSenha: { required, sameAs: sameAs(state.senha)}
+                email: { required, email },
+                UserName: { required, minLength: minLength(3) },
+                senha: { required, minLength: minLength(6) },
+                confirmSenha: { required, sameAs: sameAs(state.senha) }
             }
         })
 
         const v$ = useVuelidate(rules, state)
-        
-        
-        return { 
-            state, 
+
+
+        return {
+            state,
             v$,
-            
+
         }
     },
     methods: {
-        
-        registrar () {
+
+        registrar() {
             const auth = getAuth();
             this.v$.$validate()
             if (!this.v$.$error) {
                 createUserWithEmailAndPassword(auth, this.state.email, this.state.senha)
-                .then( (data) => {
-                    alert("Conta criada")
-                    this.saveOnDatabase();
-                    this.goTologin();
-                    
-                })
+                    .then((data) => {
+                        alert("Conta criada")
+                        this.saveOnDatabase();
+                        this.goTologin();
+
+                    })
 
             } else {
-                alert("Falhou")
+                alert("Seu Registro falhou!!")
             }
         },
         goTologin() {
-            this.$router.push({ name: "login"})
+            this.$router.push({ name: "login" })
         },
         async saveOnDatabase() {
             await addDoc(collection(db, "usuarios"), {
@@ -121,8 +108,7 @@ export default {
                 senha: this.state.senha,
                 UserName: this.state.UserName
             });
-        }
-        
+        },
     },
 }
 </script>
@@ -139,7 +125,7 @@ export default {
 .registration-form {
     width: 340px;
     height: 500px;
-    
+
     padding: 0px 10px 0px 10px;
     display: flex;
     flex-direction: column;
@@ -250,9 +236,11 @@ export default {
     background: #0d0d7489;
     transition: 0.5s ease;
 }
+
 span {
     color: #fff;
 }
+
 .comeback {
     width: 100%;
     height: 5.5vh;
@@ -262,7 +250,9 @@ span {
     justify-content: center;
     align-items: center;
 }
-.comeback p,a {
+
+.comeback p,
+a {
     font-family: "Roboto Mono";
     font-style: normal;
     color: #ffffffb1;
