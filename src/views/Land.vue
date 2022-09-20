@@ -14,7 +14,7 @@
             </div>
             <div class="loginAndRe">
                 <div class="register-button">
-                    <router-link to="/registration"><button>Registre-se</button></router-link>
+                    <router-link to="/registration"><button @click="vimDaLand()">Registre-se</button></router-link>
                 </div>
                 <div class="login-button">
                     <router-link to="/login"><button>Login</button></router-link>
