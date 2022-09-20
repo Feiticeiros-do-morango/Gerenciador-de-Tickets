@@ -4,8 +4,10 @@
   <div class="icon">
   </div>
   <div class="inicio">
+    <div class="logo">
     <Icon icon="iconoir:keyframe" width="30" />
    <h1>NOVO TICKET</h1>
+  </div>
    <button>Branches</button>
    </div>
    <div class="tech">
@@ -19,9 +21,6 @@
  </div>
   <div class="quadrado">
     <p>Descrição</p>
-    <div class="quadradob">
-    <p>Anexar Arquivo</p>
-    </div>
   </div>
     </div>
 <div class="sectionB">
@@ -64,9 +63,10 @@ export default {
 .icon{
   margin-top: 2vh;
 }
+
 .inicio{
   display: flex;
-  gap:15vh;
+  gap:45vh;
   margin:0;
   color: black
 }
@@ -79,6 +79,10 @@ export default {
   border:none;
   background-color:rgba(186, 183, 183, 0.762)
   
+}
+.logo{
+  display: flex;
+  align-items: center;
 }
 
 .sectionA {
@@ -94,13 +98,15 @@ export default {
 }
 .quadrado{
 background:  rgb(207, 206, 206);
-width: 60%;
-height: 50%;
+width: 70%;
+height: 62%;
 margin-top:4vh;
 border-radius: 10px;
+
 }
 .quadrado p{
   padding: 1vh;
+  
 }
 .quadradob p{
   text-align: left;
@@ -112,15 +118,15 @@ border-radius: 10px;
     color:black;
     display: flex;
     flex-direction: column;
-    gap:15vh
+    gap:12vh
 }
 .colaboracao p{
   margin-top:3vh;
 }
 .comentarios{
 background: rgb(207, 206, 206);
-width: 65%;
-height: 50%;
+width: 70%;
+height: 60vh;
 margin-top:1vh;
 border-radius: 10px;
 }
@@ -130,8 +136,11 @@ border-radius: 10px;
   padding-left: 1vh;
 }
 .fechamento{
-  margin-left:32vh;
-  padding-top:8vh;
+  margin-left:25vh;
+  padding-top:0;
+}
+.fechamento p{
+
 }
 
 
