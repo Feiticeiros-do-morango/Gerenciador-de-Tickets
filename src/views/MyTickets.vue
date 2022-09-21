@@ -1,10 +1,13 @@
 <template>
-  <div>
 
+<div class="components">
   <TicketMin />
   <TicketMin />
   <TicketMin />
-  </div>
+  <TicketMin />
+  <TicketMin />
+</div>
+  
 </template>
 
 <script>
@@ -17,4 +20,13 @@ export default {
 </script>
 
 <style scoped>
+  .components{
+    display: flex;
+    flex-direction: row;
+    width: 60%;
+    height: 60%;
+    gap:2vh;
+    padding: 2vh;
+  }
+
 </style>
