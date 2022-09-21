@@ -19,6 +19,7 @@ Vue.use(Router)
 export default new Router({
   mode: 'history',
   routes: [
+
     { path: '/registration', name: "registration" , component: Registration},
     { path: '/login', name: "login", component: LoginView },
     { path: '/dashboard', name: "dashboard" ,component: Dashboard },
@@ -30,5 +31,6 @@ export default new Router({
     { path: '/ticketView', component: TicketView},
     { path: '/recovery', name: "recovery",  component: PasswordRecovery},
     { path: '/', name: "land", component: Land}
+
   ]
 })

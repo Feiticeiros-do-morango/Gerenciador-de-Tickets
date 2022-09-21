@@ -29,6 +29,7 @@
   </div>
 </template>
 <script>
+
 import PanelMenu from "primevue/panelmenu";
 
 export default {
@@ -124,6 +125,7 @@ export default {
   background-color: rgb(1, 1, 52);
   color: white;
   margin-left: 0;
+  grid-area: navbar;
 }
 
 .itens li {
