@@ -26,6 +26,9 @@ export default {
     height: 50%;
     padding: 2vh;
     margin: 2em;
+
+        border-left: solid 10px black;
+    background-color: blue;
   
 }
 .minTop{

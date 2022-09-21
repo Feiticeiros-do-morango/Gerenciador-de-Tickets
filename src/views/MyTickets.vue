@@ -1,16 +1,20 @@
 <template>
-    <TicketMin/>
+  <div>
+
+  <TicketMin />
+  <TicketMin />
+  <TicketMin />
+  </div>
 </template>
 
 <script>
-    import TicketMinVue from '@/components/Ticket-Min.vue';
-import TicketMin from '@/components/Ticket-Min.vue';
+import TicketMinVue from "@/components/Ticket-Min.vue";
+import TicketMin from "@/components/Ticket-Min.vue";
 
 export default {
-    components:{ TicketMinVue, TicketMin }
-}
+  components: { TicketMinVue, TicketMin },
+};
 </script>
 
 <style scoped>
-
 </style>
