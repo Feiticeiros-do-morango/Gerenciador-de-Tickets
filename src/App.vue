@@ -1,3 +1,4 @@
+
 <template>
   <div class="component">
     <div class="navbar">
@@ -109,3 +110,4 @@ export default {
   height: 5vh;
 }
 </style>
+
