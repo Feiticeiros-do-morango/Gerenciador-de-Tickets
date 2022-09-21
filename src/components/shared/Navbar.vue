@@ -32,7 +32,7 @@
 import PanelMenu from "primevue/panelmenu";
 
 export default {
-  components: { PanelMenu, Icon },
+  components: { PanelMenu },
   data() {
     return {
       items: [
