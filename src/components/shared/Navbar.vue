@@ -25,7 +25,7 @@
       <p>Nome</p>
       <p>Empresa</p>
     </div>
-    <div class="main"></div>
+   
   </div>
 </template>
 <script>
@@ -104,7 +104,7 @@ export default {
   padding-top: 2vh;
 }
 .identificacao p {
-  margin: 0;
+  
   font-size: 14px;
 }
 
@@ -120,6 +120,7 @@ export default {
 }
 .navbar {
   height: 100vh;
+  width: 100%;
   font-family: "Roboto Mono";
   font-size: 16px;
   background-color: rgb(1, 1, 52);
@@ -148,22 +149,3 @@ export default {
 }
 </style>
 
-<style lang="scss" scoped>
-::v-deep .p-panelmenu {
-  .p-panelmenu-header > a {
-    border: transparent;
-    background: none;
-  }
-  #pv_id_5_header {
-    box-shadow: 0 0 0 0;
-    border: 0 none;
-    outline: 0;
-  }
-  a:not(.p-panelmenu-header) {
-    border-top: 1px solid gray;
-  }
-  .p-panelmenu .p-panelmenu-header > a:focus {
-    box-shadow: 0 0 0 0.2rem rgb(255 255 255 / 3%);
-  }
-}
-</style>
