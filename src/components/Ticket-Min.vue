@@ -22,12 +22,13 @@ export default {
     color:black;
     background-color: aliceblue;
     border-radius: 10px;
-    border-left: solid 10px #2B9348;
-    background-color: rgb(204, 204, 204);
-    gap:5px;
-    width: 30vw;
-    height: 10vh;
-   
+    width:18vw;
+    height: 8vw;
+    padding: 2vh;
+    margin: 2em;
+
+        border-left: solid 10px black;
+    background-color: blue;
   
 }
 .minTop p{

@@ -40,7 +40,7 @@ export default {
         {
           label: "Dashboard",
           icon: "pi pi-fw pi-file",
-          to:"/",
+          to: "/dashboard",
           items: [
             {
               label: "Criar Ticket",
