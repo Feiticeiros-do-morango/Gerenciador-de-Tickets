@@ -48,9 +48,6 @@
 
             </div>
         </form>
-        <div class="registration-button">
-            <button @click="registro()">Cadastrar</button>
-        </div>
     </div>
 </template>
 <script>
@@ -124,7 +121,7 @@ export default {
 </script>
 <style scoped>
 .main {
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     display: flex;
     justify-content: center;

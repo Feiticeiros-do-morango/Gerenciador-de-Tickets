@@ -19,7 +19,7 @@ export default {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  width: 100%;
+  width: 80vw;
 
   background-color: #f2f2f2;
   }

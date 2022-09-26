@@ -105,7 +105,7 @@ export default {
 
 <style scoped>
 .main {
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   background-color: #040414;
   display: flex;

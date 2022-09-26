@@ -120,7 +120,7 @@ export default {
 }
 .navbar {
   height: 100vh;
-  width: 100%;
+  width: 20vw;
   font-family: "Roboto Mono";
   font-size: 16px;
   background-color: rgb(1, 1, 52);

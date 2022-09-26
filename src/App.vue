@@ -2,7 +2,7 @@
 <template>
   <div class="app">
     <div class="navbar">
-      <Navbar v-if="isLogin" />
+      <Navbar v-show="isLogin" />
     </div>
 
     <div class="container">
@@ -36,7 +36,7 @@ export default {
 };
 </script>
 <style>
-@import "primevue/resources/themes/lara-dark-blue/theme.css ";
+@import "primevue/resources/themes/lara-dark-blue/theme.css";
 @import "primevue/resources/primevue.min.css";
 @import "primeicons/primeicons.css";
 
@@ -54,11 +54,11 @@ export default {
 }
 
 .navbar {
- width: 20%;
+ width: auto;
 }
 
 .container {
-  width: 80%;
+  width: auto;
 }
 
 </style>
