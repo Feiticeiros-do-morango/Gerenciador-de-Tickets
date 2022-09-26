@@ -12,42 +12,36 @@
                     <li><a href="#">Contact</a></li>
                 </ul>
             </div>
-            <div class="loginAndRe">
-                <div class="register-button">
-                    <router-link to="/registration"><button @click="vimDaLand()">Registre-se</button></router-link>
-                </div>
-                <div class="login-button">
-                    <router-link to="/login"><button>Login</button></router-link>
-                </div>
-            </div>
         </header>
+        <div class="linha"> </div>
         <main id="home">
             <div class="left-main">
                 <div class="text-area">
-                <h1>Community Driven Ecosystem</h1>
-                <p>Our Blockchain offers a wide variety of features and tools us to level with enterprise-grade aplication.</p>
-            </div>
-                <section>
-                    <div class="enter-plat">
-                        <div class="button-wrapper">
-                        <router-link to="/login">
-                            <button>Comece sua Experiência</button>
-                        </router-link>
-                        </div>
-                        <div class="explorer-plat">
-                            <router-link to="/login">
-                                <h1>Explore a Plataforma <p> > </p> </h1>
-                                
-                            </router-link>
-                        </div>
+                    <h1>Tenha Controle Sobre Seu Projetos De TI.</h1>
+                    <p>We provide full transparency of development processes, so you can stay on top of you business
+                        needs.</p>
+                </div>
+                <div class="button-area">
+                    <div class="button-wrapper">
+                        <router-link to="/login">Explore a Plataforma</router-link>
                     </div>
-                </section>
+                </div>
             </div>
-
             <div class="right-main">
                 <img src="../assets/LandPage.svg" alt="LandPage imagem">
             </div>
         </main>
+        <div class="meio">
+            <div class="linha-resto"> </div>
+        </div>
+        <section>
+            <div class="left-section">
+                <img src="../assets/Next steps-pana.svg" alt="Background Land">
+            </div>
+            <div class="right-section">
+
+            </div>
+        </section>
     </div>
 </template>
 
@@ -61,21 +55,51 @@ export default {
 .main {
     width: 100%;
     height: 200vh;
+    z-index: 0;
     background-color: #040414;
 }
 
 header {
     width: 100%;
     height: 15vh;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background: #040414;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     border-bottom: 0.8px solid rgba(95, 95, 95, 0.488);
+}
+
+.linha {
+    width: 100%;
+    height: 0.5px;
+    border-radius: 2px;
+    background-color: #ffffff1a;
+
+}
+
+.linha-resto {
+    width: 70%;
+    height: 1px;
+    border-radius: 2px;
+    background-color: #ffffff6e;
+    border-color: transparent;
+}
+
+.meio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px;
 }
 
 .logo {
     width: 130px;
     height: 100%;
     display: flex;
+    margin-left: 6.5vw;
     justify-content: center;
     align-items: center;
     user-select: none;
@@ -90,23 +114,25 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-right: 75px;
 }
 
 .navbar ul {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 45px;
+    gap: 65px;
 }
 
 .navbar ul li a {
     font-family: "Roboto Mono";
-    font-weight: 500;
+    font-weight: 400;
     font-size: 16px;
     color: #fff;
     text-decoration: none;
     transition: 0.5s ease-out;
 }
+
 .loginAndRe {
     width: 20vw;
     height: 100%;
@@ -116,6 +142,7 @@ header {
     align-items: center;
     gap: 35px;
 }
+
 li {
     position: relative;
     list-style: none;
@@ -136,76 +163,18 @@ li::after {
 li:hover {
     color: #fff;
 }
+
 li:hover::after {
     width: 100%;
 }
 
-.login-button {
-    width: 6.5vw;
-    height: 42px;
-    display: flex;
-    color: #fff;
-    border: 1px solid rgb(255, 255, 255);
-    border-radius: 10px 0px 10px 0px;
-    justify-content: center;
-    align-items: center;
-    transition: 0.5s ease-out;
-
-}
-.login-button:hover {
-    background: #ffffff31;
-    transition: 0.5s ease;
-}
-
-.register-button {
-    width: 9vw;
-    height: 42px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-
-.login-button a {
-    width: 100%;
-    height: 100%;
-    color: #fff;
-    cursor: pointer;
-    background: transparent;
-    font-family: 'Roboto Mono';
-    font-size: 16px;
-    font-weight: 500;
-}
-
-.login-button a button {
-    width: 100%;
-    height: 100%;
-    color: #fff;
-    cursor: pointer;
-    border: none;
-    background: transparent;
-    font-family: 'Roboto Mono';
-    font-size: 16px;
-    font-weight: 500;
-}
-
-.register-button button {
-    width: 100%;
-    height: 100%;
-    color: #fff;
-    cursor: pointer;
-    border: none;
-    background: transparent;
-    font-family: 'Roboto Mono';
-    font-size: 16px;
-    font-weight: 500;
-
-}
 main {
     width: 100%;
-    height: 85%;
+    height: 90vh;
     display: flex;
+    overflow: hidden;
 }
+
 .left-main {
     width: 50%;
     height: 600px;
@@ -214,10 +183,15 @@ main {
     align-items: center;
     padding: 9vw 0 10vw 7.2vw;
 }
+
 .left-main .text-area {
     width: 100%;
-    height: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
 }
+
 .left-main .text-area h1 {
     width: 100%;
     font-family: 'Roboto Mono';
@@ -228,15 +202,17 @@ main {
     color: #ffffff;
     margin-bottom: 15px;
 }
+
 .left-main .text-area p {
     width: 100%;
     font-family: 'Roboto Mono';
     font-size: 18px;
     font-weight: 600;
-    letter-spacing: 2px;
+    letter-spacing: 4px;
     text-align: justify;
     color: #b3afafd8;
 }
+
 .right-main {
     width: 50%;
     height: 600px;
@@ -245,87 +221,79 @@ main {
     justify-content: center;
     align-items: center;
 }
+
 .right-main img {
     width: 100%;
     height: 100%;
     user-select: none;
 }
-section {
+
+.button-area {
+    width: 100%;
+    height: 50px;
+}
+
+.button-area .button-wrapper {
+    width: 11.2vw;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #0451ea;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 5px;
+    transition: background-color 0.4s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+.button-area .button-wrapper:hover {
+    background: rgb(23, 8, 97);
+}
+
+.button-area .button-wrapper a {
     width: 100%;
     height: 100%;
+    color: #fff;
     display: flex;
-    margin-top: 25px;
-}
-section .enter-plat {
-    width: 80%;
-    height: 100%;
-    display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
-    gap: 2vw;
-    padding: 15px 15px 15px 0px;
+    text-decoration: none;
+    font-family: 'Roboto Mono';
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    border: none;
+    background: transparent;
 }
-section .enter-plat .button-wrapper {
+
+section {
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    
+}
+section .left-section {
     width: 50%;
     height: 100%;
     display: flex;
-    border: 1px solid #fff;
-    border-radius: 6px;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    transition: 0.5s ease-out;
+    overflow: hidden;
 }
-section .enter-plat .button-wrapper:hover {
-    background: #ffffff19;
-    transition: 0.5s ease;
-}
-section .enter-plat .button-wrapper button {
+section .left-section img {
     width: 100%;
     height: 100%;
-    color: #fff;
-    text-align: center;
-    background: transparent;
-    font-family: 'Roboto Mono';
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: -0.5px;
-    border: none;
+    user-select: none;
 }
-section .enter-plat .explorer-plat {
-    width: 70%;
+
+section .right-section {
+    width: 50%;
     height: 100%;
     display: flex;
-    flex-direction: row;
-    border-radius: 6px;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-section .enter-plat .explorer-plat a {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    color: #fff;
-    text-decoration: none;
-}
-section .enter-plat .explorer-plat h1 {
-    width: 90%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    font-family: 'Roboto Mono';
-    font-size: 16px;
-    font-weight: 600;
-    
-}
-section .enter-plat .explorer-plat p {
-    width: 10%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Roboto Mono';
-    font-size: 20px;
 }
 </style>
