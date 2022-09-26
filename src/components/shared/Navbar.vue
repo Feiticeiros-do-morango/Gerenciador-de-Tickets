@@ -40,6 +40,7 @@ export default {
         {
           label: "Dashboard",
           icon: "pi pi-fw pi-file",
+          to:"/",
           items: [
             {
               label: "Criar Ticket",
@@ -51,6 +52,7 @@ export default {
         {
           label: "Meus Tickets",
           icon: "pi pi-fw pi-file",
+          to: "/MyTickets"
         },
         {
           label: "Times",
