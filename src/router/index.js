@@ -10,6 +10,7 @@ import Projects from '../views/Projects.vue'
 import Statistics from '../views/Statistics.vue'
 import Settings from '../views/Settings.vue'
 import TicketView from '../views/TicketView.vue'
+import CriarTicket from '../views/CriarTicket.vue'
 
 
 Vue.use(Router)
@@ -20,6 +21,7 @@ export default new Router({
     { path: '/registration', component: Registration },
     { path: '/login', component: LoginView },
     { path: '/', component: Dashboard },
+    { path: '/criarTicket', component: CriarTicket },
     { path: '/myTickets', component: MyTickets },
     { path: '/teams', component: Teams },
     { path: '/projects', component: Projects },
