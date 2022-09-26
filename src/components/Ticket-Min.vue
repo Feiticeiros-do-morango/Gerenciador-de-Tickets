@@ -8,6 +8,7 @@
            <p>Tecnologia/Tecnologia</p> 
         </div>
     </div>
+   
 </template>
 
 <script>
@@ -20,24 +21,28 @@ export default {
 .container{
     color:black;
     background-color: aliceblue;
-    border:2px solid aliceblue;
     border-radius: 10px;
-    width:25%;
-    height: 50%;
-    padding: 2vh;
-    margin: 2em;
-
-        border-left: solid 10px black;
-    background-color: blue;
+    border-left: solid 10px #2B9348;
+    background-color: rgb(204, 204, 204);
+    gap:5px;
+    width: 30vw;
+    height: 10vh;
+   
   
 }
-.minTop{
-    
+.minTop p{
+    padding-left:0.5vw;
+ 
 }
 .minbotton{
-padding-top:5vh;
+
 }
-.minbotton{
-   
+.minbotton p{
+   font-size: 14px;
+   padding-left:0.5vw;
+   padding-top: 3vh;
+
 }
+  
+
 </style>
