@@ -9,8 +9,8 @@
     </div>
     <div class="pesquisa menu">
       <span class="p-input-icon-right">
-        <i class="pi pi-search" />
-        <InputText type="text" v-model="value4" />
+        <i class="pi pi-search" style="color: black"/>
+        <InputText type="text" />
       </span>
     </div>
     <div class="andamento">
@@ -61,8 +61,6 @@ export default {
 
 }
 
-
-
 .tecnologia button {
   width: 10vh;
   height: 3vh;
@@ -89,7 +87,7 @@ export default {
   grid-area: andamento;
   margin: auto;
   text-align: center;
-   width: 80%;
+  width: 80%;
 }
 
 .andamento div {
@@ -122,7 +120,12 @@ export default {
   border-color: transparent;
   box-shadow: 0 0 0 0;
 }
-.p-inputtext:enabled:hover {
-  border-color: transparent;
+input, select, textarea{
+    color: #000000;
 }
+
+textarea:focus, input:focus {
+    color: #000000;
+}
+
 </style>
