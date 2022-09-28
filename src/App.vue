@@ -1,29 +1,16 @@
+
 <template>
-  <div class="component">
+  <div class="app">
     <div class="navbar">
-      <Navbar />
+      <Navbar v-show="isLogin" />
     </div>
-    
-      <TabView>
-        <TabPanel header="Dashboard">
-          <div class="container">
-            <router-view> </router-view>
-          </div>
-        </TabPanel>
-        <TabPanel header=""> </TabPanel>
-        <TabPanel header=" "> </TabPanel>
-        <TabPanel header=""> </TabPanel>
-        <TabPanel header=""> </TabPanel>
-        <TabPanel header=""> </TabPanel>
-        <TabPanel header=""> </TabPanel>
-        <TabPanel header=""> </TabPanel>
-        <TabPanel header=""> </TabPanel>
-        <TabPanel header=""> </TabPanel>
-        <TabPanel header=""> </TabPanel>
-        <TabPanel header=""> </TabPanel>
-        <TabPanel header=""> </TabPanel>
-      </TabView>
-   
+
+    <div class="container">
+      <router-view></router-view>
+    </div>
+
+
+
   </div>
 </template>
 <script>
@@ -34,78 +21,45 @@ import TabPanel from "primevue/tabpanel";
 export default {
   components: { Navbar, TabView, TabPanel },
   data() {
-    return { logado: true };
+    return isLogin;
   },
+  computed: {
+    isLogin() {
+      if (this.$route.name == 'login' || this.$route.name == 'registration' || this.$route.name == 'land') {
+        return false
+      } else {
+        return true
+      }
+    }
+  }
+
 };
 </script>
 <style>
-@import "primevue/resources/themes/lara-dark-blue/theme.css ";
+@import "primevue/resources/themes/lara-dark-blue/theme.css";
 @import "primevue/resources/primevue.min.css";
 @import "primeicons/primeicons.css";
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Roboto Mono", monospace;
 }
+
+.app {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+
 .navbar {
-  grid-area: navegacao;
+ width: auto;
 }
+
 .container {
-  grid-area: container;
-}
-.component {
-  display: grid;
-  min-height: 100vh;
-  grid-template-columns: 2fr 10fr;
-
-  grid-template-areas: "navegacao container";
-}
-.p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
-  background-color: #aaa9a9;
-  color: #030303;
-  border-color: none;
-}
-.p-tabview-nav-content {
-  margin-top: 1vh;
+  width: auto;
 }
 
-.p-component {
-  background: rgb(1, 1, 52);
-}
-.p-tabview .p-tabview-nav li .p-tabview-nav-link {
-  border: none;
-  border-top-right-radius: 15px;
-  border-top-left-radius: 15px;
-  font-weight: 300;
-  font-size: 15px;
-  height: 100%;
-  margin-right: 2px;
-}
-.p-tabview
-  .p-tabview-nav
-  li:not(.p-highlight):not(.p-disabled):hover
-  .p-tabview-nav-link {
-  background-color: gray;
-}
-.p-tabview
-  .p-tabview-nav
-  li:not(.p-highlight):not(.p-disabled)
-  .p-tabview-nav-link {
-  background-color: #aaa9a9;
-  color: #030303;
-  border-color: none;
-  width: 100px;
-}
-.p-tabview .p-tabview-panels {
-  background-color: #f2f2f2;
-  padding: 0px;
-}
-.p-tabview .p-tabview-nav {
-  border: none;
-}
-
-.p-tabview .p-tabview-nav li {
-  height: 5vh;
-}
 </style>
+

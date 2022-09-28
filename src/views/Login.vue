@@ -1,143 +1,378 @@
 <template>
-   <div class="main">
-      <div class="componente-login">
-         <h1>Login</h1>
-         <p>Digite seu Login e Senha</p>
-         <input type="text" id="userlogin" placeholder="Nome ou e-mail">
-         <label for="userlogin"><iconify-icon icon="akar-icons:key"></iconify-icon></label>
-         <br>
-         <input type="text" placeholder="Senha">
-         <h5>Esqueceu a Senha?</h5>
-         <div class="login">
-            <button>Login</button>
-         </div>
-         <br>
-         <button type="button" class="login-with-google-btn">
-            Sign in with Google
-         </button>
-         <div class="cadastra">
-            <p>Não é um membro ainda? <span>Cadastre-se</span></p>
-         </div>
+  <div class="main">
+    <form class="login-form" @submit.prevent="login()">
+      <div class="text-area">
+        <h1>Login</h1>
+        <p>Coloque seu login e senha</p>
       </div>
-   </div>
+      <div class="input-area">
+        <div class="input-wrapper" id="margin">
+          <div class="icon">
+            <iconify-icon icon="akar-icons:person"></iconify-icon>
+          </div>
+          <input type="text" name="email" id="email" placeholder="Usuário ou E-mail" v-model="state.email" />
+        </div>
+        <div class="input-wrapper">
+          <div class="icon">
+            <iconify-icon icon="akar-icons:key"></iconify-icon>
+          </div>
+          <input type="password" name="senha" id="senha" placeholder="Senha" v-model="state.senha" />
+        </div>
+        <div class="recovery">
+          <router-link to="/recovery">
+            <p>Esqueceu a senha?
+            </p>
+          </router-link>
+        </div>
+      </div>
+      <div class="login-button">
+        <button @click="login()">Login</button>
+      </div>
+      <div class="login-with-google">
+        <button @click="loginWithGoogle()">
+          <div class="icon-google">
+            <iconify-icon inline icon="flat-color-icons:google" width="20" height="20"></iconify-icon>
+          </div>
+          Sign-in With Google
+        </button>
+      </div>
+      <div class="account-cadastra-se">
+        <h1>Não é um membro ainda?</h1>
+        <router-link to="/registration">
+          <p>Cadastre-se!</p>
+        </router-link>
+      </div>
+      <div class="comeback">
+        <router-link to="/">
+          <p>Voltar</p>
+        </router-link>
+      </div>
+    </form>
+  </div>
 </template>
 
 <script>
-export default {
+import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { ref, reactive, computed } from "vue"
+import { useVuelidate } from '@vuelidate/core'
+import { required, email, minLength } from '@vuelidate/validators'
 
+
+
+export default {
+  setup() {
+    const state = reactive({
+      email: '',
+      senha: ''
+
+    })
+    const rules = computed(() => {
+      return {
+        email: { required, email },
+        senha: { required, minLength: minLength(6) },
+      }
+    })
+
+    const v$ = useVuelidate(rules, state)
+
+    return {
+      state,
+      v$,
+
+    }
+  },
+  methods: {
+    login() {
+      const auth = getAuth()
+      signInWithEmailAndPassword(auth, this.state.email, this.state.senha).then((data) => {
+        this.goToDashboard();
+      })
+    },
+    loginWithGoogle() {
+      const provider = new GoogleAuthProvider();
+      signInWithPopup(getAuth(), provider)
+        .then((result) => {
+          console.log(result.user);
+          this.goToDashboard();
+        })
+    },
+    goToDashboard() {
+      this.$router.push({ name: "dashboard" })
+    }
+  }
 }
 </script>
 
 <style scoped>
 .main {
-   font-family: 'Roboto Mono', monospace;
-   display: flex;
-   background-color: #040414;
-   justify-content: center;
-   align-items: center;
-   color: aliceblue;
-   width: 100%;
-   height: 100vh;
+  width: 100vw;
+  height: 100vh;
+  background-color: #040414;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.main h1 {
-   font-family: 'Roboto Mono';
-   font-style: normal;
-   font-weight: 700;
-   font-size: 48px;
-   line-height: 63px;
-   text-align: center;
-   color: #FFFFFF;
-   position: relative;
-   width: 100%;
+.login-form {
+  width: 340px;
+  height: 500px;
+  padding: 0px 10px 0px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.main p {
-   font-size: 15px
+.text-area {
+  width: 100%;
+  height: 15vh;
+  margin-bottom: 30px;
+  color: #ffffff;
+  overflow: hidden;
 }
 
-.main h5 {
-   font-family: 'Roboto Mono';
-   font-style: italic;
-   font-weight: 400;
-   font-size: 10px;
-   line-height: 24px;
+.text-area h1 {
+  font-family: "Roboto Mono";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 44px;
+  line-height: 63px;
+  text-align: center;
 }
 
-.componente-login {
-   text-align: center;
-   width: 500px;
-   height: auto;
-
+.text-area p {
+  font-family: "Roboto Mono";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 24px;
+  text-align: center;
 }
 
-input {
-   width: 18vw;
-   height: 4.5vh;
-   outline: none;
-   padding: 0 10px;
-   margin-top: 2vh;
-   border: 1px solid #FFFFFF;
-   border-radius: 10px;
-   color: #fff;
-   background-color: black;
+.input-area {
+  width: 100%;
+  height: 15vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.login-with-google-btn {
-   cursor: pointer;
-   transition: background-color .3s, box-shadow .3s;
-   padding: 12px 12px 12px 42px;
-   border: none;
-   border-radius: 5px;
-   box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25);
-   color: #757575;
-   font-size: 14px;
-   font-weight: 500;
-   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-   background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTcuNiA5LjJsLS4xLTEuOEg5djMuNGg0LjhDMTMuNiAxMiAxMyAxMyAxMiAxMy42djIuMmgzYTguOCA4LjggMCAwIDAgMi42LTYuNnoiIGZpbGw9IiM0Mjg1RjQiIGZpbGwtcnVsZT0ibm9uemVybyIvPjxwYXRoIGQ9Ik05IDE4YzIuNCAwIDQuNS0uOCA2LTIuMmwtMy0yLjJhNS40IDUuNCAwIDAgMS04LTIuOUgxVjEzYTkgOSAwIDAgMCA4IDV6IiBmaWxsPSIjMzRBODUzIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNNCAxMC43YTUuNCA1LjQgMCAwIDEgMC0zLjRWNUgxYTkgOSAwIDAgMCAwIDhsMy0yLjN6IiBmaWxsPSIjRkJCQzA1IiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNOSAzLjZjMS4zIDAgMi41LjQgMy40IDEuM0wxNSAyLjNBOSA5IDAgMCAwIDEgNWwzIDIuNGE1LjQgNS40IDAgMCAxIDUtMy43eiIgZmlsbD0iI0VBNDMzNSIgZmlsbC1ydWxlPSJub256ZXJvIi8+PHBhdGggZD0iTTAgMGgxOHYxOEgweiIvPjwvZz48L3N2Zz4=);
-   background-color: #3A3B3E;
-   background-repeat: no-repeat;
-   background-position: 12px 11px;
-   text-align: center;
+.input-wrapper {
+  width: 100%;
+  height: 12vh;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  border-radius: 4.5px;
+  border: 1.9px solid #ffffff;
 }
 
-.login-with-google-btn:hover {
-   background-color: #378ced5a;
+.imput-wrapper p {
+  color: #ffffff;
+}
+
+#margin {
+  margin-bottom: 15px;
+}
+
+.input-wrapper input {
+  width: 90%;
+  height: 100%;
+  font-family: "Roboto Mono";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 22px;
+  color: #ffffffe5;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.input-wrapper input::placeholder {
+  font-family: "Roboto Mono";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 22px;
+  color: #ffffffa8;
+  user-select: none;
+}
+
+.icon {
+  width: 10%;
+  height: 100%;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.recovery {
+  width: 100%;
+  height: 5vh;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
+.recovery p {
+  cursor: pointer;
+  font-family: "Roboto Mono";
+  font-style: italic;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 14px;
+  color: #ffffff;
+  margin-right: 2.5px;
+}
+
+.login-button,
+.login-with-google {
+  width: 100%;
+  height: 5.5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.login-button button {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  background: transparent;
+  color: #378cedb9;
+  border: 1.9px solid #378bed;
+  border-radius: 4.5px;
+  text-align: center;
+  font-family: "Roboto Mono";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 16px;
+  transition: 0.5s ease-out;
+}
+
+.login-button button:hover {
+  background: #0d0d7489;
+  transition: 0.5s ease;
+}
+
+.login-with-google button {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  display: flex;
+  border: none;
+  justify-content: center;
+  align-items: center;
+  font-family: "Roboto Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  border-radius: 4.5px;
+  background: #3a3b3e;
+  color: #ffffff;
+  transition: 0.5s ease-out;
+}
+
+.login-with-google button:hover {
+  background: #3a3b3eb7;
+  transition: 0.5s ease;
+}
+
+.icon-google {
+  margin-right: 10px;
+}
+
+.account-cadastra-se {
+  width: 100%;
+  height: 4vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.account-cadastra-se h1 {
+  font-family: "Roboto Mono";
+  font-style: italic;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 14px;
+  color: #ffffff;
+  margin-right: 5px;
+}
+
+.account-cadastra-se p {
+  cursor: pointer;
+  font-family: "Roboto Mono";
+  font-style: italic;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 12px;
+  color: #378bed;
 }
 
 button {
-   width: 50%;
-   padding: 10px;
-   border: 1px solid white;
-   border-radius: 10px;
-   background-color: black;
-   color: white;
-   text-align: left;
-   font-size: 10px;
+  width: 50%;
+
+  padding: 10px;
+  border: 1px solid white;
+  border-radius: 10px;
+  background-color: black;
+  color: white;
+  text-align: left;
+  font-size: 10px;
 }
 
 .login button {
-   border: 1px solid #378BED;
-   border-radius: 10px;
-   padding-top: 15px;
-   margin: auto;
-   text-align: center;
-   background-color: black;
-   color: #378BED;
-   font-size: 12px;
+  border: 1px solid #378BED;
+  border-radius: 10px;
+  padding: 10px;
+  margin: auto;
+  text-align: center;
+  background-color: black;
+  color: #378BED;
+
 }
 
 .cadastra {
-   justify-content: space-between;
+  justify-content: space-between;
 }
 
-.cadastra p {
-   font-size: 10px;
-   font-style: italic;
-
+.cadastra p,
+a {
+  font-family: italic;
+  font-size: 10px;
+  text-decoration: none;
 }
 
-.cadastra span {
-   color: #378BED;
+.google {
+  font-family: 'PT Sans', sans-serif;
+}
+
+.comeback {
+  width: 100%;
+  height: 5.5vh;
+  margin-top: 10px;
+  color: #ffffffb1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.comeback p,
+a {
+  font-family: "Roboto Mono";
+  font-style: normal;
+  color: #ffffffb1;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 24px;
+  text-align: center;
+  cursor: pointer;
 }
 </style>
