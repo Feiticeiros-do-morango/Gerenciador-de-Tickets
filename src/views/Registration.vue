@@ -35,7 +35,7 @@
                         v-model="state.confirmSenha">
 
                 </div>
-                <input type="password" name="senha" id="password" placeholder="Digite sua senha" v-model="senha">
+                
             </div>
 
             <div class="registration-button">

@@ -34,6 +34,7 @@ export default {
   components: { PanelMenu },
   data() {
     return {
+      display : false,
       items: [
         {
           label: "Dashboard",
@@ -43,7 +44,7 @@ export default {
             {
               label: "Criar Ticket",
               icon: "pi pi-fw pi-plus",
-              to: "/ticketView",
+              to: "/criarTicket",
             },
           ],
         },

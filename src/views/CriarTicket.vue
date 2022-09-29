@@ -3,15 +3,15 @@
         <div class="dados">
             <h1>Dados</h1>
             <div class="inserir">
-            <label for=""> Nome </label>
-            <input type="text" id="nome" placeholder="">
-            <br>
-            <label for="">Tecnologia</label>
-            <input type="text" id="tec" placeholder="">
-            <br>
-            <label for="">Colaboradores</label> 
-            <select name="colaboradores" id="colaboradores"></select>
-             </div>
+                <label for=""> Nome </label>
+                <input type="text" id="nome" placeholder="">
+                <br>
+                <label for="">Tecnologia</label>
+                <input type="text" id="tec" placeholder="">
+                <br>
+                <label for="">Colaboradores</label>
+                <select name="colaboradores" id="colaboradores"></select>
+            </div>
         </div>
         <div class="periodos">
             <h1>Periodos</h1>
@@ -21,14 +21,8 @@
             <label for=""> Data limite </label>
             <input type="text" id="nome" placeholder=" ">
             <br>
-            <label for=""> Criado por </label>
-            <input type="text" id="nome" placeholder=" ">
-            <br>
-            <label for=""> Fechado </label>
-            <input type="text" id="nome" placeholder=" ">
-            <br>
         </div>
-      
+
 
 
     </div>
@@ -36,84 +30,92 @@
 
 <script>
 export default {
-    
+
 }
 </script>
 
 <style scoped>
-.container{
-     font-family: 'Roboto Mono', monospace;
-    background-color: #0a0a33;
-    color: aliceblue;
-    width: 100%;
-    height: 100%;
-    padding: 2vw;
-}
-.dados{
 
-    background-color: rgb(185, 181, 181);
-    width: 50%;
-    height: 40%; 
-    border-radius: 10px;
-    padding-left:1vw;
-  
+.container {
     
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around;
+    align-items: center;
+    font-family: 'Roboto Mono', monospace;
+    background: url("../assets/background.png"), rgb(193, 193, 193);
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.541);
+    border-radius: 50px 50px 0px 0px;
+    background-size: 50%;
+  
+   
+    color: rgb(255, 255, 255);
+    width: 80vw;
+    height: 100vh;
+    padding: 1vw;
 }
-.dados h1{
-    font-size:20px;
+
+.dados {
+
+    background-color: #040414;
+    width: 40vw;
+    height: auto;
+    border-radius: 20px;
+    padding: 20px;
+
+
+}
+
+.dados h1 {
+    font-size: 30px;
     margin-bottom: 2vh;
     padding-top: 2vh;
-    border-bottom:2px solid rgb(243, 240, 240);
+
 }
 
-.dados label{
-width: 60%;
-height: 60%;
-}
-input:focus
-{     outline: none; }
-.dados input{
-display: flex;
-width: 50%;
-height:3vh;
-border: none;
-border-radius: 6px;
-background-color: rgb(158, 156, 156);
-}
-.dados select{
-    border:none;
-    border-radius: 4px;
-    background-color: rgb(158, 156, 156);
-    margin-left:1vh;
-}
-.periodos{
-    background-color: rgb(185, 181, 181);
-    width: 50%;
-    height: 50%;
-    margin-top:2vh;
-    border-radius: 10px;
-    padding-left:1vw;
-   
-}
-.periodos h1{
-    font-size:20px;
-    margin-bottom: 5vh;
-    padding-top: 2vh;
-    border-bottom:2px solid rgb(243, 240, 240);
-}
-.periodos label{
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-gap:5vh;
-}
-.periodos input{
+.dados input {
     display: flex;
     width: 50%;
-    height:3vh;
+    height: 3vh;
     border: none;
-    border-radius: 5px;
-    background-color: rgb(158, 156, 156);
+    border-radius: 6px;
+    background-color: rgb(197, 195, 195);
+    
 }
 
+.dados select {
+    border: none;
+    border-radius: 4px;
+    background-color: rgb(158, 156, 156);
+    margin-left: 1vh;
+}
+
+.periodos {
+    background-color: #040414;
+    width: 40vw;
+    height: 40vh;
+    border-radius: 20px;
+    padding-left: 1vw;
+
+}
+
+.periodos h1 {
+    font-size: 30px;
+    margin-bottom: 2vh;
+    padding-top: 2vh;
+    
+}
+
+.periodos input {
+    display: flex;
+    width: 50%;
+    height: 3vh;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(197, 195, 195);
+}
+
+input:focus {
+    outline: none;
+}
 </style>
