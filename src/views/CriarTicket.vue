@@ -43,7 +43,7 @@ export default {
     justify-content:space-around;
     align-items: center;
     font-family: 'Roboto Mono', monospace;
-    background: url("../assets/background.png"), rgb(193, 193, 193);
+   
     box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.541);
     border-radius: 50px 50px 0px 0px;
     background-size: 50%;

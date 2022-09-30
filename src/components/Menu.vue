@@ -35,7 +35,7 @@ export default {
 
 <style scoped>
 .container {
-  background-color: #f2f2f2;
+  background-color: #dddddd6e;
   width: 100%;
   height: 100%;
   display: grid;
