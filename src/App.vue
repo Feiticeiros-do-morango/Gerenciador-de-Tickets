@@ -9,8 +9,6 @@
       <router-view></router-view>
     </div>
 
-
-
   </div>
 </template>
 <script>
@@ -25,7 +23,8 @@ export default {
   },
   computed: {
     isLogin() {
-      if (this.$route.name == 'login' || this.$route.name == 'registration' || this.$route.name == 'land') {
+      if (this.$route.name == 'login' || this.$route.name == 'registration' 
+            || this.$route.name == 'land') {
         return false
       } else {
         return true
@@ -58,7 +57,7 @@ export default {
 }
 
 .container {
-  width: auto;
+  width: 100%;
 }
 
 </style>
