@@ -1,7 +1,9 @@
 <template>
-    <div class="container">
-        <div class="dados">
-            <h1>Dados</h1>
+    <div>
+        <h1>Dados</h1>
+<Button label="Show" icon="pi pi-external-link" @click="openModal" />
+<Dialog header="Header" :visible.sync="displayModal" :containerStyle="{width: '50vw'}" :modal="true">
+
             <div class="inserir">
             <label for=""> Nome </label>
             <input type="text" id="nome" placeholder="">
@@ -11,9 +13,8 @@
             <br>
             <label for="">Colaboradores</label> 
             <select name="colaboradores" id="colaboradores"></select>
-             </div>
-        </div>
-        <div class="periodos">
+            </div>
+            <div class="periodos">
             <h1>Periodos</h1>
             <label for=""> Aberto em </label>
             <input type="text" id="nome" placeholder=" ">
@@ -24,24 +25,54 @@
             <label for=""> Criado por </label>
             <input type="text" id="nome" placeholder=" ">
             <br>
-            <label for=""> Fechado </label>
-            <input type="text" id="nome" placeholder=" ">
-            <br>
-        </div>
-      
-
-
+            </div>
+        </Dialog>
+        
+        <Button label="No" icon="pi pi-times" @click="closeModal" class="p-button-text"/>
+        <Button label="Yes" icon="pi pi-check" @click="closeModal" autofocus />
     </div>
+
+
 </template>
 
 <script>
+ import Dialog from 'primevue/dialog';
 export default {
+    components: { Dialog },
+    data() {
+        return {
+            displayModal: true
+        }
+},
+methods: {
+    openModal() {
+            this.displayModal = true;
+        },
+        closeModal() {
+            this.displayModal = false;
     
+    }
+} 
 }
+
 </script>
 
 <style scoped>
-.container{
+.p-button {
+    margin: 0 .5rem 0 0;
+    min-width: 10rem;
+}
+
+p {
+    margin: 0;
+}
+
+.confirmation-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* .container{
      font-family: 'Roboto Mono', monospace;
     background-color: #0a0a33;
     color: aliceblue;
@@ -114,6 +145,8 @@ gap:5vh;
     border: none;
     border-radius: 5px;
     background-color: rgb(158, 156, 156);
-}
+} */
+
+
 
 </style>
