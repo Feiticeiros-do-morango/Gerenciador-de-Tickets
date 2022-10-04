@@ -94,7 +94,6 @@ export default {
                         this.goTologin();
 
                     })
-
             } else {
                 alert("Seu Registro falhou!!")
             }
@@ -125,8 +124,6 @@ export default {
 .registration-form {
     width: 340px;
     height: 500px;
-
-    padding: 0px 10px 0px 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -156,6 +153,7 @@ export default {
     font-size: 14px;
     line-height: 24px;
     text-align: center;
+    margin-bottom: 10px;
 }
 
 .input-area {
@@ -207,7 +205,7 @@ export default {
 
 .registration-button {
     width: 100%;
-    height: 5.5vh;
+    height: 8vh;
     display: flex;
     justify-content: center;
     align-items: center;

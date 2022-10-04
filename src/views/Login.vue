@@ -116,7 +116,6 @@ export default {
 .login-form {
   width: 340px;
   height: 500px;
-  padding: 0px 10px 0px 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
