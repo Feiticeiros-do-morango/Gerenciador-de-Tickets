@@ -112,119 +112,119 @@
       <div class="text-about">
         <h1>Um Pouco Sobre Nós</h1>
         <div class="linha-color"></div>
-        <p>Lorem ipsum dolor sit amet consecte</p>
+        <p>Saiba Mais Sobre Nossa Equipe.</p>
       </div>
       <div class="cards-about">
         <div class="card-about">
           <div class="icon-div">
             <iconify-icon
-              icon="gridicons:computer"
+              icon="bi:brush"
               width="34"
               height="34"
               id="about-icon"
             ></iconify-icon>
           </div>
           <div class="text-AboutCard">
-            <h1>Programadores No Projeto</h1>
-            <p>4 programadores atualmente</p>
+            <h1>Designer Gráfico</h1>
+            <p>1 Designer Gráfico Atualmente</p>
           </div>
         </div>
         <div class="card-about">
           <div class="icon-div">
             <iconify-icon
-              icon="gridicons:computer"
+              icon="bxs:megaphone"
               width="34"
               height="34"
               id="about-icon"
             ></iconify-icon>
           </div>
           <div class="text-AboutCard">
-            <h1>Programadores No Projeto</h1>
-            <p>4 programadores atualmente</p>
+            <h1>Marketing & Comunicação</h1>
+            <p>1 Comunicador Atualmente</p>
           </div>
         </div>
         <div class="card-about">
           <div class="icon-div">
             <iconify-icon
-              icon="gridicons:computer"
+              icon="map:art-gallery"
               width="34"
               height="34"
               id="about-icon"
             ></iconify-icon>
           </div>
           <div class="text-AboutCard">
-            <h1>Programadores No Projeto</h1>
-            <p>4 programadores atualmente</p>
+            <h1>Programadores Front-End</h1>
+            <p>4 Programadores Front-End Atualmente</p>
           </div>
         </div>
         <div class="card-about">
           <div class="icon-div">
             <iconify-icon
-              icon="gridicons:computer"
+              icon="bi:gear"
               width="34"
               height="34"
               id="about-icon"
             ></iconify-icon>
           </div>
           <div class="text-AboutCard">
-            <h1>Programadores No Projeto</h1>
-            <p>4 programadores atualmente</p>
+            <h1>Programadores Back-End</h1>
+            <p>2 Programadores Back-End Atualmente</p>
           </div>
         </div>
         <div class="card-about">
           <div class="icon-div">
             <iconify-icon
-              icon="gridicons:computer"
+              icon="fa-brands:figma"
               width="34"
               height="34"
               id="about-icon"
             ></iconify-icon>
           </div>
           <div class="text-AboutCard">
-            <h1>Programadores No Projeto</h1>
-            <p>4 programadores atualmente</p>
+            <h1>Tecnologia Design</h1>
+            <p>Figma</p>
           </div>
         </div>
         <div class="card-about">
           <div class="icon-div">
             <iconify-icon
-              icon="gridicons:computer"
+              icon="akar-icons:instagram-fill"
               width="34"
               height="34"
               id="about-icon"
             ></iconify-icon>
           </div>
           <div class="text-AboutCard">
-            <h1>Programadores No Projeto</h1>
-            <p>4 programadores atualmente</p>
+            <h1>Tecnologia Marketing & Comunicação</h1>
+            <p>Instagram</p>
           </div>
         </div>
         <div class="card-about">
           <div class="icon-div">
             <iconify-icon
-              icon="gridicons:computer"
+              icon="akar-icons:vue-fill"
               width="34"
               height="34"
               id="about-icon"
             ></iconify-icon>
           </div>
           <div class="text-AboutCard">
-            <h1>Programadores No Projeto</h1>
-            <p>4 programadores atualmente</p>
+            <h1>Tecnologia Front-End</h1>
+            <p>Vue.js</p>
           </div>
         </div>
         <div class="card-about">
           <div class="icon-div">
             <iconify-icon
-              icon="gridicons:computer"
+              icon="mdi:firebase"
               width="34"
               height="34"
               id="about-icon"
             ></iconify-icon>
           </div>
           <div class="text-AboutCard">
-            <h1>Programadores No Projeto</h1>
-            <p>4 programadores atualmente</p>
+            <h1>Tecnologia Back-End</h1>
+            <p>Firebase</p>
           </div>
         </div>
       </div>
@@ -421,11 +421,11 @@ main {
 
 .button-area .button-wrapper {
   width: 11.2vw;
-  height: 50px;
+  height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #0451ea;
+  background: #47a0c8;
   border-width: 2px;
   border-style: solid;
   border-radius: 5px;
@@ -435,7 +435,7 @@ main {
 }
 
 .button-area .button-wrapper:hover {
-  background: rgb(23, 8, 97);
+  background: #479fc8ab;
 }
 
 .button-area .button-wrapper a {
@@ -630,11 +630,11 @@ section .section-text .linha-color {
 
 .about {
   width: 100%;
-  height: 100vh;
+  height: 80vh;
   padding: 0 40px 40px 40px;
+  
   display: flex;
   flex-direction: column;
-  border: 1px solid #fff;
   align-items: center;
 }
 .about .text-about {
@@ -684,23 +684,25 @@ section .section-text .linha-color {
   width: 100%;
   height: 75vh;
   display: flex;
+  flex-direction: row-reverse;
   justify-content: space-evenly;
   align-items: center;
   flex-wrap: wrap;
-  padding: 100px;
+  padding: 70px 150px 50px 150px;
 }
 .about .cards-about .card-about {
   width: 330px;
   height: 150px;
   display: flex;
-  justify-content: space-around;
+  padding: 20px 0px 20px 20px;
+  gap: 20px;
   align-items: center;
   border-radius: 16px;
   background: #333333;
   transition: 0.3s ease-out;
 }
 .about .cards-about .card-about:hover {
-  background: #47a0c8;
+  background: #479fc8b9;
   transition: 0.5s ease;
 }
 .about .cards-about .card-about .icon-div {
@@ -712,40 +714,43 @@ section .section-text .linha-color {
   align-items: center;
   border-radius: 10px;
   background: #47a0c8;
-  box-shadow: 0px 0px 5px 2px rgba(37, 37, 37, 0.54);
+  box-shadow: 0px 0px 2px 0px rgba(37, 37, 37, 0.54);
 }
 #about-icon {
   color: #fff;
 }
 .about .cards-about .card-about .text-AboutCard {
-    width: 200px;
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    flex-direction: column;
-}
-.about .cards-about .card-about .text-AboutCard h1 {
-  font-family: "Roboto Mono";
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: -0.09px;
-  color: #ffffff;
-  text-align: justify;
+  width: 220px;
+  height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #fff;
+  flex-direction: column;
 }
-.about .cards-about .card-about .text-AboutCard p {
+.about .cards-about .card-about .text-AboutCard h1 {
+  width: 100%;
   font-family: "Roboto Mono";
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: -0.09px;
-  color: #b3afafd8;
-  text-align: justify;
+  color: #ffffff;
+  text-align: left;
+  margin-bottom: 5px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: center;
+}
+.about .cards-about .card-about .text-AboutCard p {
+  width: 100%;
+  font-family: "Roboto Mono";
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: -0.13px;
+  color: #b3afafd8;
+  text-align: left;
+  display: flex;
+  justify-content: flex-start;
   align-items: center;
 }
 </style>
