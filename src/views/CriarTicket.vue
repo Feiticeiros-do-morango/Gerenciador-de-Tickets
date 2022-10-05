@@ -9,33 +9,33 @@
                         <div class="create">
                         <div class="a">
                             <label for=""> Assunto </label>
-                            <input type="text" id="nome" placeholder="">
+                            <input type="text" id="assunto" placeholder="" v-model="ticket.assunto" >
                         </div>
                         <div>
                             <label for="">Tecnologia</label>
-                            <input type="text" id="tec" placeholder="">
+                            <input type="text" id="tecnologia" placeholder=""  v-model="ticket.tecnologia">
                         </div>
                         <div>
                             <label for="">Colaboradores</label>
-                            <select name="" id=""></select>
+                            <select nagme="colegas" id="colegas"  v-model="ticket.colaboradores"></select>
 
                         </div>
                    
                         <div>
                             <label for=""> Data limite </label>
-                            <input type="text" id="nome" placeholder=" ">
+                            <input type="text" id="nome" placeholder=" "  v-model="ticket.dataLimite">
                         </div>
                         <div>
                             <label for=""> Criado por </label>
-                            <input type="text" id="nome" placeholder=" ">
+                            <input type="text" id="nome" placeholder=" "  v-model="ticket.criador">
                         </div>
                         <div>
                             <label for=""> Prioridade </label>
-                            <select name="" id=""></select>
+                            <select name="" id=""  v-model="ticket.prioridade"></select>
                         </div>
                         <div>
                             <label for=""> Tipo</label>
-                            <select name="" id=""></select>
+                            <select name="" id="" v-model="ticket.tipo"></select>
                         </div>
                         <div class="enviar">
                             <input type="submit" value="Enviar">
@@ -67,6 +67,11 @@
 
 <script>
 import Dialog from 'primevue/dialog';
+import { collection, addDoc, } from "firebase/firestore";
+import { db, auth } from "../Firebase/index"
+import { reactive, computed } from 'vue'
+import { useVuelidate } from '@vuelidate/core'
+import { required, minLength } from '@vuelidate/validators'
 export default {
     components: { Dialog },
     data() {
@@ -81,7 +86,45 @@ export default {
         closeModal() {
             this.displayModal = false;
 
+        },
+         setup() {
+        const ticket = reactive({ // pega todos os valores dos inputs do html
+               nome: '',
+               tecnologia: '',
+               dataAbertura: '',
+               dataLimite: '',
+               criador: '' ,
+               fechamento: ''
+        })
+        const rules = computed(() => { // coloca regras para cada input
+            return {
+                nome: { required, minLength: minLength(3)},
+                tecnologia: { required, minLength: minLength(3) },
+                dataAbertura: { required, minLength: minLength(6) },
+                dataLimite:{ required, minLength: minLength(6) },
+                criador: { required, minLength: minLength(3) }, 
+               fechamento: { required, minLength: minLength(6) }
+            }
+        })
+        const params = useVuelidate(rules, ticket)
+        return {
+          ticket,
+          params,
         }
+    },
+     methods: {
+        async saveOnDatabase() {
+            await addDoc(collection(db, "ticket"), {
+               nome: this.ticket.nome,
+               tecnologia: this.ticket.nome,
+               dataAbertura: this.ticket.nome,
+               dataLimite: this.ticket.nome,
+               criador: this.ticket.nome ,
+               fechamento: this.ticket.nome
+            });
+        },
+    },
+}
     }
 }
 
