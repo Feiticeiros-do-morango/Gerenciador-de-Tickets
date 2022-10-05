@@ -10,7 +10,7 @@
         :style="{width: size + 'px', height: size + 'px'}">
         <grid-item v-for="item in layout" :static="item.static" :x="item.x" :y="item.y" :w="item.w"
           :h="item.h" :i="item.i" :titulo="item.titulo" :key="item.i"
-          v-bind:class="getPrioridade(item.prioridade)">
+          v-bind:class="getPrioridade(item.prioridade) + ' ' + getTipo(item.tipo)">
           <span class="text">
             <svg viewBox="0 0 250 250" xmlns="http://www.w3.org/2000/svg">
               <text id="tituloText" x="1" y="20" >{{item.titulo}}</text>
@@ -84,10 +84,41 @@ export default {
       this.layout.splice(index, 1);
     },
     getPrioridade: function (prioridade){
-      if ( prioridade == "naoUrgente"){
-        return "naoUrgente"
+      switch (prioridade) {
+        case "naoUrgente":
+          return "naoUrgente"
+          break;
+
+          case "urgente":
+          return "urgente"
+          break;
+
+          case "poucoUrgente":
+          return "poucoUrgente"
+          break;
+
+          case "muitoUrgente":
+          return "muitoUrgente"
+          break;
+
+          case "emergencia":
+          return "emergencia"
+          break;
+      
+        default:
+          break;
       }
 
+    },
+    getTipo: function(tipo){
+      switch (tipo) {
+        case "dev":
+          return "dev"
+          break;
+      
+        default:
+          break;
+      }
     }
   }
 }
@@ -146,7 +177,6 @@ Configuração dos cards
 }
 
 .vue-grid-item:not(.vue-grid-placeholder) {
-  background: rgba(255, 255, 255, 0.575);
   backdrop-filter: blur(5px);
   border-radius: 15px;
   padding: 5px;
@@ -167,6 +197,13 @@ Configuração dos cards
 }
 .emergencia{
   border-left: solid 11px rgb(23, 172, 122);
+}
+
+.dev{
+  background: url(../assets/1905.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+ 
 }
 
 
