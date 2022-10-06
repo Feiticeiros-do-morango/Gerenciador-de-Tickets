@@ -40,11 +40,9 @@
 
             <div>
               <label for=""> Data limite </label>
-              <Calendar v-model="value" />
-              
-             
+              <Calendar v-model="ticket.dataLimite" />
             </div>
-            
+
             <div>
               <label for=""> Prioridade </label>
               <select name="" id="" v-model="ticket.prioridade"></select>
@@ -84,7 +82,7 @@
 import Calendar from "primevue/calendar";
 import Dialog from "primevue/dialog";
 import { getAuth } from "firebase/auth";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, setDoc, getFirestore } from "firebase/firestore";
 import { db } from "../Firebase/index";
 import { reactive, computed } from "vue";
 import { useVuelidate } from "@vuelidate/core";
@@ -93,8 +91,7 @@ export default {
   components: { Dialog, Calendar },
   data() {
     return {
-      displayModal: true,
-       value: null
+      displayModal: true
     };
   },
 
@@ -126,29 +123,39 @@ export default {
     closeModal() {
       this.displayModal = false;
     },
-   enviarDados() {
+    enviarDados(e) {
+      e.preventDefault();
       const auth = getAuth();
 
       this.v$.$validate();
       if (!this.v$.$error) {
-        console.log('Vai salvar ', this.ticket)
+        console.log("Vai salvar ", this.ticket);
         this.saveOnDatabase();
       } else {
-          console.log(this.v$)
+        console.log(this.v$);
         alert("Observe os campos atentamente!!");
       }
-          
     },
 
     async saveOnDatabase() {
-      await addDoc(collection(db, "ticket"), {
+      const dbRef = collection(db, "ticket");
+      const data = {
         assunto: this.ticket.assunto,
         tecnologia: this.ticket.tecnologia,
-        colaboradores: this.ticket.colaboradores,
-        dataLimite: this.ticket.dataLimite,
-        prioridade: this.ticket.prioridade,
-        tipo: this.ticket.tipo,
-      });
+        // colaboradores: this.ticket.colaboradores,
+        // dataLimite: this.ticket.dataLimite,
+        // prioridade: this.ticket.prioridade,
+        // tipo: this.ticket.tipo,
+      };
+      console.log('dbref -> ', dbRef)
+      console.log('data -> ', data)
+      await setDoc(dbRef, data)
+        .then((docRef) => {
+          console.log("Document has been added successfully");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
   },
 };
