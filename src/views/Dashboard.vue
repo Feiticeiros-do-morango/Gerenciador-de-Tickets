@@ -200,7 +200,7 @@ Configuração dos cards
 }
 
 .dev{
-  background: url(../assets/1905.jpg);
+  background: url(../assets/technology-abstract-circuit-board-texture-background-hightech-futuristic-circuit-board-banner-wallpa_230610-948.jpg);
   background-size: cover;
   background-repeat: no-repeat;
  
