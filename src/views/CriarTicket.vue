@@ -1,121 +1,251 @@
 <template>
-    <div class="container">
-        <div class="dados">
-            <h1>Dados</h1>
-            <div class="inserir">
-                <label for=""> Nome </label>
-                <input type="text" id="nome" placeholder="">
-                <br>
-                <label for="">Tecnologia</label>
-                <input type="text" id="tec" placeholder="">
-                <br>
-                <label for="">Colaboradores</label>
-                <select name="colaboradores" id="colaboradores"></select>
+
+  <div>
+    <Button label="Show" icon="pi pi-external-link" @click="openModal" />
+    <Dialog
+      header="Novo Ticket"
+      :visible.sync="displayModal"
+      :containerStyle="{ width: '50vw' }"
+      :modal="true"
+    >
+      <section>
+        <form>
+          <div class="create">
+            <div class="a">
+              <label for=""> Assunto </label>
+              <input
+                type="text"
+                id="assunto"
+                name="assunto"
+                placeholder=""
+                v-model="ticket.assunto"
+              />
             </div>
-        </div>
-        <div class="periodos">
-            <h1>Periodos</h1>
-            <label for=""> Aberto em </label>
-            <input type="text" id="nome" placeholder=" ">
-            <br>
-            <label for=""> Data limite </label>
-            <input type="text" id="nome" placeholder=" ">
-            <br>
-        </div>
+            <div>
+              <label for="">Tecnologia</label>
+              <input
+                type="text"
+                id="tecnologia"
+                placeholder=""
+                v-model="ticket.tecnologia"
+              />
+            </div>
+            <div>
+              <label for="">Colaboradores</label>
+              <select
+                name="colegas"
+                id="colegas"
+                v-model="ticket.colaboradores"
+              ></select>
+            </div>
 
+            <div>
+              <label for=""> Data limite </label>
+              <Calendar v-model="ticket.dataLimite" />
+            </div>
 
+            <div>
+              <label for=""> Prioridade </label>
+              <select name="" id="" v-model="ticket.prioridade"></select>
+            </div>
+            <div>
+              <label for=""> Tipo</label>
+              <select name="" id="" v-model="ticket.tipo"></select>
+            </div>
+            <div class="enviar">
+              <button @click="enviarDados">Enviar</button>
+            </div>
+          </div>
+          <!-- <div class="ticket">
+                <div class="minTop">
+                    <p>Título-Título-Título-</p>
+                    <p>000000000000</p>
+                </div>
+                <div class="minbotton">
+                    <p>Tecnologia/Tecnologia</p>
+                </div>   
+            </div> -->
+        </form>
+      </section>
+    </Dialog>
 
-    </div>
+    <Button
+      label="No"
+      icon="pi pi-times"
+      @click="closeModal"
+      class="p-button-text"
+    />
+    <Button label="Yes" icon="pi pi-check" @click="closeModal" autofocus />
+  </div>
+
 </template>
 
 <script>
+import Calendar from "primevue/calendar";
+import Dialog from "primevue/dialog";
+import { getAuth } from "firebase/auth";
+import { collection, addDoc, setDoc, getFirestore } from "firebase/firestore";
+import { db } from "../Firebase/index";
+import { reactive, computed } from "vue";
+import { useVuelidate } from "@vuelidate/core";
+import { required, minLength } from "@vuelidate/validators";
 export default {
 
-}
+  components: { Dialog, Calendar },
+  data() {
+    return {
+      displayModal: true
+    };
+  },
+
+  setup() {
+    const ticket = reactive({
+      // pega todos os valores dos inputs do html
+      assunto: "",
+      tecnologia: "",
+      dataLimite: "",
+      fechamento: "",
+    });
+    const rules = computed(() => {
+      return {
+        // asssunto: { required, minLength: minLength(3) },
+        // tecnologia: { required, minLength: minLength(3) },
+        // dataLimite: { required }
+      };
+    });
+    const v$ = useVuelidate(rules, ticket);
+    return {
+      ticket,
+      v$,
+    };
+  },
+  methods: {
+    openModal() {
+      this.displayModal = true;
+    },
+    closeModal() {
+      this.displayModal = false;
+    },
+    enviarDados(e) {
+      e.preventDefault();
+      const auth = getAuth();
+
+      this.v$.$validate();
+      if (!this.v$.$error) {
+        console.log("Vai salvar ", this.ticket);
+        this.saveOnDatabase();
+      } else {
+        console.log(this.v$);
+        alert("Observe os campos atentamente!!");
+      }
+    },
+
+    async saveOnDatabase() {
+      const dbRef = collection(db, "ticket");
+      const data = {
+        assunto: this.ticket.assunto,
+        tecnologia: this.ticket.tecnologia,
+        // colaboradores: this.ticket.colaboradores,
+        // dataLimite: this.ticket.dataLimite,
+        // prioridade: this.ticket.prioridade,
+        // tipo: this.ticket.tipo,
+      };
+      console.log('dbref -> ', dbRef)
+      console.log('data -> ', data)
+      await setDoc(dbRef, data)
+        .then((docRef) => {
+          console.log("Document has been added successfully");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
+};
 </script>
 
 <style scoped>
+* {
+  margin: 0;
+  padding: 0;
+}
 
-.container {
-    
+section {
+  display: flex;
+  flex-direction: row;
+  height: 40vh;
+  width: 40vw;
+  /* grid-template-columns: 6fr 6fr;
+    grid-template-areas: "form ticket"; */
+}
+
+/* .create {
+    grid-area: form;
     display: flex;
     flex-direction: column;
-    justify-content:space-around;
-    align-items: center;
-    font-family: 'Roboto Mono', monospace;
-   
-    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.541);
-    border-radius: 50px 50px 0px 0px;
-    background-size: 50%;
-  
-   
-    color: rgb(255, 255, 255);
-    width: 80vw;
-    height: 100vh;
-    padding: 1vw;
+   width: 80%;
 }
 
-.dados {
-
-    background-color: #040414;
-    width: 40vw;
-    height: auto;
-    border-radius: 20px;
-    padding: 20px;
-
-
-}
-
-.dados h1 {
-    font-size: 30px;
-    margin-bottom: 2vh;
-    padding-top: 2vh;
-
-}
-
-.dados input {
+.ticket {
+    grid-area: ticket;
     display: flex;
-    width: 50%;
-    height: 3vh;
-    border: none;
-    border-radius: 6px;
-    background-color: rgb(197, 195, 195);
-    
+    flex-direction: column;
+     width: 80%;
+} */
+
+form div {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px;
 }
 
-.dados select {
-    border: none;
-    border-radius: 4px;
-    background-color: rgb(158, 156, 156);
-    margin-left: 1vh;
+form input {
+  outline: unset;
+  background-color: rgb(201, 200, 200);
+  border: none;
+  border-radius: 6px;
+  color: white;
+  padding: 0.25vh;
+  font-weight: bold;
 }
 
-.periodos {
-    background-color: #040414;
-    width: 40vw;
-    height: 40vh;
-    border-radius: 20px;
-    padding-left: 1vw;
-
+form select {
+  outline: unset;
+  background-color: rgb(201, 200, 200);
+  border: none;
+  border-radius: 6px;
+  color: white;
+  padding: 0.25vh;
+  font-weight: bold;
 }
 
-.periodos h1 {
-    font-size: 30px;
-    margin-bottom: 2vh;
-    padding-top: 2vh;
-    
+.p-button {
+  margin: 0 0.5rem 0 0;
+  min-width: 10rem;
 }
 
-.periodos input {
-    display: flex;
-    width: 50%;
-    height: 3vh;
-    border: none;
-    border-radius: 5px;
-    background-color: rgb(197, 195, 195);
+p {
+  margin: 0;
 }
 
-input:focus {
-    outline: none;
+.confirmation-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.enviar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 8vw;
+  padding-top: 2vh;
+  color: white;
+}
+
+.enviar input {
+  background-color: #5c677d;
+  padding: 1vh;
+
 }
 </style>
