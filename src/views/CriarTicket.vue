@@ -1,4 +1,5 @@
 <template>
+
   <div>
     <Button label="Show" icon="pi pi-external-link" @click="openModal" />
     <Dialog
@@ -76,6 +77,7 @@
     />
     <Button label="Yes" icon="pi pi-check" @click="closeModal" autofocus />
   </div>
+
 </template>
 
 <script>
@@ -88,6 +90,7 @@ import { reactive, computed } from "vue";
 import { useVuelidate } from "@vuelidate/core";
 import { required, minLength } from "@vuelidate/validators";
 export default {
+
   components: { Dialog, Calendar },
   data() {
     return {
@@ -243,5 +246,6 @@ p {
 .enviar input {
   background-color: #5c677d;
   padding: 1vh;
+
 }
 </style>
