@@ -115,6 +115,14 @@ export default {
         case "dev":
           return "dev"
           break;
+
+          case "design":
+          return "design"
+          break;
+
+          case "engenharia":
+          return "engenharia"
+          break;
       
         default:
           break;
@@ -187,23 +195,34 @@ Configuração dos cards
   border-left: solid 11px rgb(23, 172, 122);
 }
 .poucoUrgente{
-  border-left: solid 11px rgb(23, 172, 122);
+  border-left: solid 11px rgb(39, 144, 241);
 }
 .urgente{
-  border-left: solid 11px rgb(23, 172, 122);
+  border-left: solid 11px rgb(245, 242, 56);
 }
 .muitoUrgente{
-  border-left: solid 11px rgb(23, 172, 122);
+  border-left: solid 11px rgb(255, 132, 49);
 }
 .emergencia{
-  border-left: solid 11px rgb(23, 172, 122);
+  border-left: solid 11px rgba(250, 18, 18, 0.959);
 }
 
 .dev{
-  background: url(../assets/technology-abstract-circuit-board-texture-background-hightech-futuristic-circuit-board-banner-wallpa_230610-948.jpg);
+  background: url(../assets/dev-pattern.jpg);
   background-size: cover;
   background-repeat: no-repeat;
- 
+}
+
+.engenharia{
+  background: url(../assets/engenharia-pattern.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.design{
+  background: url(../assets/design-pattern.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 
