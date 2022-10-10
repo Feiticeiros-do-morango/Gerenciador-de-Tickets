@@ -19,8 +19,12 @@ import TabPanel from "primevue/tabpanel";
 export default {
   components: { Navbar, TabView, TabPanel },
   data() {
-    return isLogin;
+    return{
+
+  }
+
   },
+    
   computed: {
     isLogin() {
       if (this.$route.name == 'login' || this.$route.name == 'registration' 
@@ -30,7 +34,8 @@ export default {
         return true
       }
     }
-  }
+  },
+
 
 };
 </script>

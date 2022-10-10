@@ -1,56 +1,74 @@
 <template>
-    <div>
-        <Button label="Show" icon="pi pi-external-link" @click="openModal" />
-        <Dialog header="Novo Ticket" :visible.sync="displayModal" :containerStyle="{ width: '50vw' }" :modal="true">
-            <section>
+
+    <!-- <Button label="Show" icon="pi pi-external-link" @click="openModal" /> -->
+
+
+    <Dialog header="Novo Ticket" :visible.sync="displayModal" :modal="true" :dismissableMask="true" :closable="true">
+        <div class="main">
+            <div class="left">
                 <form>
-                    <div class="create">
-                        <div class="a">
-                            <label for=""> Assunto </label>
-                            <input type="text" id="assunto" name="assunto" placeholder="" v-model="ticket.assunto" />
-
-                        </div>
-                        <div>
-                            <label for="">Tecnologia</label>
-
-
-                            <input type="text" id="tecnologia" placeholder="" v-model="ticket.tecnologia" />
-                        </div>
-                        <div>
-                            <label for="">Colaboradores</label>
-                            <select name="colegas" id="colegas" v-model="ticket.colaboradores"></select>
-                        </div>
-
-                        <div>
-                            <label for=""> Data limite </label>
-                            <Calendar v-model="ticket.dataLimite" />
-                        </div>
-
-                        <div>
-                            <label for=""> Prioridade </label>
-                            <Dropdown v-model="ticket.prioridade" :options="cities" optionLabel="name"
-                                placeholder="Selecione" />
-                           
-                        </div>
-                        <div>
-                            <label for=""> Tipo</label>
-                            <Dropdown v-model="ticket.tipo" :options="types" optionLabel="name"
-                                placeholder="Selecione" />
-                        
-                        </div>
-                        <div class="enviar">
-                            <button @click="enviarDados">Enviar</button>
-                        </div>
+                    <div class="inputDiv">
+                        <label for=""> Assunto </label>
+                        <input type="text" id="assunto" name="assunto" placeholder="" v-model="ticket.assunto" />
                     </div>
-                   
+
+                    <div class="inputDiv">
+                        <label for=""> Data limite </label>
+                        <Calendar v-model="ticket.dataLimite" dateFormat="dd.mm.yy" />
+                    </div>
+
+
+                    <div class="inputDiv">
+                        <label for="">Tecnologia</label>
+                        <input type="text" id="tecnologia" placeholder="" v-model="ticket.tecnologia" />
+                    </div>
+
 
                 </form>
-            </section>
-        </Dialog>
 
-        <Button label="No" icon="pi pi-times" @click="closeModal" class="p-button-text" />
-        <Button label="Yes" icon="pi pi-check" @click="closeModal" autofocus />
-    </div>
+                <div class="inputDiv">
+                    <label for=""> Prioridade </label>
+                    <Dropdown v-model="ticket.prioridade" :options="prioridade" optionLabel="name"
+                        placeholder="Selecione" />
+                </div>
+
+                <div class="inputDiv">
+                    <label> Tipo </label>
+                    <Dropdown v-model="ticket.tipo" :options="tipos" optionLabel="name" placeholder="Selecione" />
+                </div>
+
+                <form>
+                    <div class="inputDiv">
+                        <label for="">Colaboradores</label>
+                        <select name="colegas" id="colegas" v-model="ticket.colaboradores"></select>
+                    </div>
+                </form>
+
+
+
+            </div>
+            <div class="right">
+
+                <div class="ticket"
+                    v-bind:class="getPrioridade(ticket.prioridade.name) + ' ' + getTipo(ticket.tipo.name)">
+
+                    <p id="tituloText"> {{ticket.assunto}} </p>
+                    <p id="techText"> {{ticket.tecnologia}} </p>
+
+                </div>
+
+            </div>
+
+        </div>
+        <div class="enviar">
+            <button @click="enviarDados">Enviar</button>
+        </div>
+    </Dialog>
+
+
+
+
+
 
 </template>
 
@@ -61,63 +79,61 @@ import Calendar from "primevue/calendar";
 import Dialog from "primevue/dialog";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../Firebase/index";
-import { reactive, computed } from "vue";
-import { useVuelidate } from "@vuelidate/core";
+import { reactive } from "vue";
 
 
-export default{
+
+export default {
 
     components: { Dialog, Calendar, AutoComplete, Dropdown },
 
     data() {
         return {
             displayModal: true,
-            cities: [
+            prioridade: [
                 { name: 'Não Urgente' },
                 { name: 'Pouco Urgente' },
                 { name: 'Urgente' },
                 { name: 'Muito Urgente' },
                 { name: 'Emergência' }
             ],
-            types: [
+            tipos: [
                 { name: 'UX/UI' },
                 { name: 'Desenvolvimento' },
                 { name: 'Engenharia' },
                 { name: 'Infra' },
 
             ],
-            
+
             ticket: reactive({
-            // pega todos os valores dos inputs do html
-            assunto: "",
-            tecnologia: "",
-            dataLimite: "",
-            fechamento: "",
-            tipo:"",
-            prioridade:""
+                // pega todos os valores dos inputs do html
+                assunto: "",
+                tecnologia: "",
+                dataLimite: "",
+                fechamento: "",
+                tipo: "",
+                prioridade: "",
+                dataLimite: ""
 
             })
         };
 
 
     },
-    
+
     methods: {
         openModal() {
             this.displayModal = true;
         },
-        closeModal() {
-            this.displayModal = false;
-        },
+
 
         enviarDados(e) {
             e.preventDefault();
 
             this.saveOnDatabase();
-            
-            },
-        
-    
+
+        },
+
         async saveOnDatabase() {
             const dbRef = collection(db, "ticket");
             const data = {
@@ -138,6 +154,51 @@ export default{
                     console.log(error);
                 });
         },
+        getPrioridade: function (prioridade) {
+            switch (prioridade) {
+                case "Não Urgente":
+                    return "naoUrgente"
+                    break;
+
+                case "Pouco Urgente":
+                    return "poucoUrgente"
+                    break;
+
+                case "Urgente":
+                    return "urgente"
+                    break;
+
+                case "Muito Urgente":
+                    return "muitoUrgente"
+                    break;
+
+                case "Emergência":
+                    return "emergencia"
+                    break;
+
+                default:
+                    break;
+            }
+
+        },
+        getTipo: function (tipo) {
+            switch (tipo) {
+                case "Desenvolvimento":
+                    return "dev"
+                    break;
+
+                case "UX/UI":
+                    return "design"
+                    break;
+
+                case "Engenharia":
+                    return "engenharia"
+                    break;
+
+                default:
+                    break;
+            }
+        }
     },
 }
 
@@ -151,88 +212,106 @@ export default{
     padding: 0;
 }
 
-section {
+.main {
     display: flex;
-    flex-direction: row;
-    height: 40vh;
-    width: 40vw;
-    /* grid-template-columns: 6fr 6fr;
-    grid-template-areas: "form ticket"; */
+    height: 63vh;
+}
+
+.left {
+    width: 20vw;
+}
+
+.inputDiv {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+    flex-direction: column;
+}
+
+.inputDiv input {
+    width: 58%;
+    height: 5vh;
+    background: #040d19;
+    border: 1px solid #0b213f;
+
+}
+
+.inputDiv select {
+    width: 58%;
+    height: 5vh;
+    background: #040d19;
+    border: 1px solid #0b213f;
+
+}
+
+.inputDiv label {
+    margin-top: 1vh;
+    font-size: 20px;
 }
 
 
-/* .create {
-    grid-area: form;
+.right {
+    width: 30vw;
     display: flex;
-    flex-direction: column;
-   width: 80%;
+    justify-content: center;
+    align-items: center;
 }
 
 .ticket {
-    grid-area: ticket;
-    display: flex;
-    flex-direction: column;
-     width: 80%;
-} */
+    height: 15vh;
+    width: 20vw;
+    padding: 10px;
 
-form div {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 5px;
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+
+    overflow: hidden;
+    background-color: rgba(187, 187, 187, 0.664);
 }
 
-form input {
-    outline: unset;
-    background-color: rgb(201, 200, 200);
-    border: none;
-    border-radius: 6px;
-    color: white;
-    padding: 0.25vh;
-    font-weight: bold;
+.naoUrgente {
+    border-left: solid 11px rgb(23, 172, 122);
 }
 
-form select {
-    outline: unset;
-    background-color: rgb(201, 200, 200);
-    border: none;
-    border-radius: 6px;
-    color: white;
-    padding: 0.25vh;
-    font-weight: bold;
+.poucoUrgente {
+    border-left: solid 11px rgb(39, 144, 241);
 }
 
-.p-button {
-    margin: 0 0.5rem 0 0;
-    min-width: 10rem;
+.urgente {
+    border-left: solid 11px rgb(245, 242, 56);
 }
 
-p {
-    margin: 0;
+.muitoUrgente {
+    border-left: solid 11px rgb(255, 132, 49);
 }
 
-.confirmation-content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.emergencia {
+    border-left: solid 11px rgba(250, 18, 18, 0.959);
+}
+
+.dev {
+    background: url(../assets/dev-pattern.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.engenharia {
+    background: url(../assets/engenharia-pattern.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.design {
+    background: url(../assets/design-pattern.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .enviar {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 8vw;
-    padding-top: 2vh;
     color: white;
-}
-
-.enviar input {
-    background-color: #5c677d;
-    padding: 1vh;
-}
-</style>
-<style lang="scss" scoped>
-.p-dropdown-label {
-    overflow: inherit;
-
 }
 </style>
