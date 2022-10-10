@@ -57,7 +57,10 @@ export default {
 }
 
 .container {
-  width: 100%;
+
+  width: auto;
+  background-color: #040414;
+
 }
 
 </style>

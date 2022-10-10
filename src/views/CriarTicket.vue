@@ -43,6 +43,7 @@
                         </div>
                     </div>
                     <!-- <div class="ticket">
+
                 <div class="minTop">
                     <p>Título-Título-Título-</p>
                     <p>000000000000</p>
@@ -51,6 +52,7 @@
                     <p>Tecnologia/Tecnologia</p>
                 </div>   
             </div> -->
+
                 </form>
             </section>
         </Dialog>
@@ -58,6 +60,7 @@
         <Button label="No" icon="pi pi-times" @click="closeModal" class="p-button-text" />
         <Button label="Yes" icon="pi pi-check" @click="closeModal" autofocus />
     </div>
+
 </template>
 
 <script>
@@ -71,7 +74,7 @@ import { db } from "../Firebase/index";
 import { reactive, computed } from "vue";
 import { useVuelidate } from "@vuelidate/core";
 import { required, minLength } from "@vuelidate/validators";
-export default {
+
     components: { Dialog, Calendar, AutoComplete, Dropdown },
     data() {
         return {
@@ -95,6 +98,7 @@ export default {
             ]
 
         };
+
     },
     countryService: null,
     created() {
@@ -260,5 +264,6 @@ p {
 <style lang="scss" scoped>
 .p-dropdown-label {
     overflow: inherit;
+
 }
 </style>
