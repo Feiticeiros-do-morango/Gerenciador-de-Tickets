@@ -229,6 +229,43 @@
         </div>
       </div>
     </div>
+    <div class="contact">
+      <div class="info-contact">
+        <input type="text" name="contact-name" id="name-contact" placeholder="Seu Nome">
+        <input type="text" name="contact-email" id="email-contact" placeholder="Email">
+        <input type="text" name="contact-reason" id="reason-contact" placeholder="Razão para Contato">
+        <input type="text" name="contact-message" id="message-contact" placeholder="Messagem">
+        <div class="button-contact">
+          <div class="wrapper-contact">
+          <button> Enviar Mensagem </button>
+        </div>
+        </div>
+      </div>
+      <div class="location-contact">
+        <h1>Onde Estamos</h1>
+        <p>Brasil, Blumenau, Proway</p>
+        <h1>Telefone</h1>
+        <p>+99 99 99 999</p>
+        <h1>Email</h1>
+        <p>Suporte@Go.com</p>
+      </div>
+      <div class="image-contact">
+        <img src="../assets/loc.png" alt="Localização Go">
+      </div>
+    </div>
+    <footer>
+      <div class="left-footer">
+        <div class="logo-footer">
+          <img src="../assets/logoland.png" alt="logo Footer Go">
+        </div>
+        <div class="about-go">
+          <p>O Go é um gerenciador de Tickets com o propósito de organizar e facilitar o desenvolvimento de projetos, esses que podem ser estruturados em times. A organização é baseada em um sistema de Tickets, cores e símbolos para facilitar a visualização do projeto completo.</p>
+        </div>
+        <div class="copy-footer">
+        <p>&#xA9;2022 Go. All rights reserved.</p>
+      </div>
+      </div>
+    </footer>
   </div>
 </template>
 
@@ -239,7 +276,7 @@ export default {};
 <style scoped>
 .main {
   width: 100%;
-  height: 400vh;
+  height: 433.6vh;
   z-index: 0;
   background-color: #040414;
 }
@@ -361,7 +398,7 @@ main {
 
 .left-main {
   width: 50%;
-  height: 80vh;
+  height: 93vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -682,13 +719,13 @@ section .section-text .linha-color {
 }
 .about .cards-about {
   width: 100%;
-  height: 75vh;
+  height: 80vh;
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-evenly;
   align-items: center;
   flex-wrap: wrap;
-  padding: 70px 150px 50px 150px;
+  padding: 50px 50px 0 30px;
 }
 .about .cards-about .card-about {
   width: 330px;
@@ -752,5 +789,145 @@ section .section-text .linha-color {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+}
+.contact {
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #04042060
+}
+.contact .info-contact {
+  width: 20vw;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+}
+.contact .info-contact input {
+  height: 5vh;
+  font-family: 'Roboto Mono';
+  font-weight: 400;
+  font-size: 12px;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  text-indent: 13px;
+  background: #333333;
+}
+.contact .info-contact input::placeholder {
+  font-family: 'Roboto Mono';
+  font-weight: 400;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.541);
+  text-indent: 13px;
+}
+.contact .info-contact input:not(:first-child) {
+  margin-top: 20px;
+}
+.contact .info-contact #message-contact {
+  margin-bottom: 20px;
+}
+.contact .info-contact .button-contact {
+  width: 20vw;
+  height: 5vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+}
+.contact .info-contact .button-contact .wrapper-contact {
+  width: 8vw;
+  height: 100%;
+  border-radius: 5px;
+  background: #47a0c8;
+  
+  transition: 0.5s ease-out;
+}
+.contact .info-contact .button-contact .wrapper-contact:hover {
+  transition: 0.5s ease;
+  background: #479fc87e;
+}
+.contact .info-contact .button-contact .wrapper-contact button {
+  color: #fff;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  outline: none;
+  background: none;
+  border: none;
+}
+.contact .location-contact {
+  width: 20vw;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+}
+.contact .location-contact h1 {
+  font-family: 'Roboto Mono';
+  font-size: 24px;
+  font-weight: 500;
+  color: #b3afafd8;
+}
+.contact .location-contact p {
+  font-family: "Roboto Mono";
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+  text-align: justify;
+  color: #fff;
+  margin-bottom: 25px;
+}
+.contact .image-contact {
+  width: 30vw;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+}
+.contact .image-contact img {
+  width: 100%;
+  height: 100%;
+}
+footer {
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  border-top: 1px solid #33333334;
+}
+footer .left-footer {
+  width: 20vw;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 0 50px;
+}
+footer .left-footer .logo-footer {
+  width: 150px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+footer .left-footer .logo-footer img {
+  width: 100%;
+  height: 100%;
+}
+footer .left-footer .about-go {
+  width: 20vw;
+  font-family: 'Roboto Mono';
+  font-size: 12px;
+  font-weight: 300;
+  text-align: justify;
+  margin-bottom: 100px;
+  color: #fff;
+}
+footer .left-footer .copy-footer {
+  width: 20vw;
+  font-family: 'Roboto Mono';
+  font-size: 12px;
+  font-weight: 300;
+  text-align: justify;
+  color: #fff;
 }
 </style>
