@@ -2,7 +2,7 @@
   <div class="navbar">
     <div class="identificacao">
       <div class="avatar">
-        <Icon icon="carbon:user-avatar" width="40" height="40" />
+        <!-- <Icon icon="carbon:user-avatar" width="40" height="40" /> -->
       </div>
       <div class="perfil">
         <div class="nome">

@@ -28,30 +28,21 @@
 
                         <div>
                             <label for=""> Prioridade </label>
-                            <Dropdown v-model="selectedCity" :options="cities" optionLabel="name"
+                            <Dropdown v-model="ticket.prioridade" :options="cities" optionLabel="name"
                                 placeholder="Selecione" />
-                            <!-- <select name="" id="" v-model="ticket.prioridade"></select> -->
+                           
                         </div>
                         <div>
                             <label for=""> Tipo</label>
-                            <Dropdown v-model="selectedCity" :options="types" optionLabel="name"
+                            <Dropdown v-model="ticket.tipo" :options="types" optionLabel="name"
                                 placeholder="Selecione" />
-                            <!-- <select name="" id="" v-model="ticket.tipo"></select> -->
+                        
                         </div>
                         <div class="enviar">
                             <button @click="enviarDados">Enviar</button>
                         </div>
                     </div>
-                    <!-- <div class="ticket">
-
-                <div class="minTop">
-                    <p>Título-Título-Título-</p>
-                    <p>000000000000</p>
-                </div>
-                <div class="minbotton">
-                    <p>Tecnologia/Tecnologia</p>
-                </div>   
-            </div> -->
+                   
 
                 </form>
             </section>
@@ -68,20 +59,19 @@ import Dropdown from 'primevue/dropdown';
 import AutoComplete from 'primevue/autocomplete';
 import Calendar from "primevue/calendar";
 import Dialog from "primevue/dialog";
-import { getAuth } from "firebase/auth";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../Firebase/index";
 import { reactive, computed } from "vue";
 import { useVuelidate } from "@vuelidate/core";
-import { required, minLength } from "@vuelidate/validators";
+
+
+export default{
 
     components: { Dialog, Calendar, AutoComplete, Dropdown },
+
     data() {
         return {
             displayModal: true,
-            selectedCountry: null,
-            filteredCountries: null,
-            selectedCity: null,
             cities: [
                 { name: 'Não Urgente' },
                 { name: 'Pouco Urgente' },
@@ -95,37 +85,23 @@ import { required, minLength } from "@vuelidate/validators";
                 { name: 'Engenharia' },
                 { name: 'Infra' },
 
-            ]
-
-        };
-
-    },
-    countryService: null,
-    created() {
-        this.countryService = new CountryService();
-    },
-
-    setup() {
-        const ticket = reactive({
+            ],
+            
+            ticket: reactive({
             // pega todos os valores dos inputs do html
             assunto: "",
             tecnologia: "",
             dataLimite: "",
             fechamento: "",
-        });
-        const rules = computed(() => {
-            return {
-                // asssunto: { required, minLength: minLength(3) },
-                // tecnologia: { required, minLength: minLength(3) },
-                // dataLimite: { required }
-            };
-        });
-        const v$ = useVuelidate(rules, ticket);
-        return {
-            ticket,
-            v$,
+            tipo:"",
+            prioridade:""
+
+            })
         };
+
+
     },
+    
     methods: {
         openModal() {
             this.displayModal = true;
@@ -133,23 +109,15 @@ import { required, minLength } from "@vuelidate/validators";
         closeModal() {
             this.displayModal = false;
         },
+
         enviarDados(e) {
             e.preventDefault();
-            const auth = getAuth();
 
-            this.v$.$validate();
-            if (!this.v$.$error) {
-                console.log("Vai salvar ", this.ticket);
-                this.saveOnDatabase();
-            } else {
-                console.log(this.v$);
-                alert("Observe os campos atentamente!!");
-            }
-        },
-        searchCountry(event) {
-            this.filteredCountriesBasic = this.countryService.search(event.query);
-        },
-
+            this.saveOnDatabase();
+            
+            },
+        
+    
         async saveOnDatabase() {
             const dbRef = collection(db, "ticket");
             const data = {
@@ -163,7 +131,7 @@ import { required, minLength } from "@vuelidate/validators";
             console.log('dbref -> ', dbRef)
             console.log('data -> ', data)
             await addDoc(dbRef, data)
-                .then((docRef) => {
+                .then(() => {
                     console.log("Document has been added successfully");
                 })
                 .catch((error) => {
@@ -171,7 +139,8 @@ import { required, minLength } from "@vuelidate/validators";
                 });
         },
     },
-};
+}
+
 </script>
 
 
