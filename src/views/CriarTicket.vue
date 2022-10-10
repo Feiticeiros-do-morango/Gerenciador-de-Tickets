@@ -84,7 +84,7 @@
 import Calendar from "primevue/calendar";
 import Dialog from "primevue/dialog";
 import { getAuth } from "firebase/auth";
-import { collection, addDoc, setDoc, getFirestore } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 import { db } from "../Firebase/index";
 import { reactive, computed } from "vue";
 import { useVuelidate } from "@vuelidate/core";
@@ -152,7 +152,7 @@ export default {
       };
       console.log('dbref -> ', dbRef)
       console.log('data -> ', data)
-      await setDoc(dbRef, data)
+      await addDoc(dbRef, data)
         .then((docRef) => {
           console.log("Document has been added successfully");
         })
