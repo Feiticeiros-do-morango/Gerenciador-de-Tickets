@@ -7,9 +7,9 @@
       <div class="navbar">
         <ul>
           <li><a href="#home">Home</a></li>
-          <li><a href="#Explorar">Explorar</a></li>
+          <li><a href="#explore">Explorar</a></li>
           <li><a href="#about">Sobre Nós</a></li>
-          <li><a href="#">Contatos</a></li>
+          <li><a href="#contact">Contatos</a></li>
         </ul>
       </div>
     </header>
@@ -30,13 +30,13 @@
         </div>
       </div>
       <div class="right-main">
-        <img src="../assets/LandPage.svg" alt="LandPage imagem" />
+        <img src="../assets/Work time-amico.svg" alt="LandPage imagem" />
       </div>
     </main>
     <div class="meio">
       <div class="linha-resto"></div>
     </div>
-    <section id="Explorar">
+    <section id="explore">
       <div class="section-text">
         <h1>Como Funciona</h1>
         <div class="linha-color"></div>
@@ -229,7 +229,7 @@
         </div>
       </div>
     </div>
-    <div class="contact">
+    <div class="contact" id="contact">
       <div class="info-contact">
         <input type="text" name="contact-name" id="name-contact" placeholder="Seu Nome">
         <input type="text" name="contact-email" id="email-contact" placeholder="Email">
@@ -252,18 +252,61 @@
       <div class="image-contact">
         <img src="../assets/loc.png" alt="Localização Go">
       </div>
+    </div> 
+    <div class="meio-footer">
+      <div class="linha-resto"></div>
     </div>
     <footer>
-      <div class="left-footer">
-        <div class="logo-footer">
-          <img src="../assets/logoland.png" alt="logo Footer Go">
-        </div>
-        <div class="about-go">
-          <p>O Go é um gerenciador de Tickets com o propósito de organizar e facilitar o desenvolvimento de projetos, esses que podem ser estruturados em times. A organização é baseada em um sistema de Tickets, cores e símbolos para facilitar a visualização do projeto completo.</p>
-        </div>
-        <div class="copy-footer">
-        <p>&#xA9;2022 Go. All rights reserved.</p>
+      <div class="links-footer">
+        <ul>
+          <li>
+            <a href="#home">Home</a>
+          </li>
+          <li>
+            <a href="#explore">Explorar</a>
+          </li>
+          <li>
+            <a href="#about">Sobre Nós</a>
+          </li>
+          <li>
+            <a href="#contact">Contatos</a>
+          </li>
+        </ul>
       </div>
+      <div class="social-medias">
+        <ul>
+          <li>
+            <a href="#">
+            <div class="wrapper-footer">
+            <iconify-icon icon="dashicons:facebook-alt" style="color: black;" width="24" height="24"></iconify-icon>
+          </div>
+        </a>
+          </li>
+          <li>
+            <a href="#">
+            <div class="wrapper-footer">
+            <iconify-icon icon="akar-icons:instagram-fill" style="color: black;" width="24" height="24"></iconify-icon>
+          </div>
+        </a>
+          </li>
+          <li>
+            <a href="#">
+            <div class="wrapper-footer">
+            <iconify-icon icon="akar-icons:twitter-fill" style="color: black;" width="24" height="24"></iconify-icon>
+          </div>
+        </a>
+          </li>
+          <li>
+            <a href="#">
+            <div class="wrapper-footer">
+            <iconify-icon icon="akar-icons:behance-fill" style="color: black;" width="24" height="24"></iconify-icon>
+          </div>
+        </a>
+          </li>
+        </ul>
+      </div>
+      <div class="footer-copy">
+        <h1>Copyright &copy; 2022.</h1><p>GO</p><h1> .All rights reserved</h1>
       </div>
     </footer>
   </div>
@@ -276,7 +319,7 @@ export default {};
 <style scoped>
 .main {
   width: 100%;
-  height: 433.6vh;
+  height: 430vh;
   z-index: 0;
   background-color: #040414;
 }
@@ -314,6 +357,11 @@ header {
   justify-content: center;
   align-items: center;
   margin: 30px 30px 160px 30px;
+}
+.meio-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .logo {
@@ -364,13 +412,13 @@ header {
   gap: 35px;
 }
 
-li {
+.navbar li {
   position: relative;
   list-style: none;
   padding: 0 4px;
 }
 
-li::after {
+.navbar li::after {
   content: "";
   position: absolute;
   background-color: #ffffff;
@@ -381,24 +429,24 @@ li::after {
   transition: all 0.4s ease;
 }
 
-li:hover {
+.navbar li:hover {
   color: #fff;
 }
 
-li:hover::after {
+.navbar li:hover::after {
   width: 100%;
 }
 
 main {
   width: 100%;
-  height: 80vh;
+  height: 90vh;
   display: flex;
   overflow: hidden;
 }
 
 .left-main {
   width: 50%;
-  height: 93vh;
+  height: 95vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -468,7 +516,7 @@ main {
   border-radius: 5px;
   transition: background-color 0.4s ease-in-out, color 0.2s ease-in-out,
     border-color 0.2s ease-in-out;
-  margin-top: 20px;
+  margin-top: 25px;
 }
 
 .button-area .button-wrapper:hover {
@@ -834,7 +882,7 @@ section .section-text .linha-color {
   height: 5vh;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
 
 }
 .contact .info-contact .button-contact .wrapper-contact {
@@ -853,7 +901,10 @@ section .section-text .linha-color {
   color: #fff;
   width: 100%;
   height: 100%;
+  font-family: 'Roboto Mono';
+  font-size: 12px;
   cursor: pointer;
+  padding: 5px;
   outline: none;
   background: none;
   border: none;
@@ -891,43 +942,94 @@ section .section-text .linha-color {
 }
 footer {
   width: 100%;
-  height: 50vh;
-  display: flex;
-  border-top: 1px solid #33333334;
-}
-footer .left-footer {
-  width: 20vw;
-  height: 100%;
+  height: 34vh;
   display: flex;
   flex-direction: column;
-  padding: 0 0 0 50px;
+  align-items: center;
 }
-footer .left-footer .logo-footer {
-  width: 150px;
-  height: 150px;
+footer .logo-footer {
+  width: 130px;
+  height: 130px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-footer .left-footer .logo-footer img {
+footer .logo-footer img {
   width: 100%;
   height: 100%;
 }
-footer .left-footer .about-go {
-  width: 20vw;
+footer .links-footer {
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+}
+footer .links-footer ul {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+}
+footer .links-footer ul li {
+  list-style: none;
+}
+footer .links-footer ul li a {
+  font-family: 'Roboto Mono';
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.481);
+  text-decoration: none;
+  transition: 0.5s ease-out;
+}
+footer .links-footer ul li a:hover {
+  transition: 0.3s ease;
+  color: rgb(255, 255, 255);
+}
+footer .social-medias {
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+}
+footer .social-medias ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  list-style: none;
+ 
+}
+footer .social-medias ul li .wrapper-footer {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 40px;
+  background: #fff;
+  transition: 0.3s ease-out;
+}
+footer .social-medias ul li .wrapper-footer:hover {
+  transition: 0.3s ease;
+  transform: translateY(-4px);
+}
+footer .footer-copy {
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+footer .footer-copy h1 {
   font-family: 'Roboto Mono';
   font-size: 12px;
-  font-weight: 300;
-  text-align: justify;
-  margin-bottom: 100px;
+  font-weight: 600;
   color: #fff;
 }
-footer .left-footer .copy-footer {
-  width: 20vw;
+footer .footer-copy p {
   font-family: 'Roboto Mono';
   font-size: 12px;
-  font-weight: 300;
-  text-align: justify;
-  color: #fff;
+  font-weight: 600;
+  color: #47a0c8;
 }
 </style>
