@@ -6,7 +6,6 @@ import PrimeVue from 'primevue/config';
 Vue.use(PrimeVue, {ripple: true});
 
 
-
 new Vue({
 	router,
 	render: h => h(App),

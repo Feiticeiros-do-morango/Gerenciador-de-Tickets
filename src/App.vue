@@ -10,6 +10,7 @@
     </div>
 
   </div>
+
 </template>
 <script>
 import Navbar from "@/components/shared/Navbar.vue";
@@ -49,6 +50,7 @@ export default {
   padding: 0;
   box-sizing: border-box;
   font-family: "Roboto Mono", monospace;
+
 }
 
 .app {
