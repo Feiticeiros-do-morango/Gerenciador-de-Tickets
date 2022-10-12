@@ -1,5 +1,6 @@
 <template>
     <div class="main">
+
         <form class="registration-form" @submit.prevent="registrar">
             <div class="text-area">
                 <h1>Cadastre-se</h1>
@@ -32,8 +33,11 @@
                     </div>
                     <input type="password" name="confirm" id="confirm" placeholder="Confirme sua senha "
                         v-model="state.confirmSenha">
+
                 </div>
+                
             </div>
+
             <div class="registration-button">
                 <button @click="registrar">Cadastrar</button>
             </div>
@@ -41,6 +45,7 @@
                 <router-link to="/login">
                     <p>Voltar</p>
                 </router-link>
+
             </div>
         </form>
     </div>
@@ -85,6 +90,7 @@ export default {
 
         registrar() {
             const auth = getAuth();
+
             this.v$.$validate()
             if (!this.v$.$error) {
                 createUserWithEmailAndPassword(auth, this.state.email, this.state.senha)
@@ -108,17 +114,20 @@ export default {
                 UserName: this.state.UserName
             });
         },
+
     },
 }
 </script>
 <style scoped>
 .main {
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+
     background: #040414;
+
 }
 
 .registration-form {

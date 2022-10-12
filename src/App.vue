@@ -1,20 +1,74 @@
-+<template>
-  <div>
-    <router-view></router-view>
+
+<template>
+  <div class="app">
+    <div class="navbar">
+      <Navbar v-show="isLogin" />
+    </div>
+
+    <div class="container">
+      <router-view></router-view>
+    </div>
+
   </div>
-  </template>
-  <script>
-  export default {
-    components: {},
-  };
-  </script>
-  <style>
-    *,
-*::before,
-*::after {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    scroll-behavior: smooth
+
+</template>
+<script>
+import Navbar from "@/components/shared/Navbar.vue";
+import TabView from "primevue/tabview";
+import TabPanel from "primevue/tabpanel";
+
+export default {
+  components: { Navbar, TabView, TabPanel },
+  data() {
+    return{
+
+  }
+
+  },
+    
+  computed: {
+    isLogin() {
+      if (this.$route.name == 'login' || this.$route.name == 'registration' 
+            || this.$route.name == 'land') {
+        return false
+      } else {
+        return true
+      }
+    }
+  },
+
+
+};
+</script>
+<style>
+@import "primevue/resources/themes/lara-dark-blue/theme.css";
+@import "primevue/resources/primevue.min.css";
+@import "primeicons/primeicons.css";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto Mono", monospace;
+
 }
-  </style>
+
+.app {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
+
+.navbar {
+ width: auto;
+}
+
+.container {
+
+  width: auto;
+  background-color: #040414;
+
+}
+
+</style>
+
