@@ -1,11 +1,13 @@
 
 <template>
   <div class="app">
+    
     <div class="navbar">
-      <Navbar v-show="isLogin" />
+      <Navbar v-show="isLogin" v-on:perfil="teste()"/>
     </div>
 
     <div class="container">
+      <Perfil :abre="this.jj"/>
       <router-view></router-view>
     </div>
 
@@ -16,20 +18,35 @@
 import Navbar from "@/components/shared/Navbar.vue";
 import TabView from "primevue/tabview";
 import TabPanel from "primevue/tabpanel";
+import Perfil from "./components/Perfil.vue";
 
 export default {
-  components: { Navbar, TabView, TabPanel },
+  components: { Navbar, TabView, TabPanel, Perfil },
   data() {
     return{
-
+      jj : false
+      
   }
+  },
+  methods: {
+        teste() {
+
+          this.jj = true
+          console.log(this.jj)
+          
+        }
+      },
+
+  props: {
+    abre : Boolean
 
   },
+
     
   computed: {
     isLogin() {
       if (this.$route.name == 'login' || this.$route.name == 'registration' 
-            || this.$route.name == 'land') {
+            || this.$route.name == 'land' || this.$route.name == 'recovery') {
         return false
       } else {
         return true
@@ -50,6 +67,7 @@ export default {
   padding: 0;
   box-sizing: border-box;
   font-family: "Roboto Mono", monospace;
+  scroll-behavior: smooth;
 
 }
 

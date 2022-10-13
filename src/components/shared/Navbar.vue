@@ -2,7 +2,9 @@
   <div class="navbar">
     <div class="identificacao">
       <div class="avatar">
-        <!-- <Icon icon="carbon:user-avatar" width="40" height="40" /> -->
+        <button @click="openPerfil">
+        <img src="@/assets/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws-removebg-preview.png" alt="Perfil de Usuario">
+      </button>
       </div>
       <div class="perfil">
         <div class="nome">
@@ -34,28 +36,28 @@ export default {
   components: { PanelMenu },
   data() {
     return {
+      
       display : false,
       items: [
         {
           label: "Dashboard",
-          icon: "pi pi-fw pi-file",
+          icon: "pi pi-table",
           to: "/dashboard",
           items: [
             {
               label: "Criar Ticket",
               icon: "pi pi-fw pi-plus",
-              to: "/criarTicket",
             },
           ],
         },
         {
           label: "Meus Tickets",
-          icon: "pi pi-fw pi-file",
+          icon: "pi pi-ticket",
           to: "/MyTickets"
         },
         {
           label: "Projetos",
-          icon: "pi pi-fw pi-calendar",
+          icon: "pi pi-box",
           to: "/projects",
           // items: [
           //   {
@@ -72,18 +74,17 @@ export default {
           //   },
           // ],
         },
-        {
-          label: "Configuração",
-          icon: "pi pi-fw pi-file",
-        },
-        {
-          label: "Estatísticas",
-          icon: "pi pi-fw pi-file",
-        },
-        
       ],
     };
+   
   },
+  methods: {
+      
+      openPerfil() {
+        this.$emit('perfil')
+        
+      }
+    },
 };
 </script>
 
@@ -94,9 +95,33 @@ p-menuitem-text{
   }
 .identificacao {
   display: flex;
-  padding: 20px
+  gap: 20px;
+  padding: 20px 20px 20px 20px;
 }
-
+.identificacao .avatar {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+}
+.identificacao .avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+}
+.identificacao .avatar button {
+  background: none;
+  cursor: pointer;
+  outline: none;
+  width: 100%;
+  height: 100%;
+}
+.perfil {
+  width: 10vw;
+  height: auto;
+}
 .identificacao p {
 
   font-size: 14px;

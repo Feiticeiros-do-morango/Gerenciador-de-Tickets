@@ -3,6 +3,7 @@
     <div class="menu">
       <Menu />
     </div>
+    <CriarTicket/>
     <div class="dashboard">
 
       <grid-layout :layout.sync="layout" :col-num="colNum" :row-height="30" :is-draggable="draggable"
@@ -30,12 +31,16 @@ import { db, auth } from "../Firebase/index"
 import { collection, doc, setDoc, getDocs } from "firebase/firestore";
 import { GridLayout, GridItem } from "vue-grid-layout"
 import Menu from "@/components/Menu.vue";
+import CriarTicket from "@/components/CriarTicket.vue";
 
 
 export default {
   components: {
-    Menu, GridLayout, GridItem
-  },
+    Menu,
+    GridLayout,
+    GridItem,
+    CriarTicket
+},
   data() {
     return {
       layout: [

@@ -13,9 +13,10 @@
 <script>
 import TicketMinVue from "@/components/Ticket-Min.vue";
 import TicketMin from "@/components/Ticket-Min.vue";
+import Perfil from "@/components/Perfil.vue";
 
 export default {
-  components: { TicketMinVue, TicketMin },
+  components: { TicketMinVue, TicketMin, Perfil },
 };
 </script>
 

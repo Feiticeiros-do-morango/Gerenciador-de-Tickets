@@ -34,7 +34,7 @@ export default {
 
 <style scoped>
 .main-recovery {
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     background-color: #040414;
     display: flex;
