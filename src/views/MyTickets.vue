@@ -4,8 +4,8 @@
   <TicketMin />
   <TicketMin />
   <TicketMin />
-  <TicketMin />
-  <TicketMin />
+
+  
 </div>
   
 </template>
@@ -23,9 +23,8 @@ export default {
   .components{
     display: flex;
     flex-direction: row;
-    width: 60%;
-    height: 60%;
-    gap:2vh;
+    width: 80vw;
+    height: 100vh;
     padding: 2vh;
   }
 

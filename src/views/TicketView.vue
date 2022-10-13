@@ -50,7 +50,7 @@ export default {
 .container{
     width: 100%;
     height: 94vh;
-    background-image: url('../assets/telaok.png');
+    background-image: url('../assets/engenharia-pattern.png');
     backdrop-filter:opacity(50%) ;
     background-size:205vh;
     box-shadow: inset 0px 4px 4px rgba(184, 182, 182, 0.25);

@@ -2,7 +2,7 @@
   <div class="navbar">
     <div class="identificacao">
       <div class="avatar">
-        <Icon icon="carbon:user-avatar" width="40" height="40" />
+        <!-- <Icon icon="carbon:user-avatar" width="40" height="40" /> -->
       </div>
       <div class="perfil">
         <div class="nome">
@@ -13,19 +13,17 @@
         </div>
       </div>
     </div>
-
     <div class="informacao">
-      <span>Projeto</span>
-      <span>Time</span>
+      <p>Projeto:</p>
     </div>
-    <div>
+    <div class="items">
       <PanelMenu :model="items" />
     </div>
     <div class="dados">
       <p>Nome</p>
       <p>Empresa</p>
     </div>
-   
+
   </div>
 </template>
 <script>
@@ -36,6 +34,7 @@ export default {
   components: { PanelMenu },
   data() {
     return {
+      display : false,
       items: [
         {
           label: "Dashboard",
@@ -45,7 +44,7 @@ export default {
             {
               label: "Criar Ticket",
               icon: "pi pi-fw pi-plus",
-              to: "/ticketView",
+              to: "/criarTicket",
             },
           ],
         },
@@ -55,44 +54,33 @@ export default {
           to: "/MyTickets"
         },
         {
-          label: "Times",
-          icon: "pi pi-fw pi-file",
-          items: [
-            {
-              label: "Time A",
-            },
-            {
-              label: "Time B",
-            },
-          ],
+          label: "Projetos",
+          icon: "pi pi-fw pi-calendar",
+          to: "/projects",
+          // items: [
+          //   {
+          //     label: "Projeto A",
+          //     icon: "",
+          //   },
+          //   {
+          //     label: "Projeto B",
+          //     icon: "",
+          //   },
+          //   {
+          //     label: "Projeto C",
+          //     icon: "",
+          //   },
+          // ],
         },
         {
-          label: "Projetos",
+          label: "Configuração",
           icon: "pi pi-fw pi-file",
-          items: [
-            {
-              label: "Projeto A",
-              icon: "",
-            },
-            {
-              label: "Projeto B",
-              icon: "",
-            },
-            {
-              label: "Projeto C",
-              icon: "",
-            },
-          ],
         },
         {
           label: "Estatísticas",
           icon: "pi pi-fw pi-file",
         },
-        {
-          label: "Configuração",
-          icon: "pi pi-fw pi-file",
-          items: [],
-        },
+        
       ],
     };
   },
@@ -100,13 +88,17 @@ export default {
 </script>
 
 <style scoped>
+p-menuitem-text{
+  color: #040414;
+
+  }
 .identificacao {
   display: flex;
-  gap: 10px;
-  padding-top: 2vh;
+  padding: 20px
 }
+
 .identificacao p {
-  
+
   font-size: 14px;
 }
 
@@ -114,27 +106,24 @@ export default {
   font-size: 14px;
   margin: auto;
 }
+
 .informacao {
   display: flex;
   justify-content: space-between;
-  margin: 5% 12%;
+  padding: 20px;
   font-size: 12px;
 }
+
 .navbar {
   height: 100vh;
   width: 20vw;
   font-family: "Roboto Mono";
   font-size: 16px;
-  background-color: rgb(1, 1, 52);
+  background-color: #040414;
   color: white;
   margin-left: 0;
-  grid-area: navbar;
 }
 
-.itens li {
-  list-style: none;
-  padding: 12%;
-}
 .dados {
   display: flex;
   flex-flow: column-wrap;
@@ -146,6 +135,7 @@ export default {
   margin-left: 12vh;
   max-width: 10vh;
 }
+
 .dados p {
   word-wrap: break-word;
 }
