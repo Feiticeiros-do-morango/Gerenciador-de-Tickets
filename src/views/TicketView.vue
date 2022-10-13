@@ -20,7 +20,9 @@
  <p>Criado por</p> 
  </div>
   <div class="quadrado">
-    <p>Descrição</p>
+    <h3>Descrição</h3>
+<Textarea v-model="value3" :autoResize="true" disabled rows="16" cols="40" />
+<Textarea v-model="value2" :autoResize="true" rows="10" cols="40" />
   </div>
     </div>
 <div class="sectionB">
@@ -28,7 +30,8 @@
   <p>Colaboradores</p>
   </div>
   <div class="comentarios">
-  <p>Comentários...</p>
+  <h3> Comentários...</h3>
+  <Textarea v-model="value1" :autoResize="true" rows="16" cols="20" />
   </div>
   <div class="fechamento">
   <p>Fechado em: 20/08/2022</p>
@@ -38,11 +41,19 @@
 </template>
 
 <script>
+import Textarea from 'primevue/textarea';
 import { Icon } from '@iconify/vue2';
 export default {
     components: {
-		Icon,
+		Icon, Textarea
 	},
+  data() {
+		return {
+			value1: '',
+			value2: '',
+			value3: ''
+		}
+}
 }
 </script>
 
@@ -86,7 +97,7 @@ export default {
 }
 
 .sectionA {
-    color:gray;
+   
      grid-area:sectionA;
      padding:2vh;
      margin-left:4vh;
@@ -96,13 +107,12 @@ export default {
 .tech{
   color: gray;
 }
-.quadrado{
-background:  rgb(207, 206, 206);
-width: 70%;
-height: 62%;
-margin-top:4vh;
-border-radius: 10px;
 
+.quadrado h3{
+  margin:auto;
+  text-align: center;
+  justify-content: center;
+  margin-bottom: 3vh;
 }
 .quadrado p{
   padding: 1vh;
@@ -123,25 +133,30 @@ border-radius: 10px;
 .colaboracao p{
   margin-top:3vh;
 }
-.comentarios{
-background: rgb(207, 206, 206);
-width: 70%;
-height: 60vh;
-margin-top:1vh;
-border-radius: 10px;
-}
 
-.comentarios p{
-  padding-top:1vh;
-  padding-left: 1vh;
+
+.comentarios h3{
+  margin:auto;
+  text-align: center;
+  justify-content: center;
+  margin-bottom: 3vh;
 }
 .fechamento{
   margin-left:25vh;
   padding-top:0;
 }
-.fechamento p{
 
+.p-inputtextarea {
+  width: 45vw;
+  background-color: rgb(3, 3, 32);
+}
+.p-inputtextarea[data-v-7f1d950b]{
+  background-color: rgb(3, 3, 32);
 }
 
-
+</style>
+<style>
+.p-inputtextarea .p-inputtext .p-component .p-inputtextarea-resizable{
+width: 10vw;
+}
 </style>
