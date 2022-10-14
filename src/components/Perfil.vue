@@ -1,8 +1,8 @@
 <template>
     <div>
-       <Dialog header="Novo Ticket" :visible.sync="this.abre" :modal="true"  >
+       <Dialog header="Novo Ticket" :visible.sync="displayModal" :modal="true" dismissableMask="true" :closable="true">
 	AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-    <button @click="oi">Aqui Fecha</button>
+    
     
 </Dialog>
 
@@ -17,20 +17,15 @@ import Dialog from 'primevue/dialog';
         components: { Dialog },
         data() {
             return {
-                
+                displayModal : false,
             }
         },
-        props: [ "abre" ],
+        
 
         methods: {
-            oi : function (params) {
-               this.abre = false
-                
-            },
-            teste : function(){
-                console.log(this.abre)
-
-            }
+            openModal() {
+            this.displayModal = true;
+        },
         }
 
 }

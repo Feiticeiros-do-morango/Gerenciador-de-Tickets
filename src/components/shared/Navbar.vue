@@ -3,8 +3,9 @@
     <div class="identificacao">
       <div class="avatar">
         <button @click="openPerfil">
-        <img src="@/assets/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws-removebg-preview.png" alt="Perfil de Usuario">
-      </button>
+          <img src="@/assets/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws-removebg-preview.png"
+            alt="Perfil de Usuario">
+        </button>
       </div>
       <div class="perfil">
         <div class="nome">
@@ -19,7 +20,7 @@
       <p>Projeto:</p>
     </div>
     <div class="items">
-      <PanelMenu :model="items" />
+      <PanelMenu :model="items" v-on:sai="sendEmit"/>
     </div>
     <div class="dados">
       <p>Nome</p>
@@ -36,8 +37,8 @@ export default {
   components: { PanelMenu },
   data() {
     return {
-      
-      display : false,
+
+      display: false,
       items: [
         {
           label: "Dashboard",
@@ -47,6 +48,14 @@ export default {
             {
               label: "Criar Ticket",
               icon: "pi pi-fw pi-plus",
+              command: (event) => {
+                
+                this.$emit('openTicket')
+                
+                
+              }
+
+
             },
           ],
         },
@@ -76,28 +85,31 @@ export default {
         },
       ],
     };
-   
+
   },
   methods: {
-      
-      openPerfil() {
-        this.$emit('perfil')
-        
-      }
+    
+    openPerfil : function() {
+      this.$emit('openPerfil')
+
     },
+
+  },
 };
 </script>
 
 <style scoped>
-p-menuitem-text{
+p-menuitem-text {
   color: #040414;
 
-  }
+}
+
 .identificacao {
   display: flex;
   gap: 20px;
   padding: 20px 20px 20px 20px;
 }
+
 .identificacao .avatar {
   width: 44px;
   height: 44px;
@@ -106,11 +118,13 @@ p-menuitem-text{
   align-items: center;
   border-radius: 20px;
 }
+
 .identificacao .avatar img {
   width: 100%;
   height: 100%;
   border-radius: 20px;
 }
+
 .identificacao .avatar button {
   background: none;
   cursor: pointer;
@@ -118,10 +132,12 @@ p-menuitem-text{
   width: 100%;
   height: 100%;
 }
+
 .perfil {
   width: 10vw;
   height: auto;
 }
+
 .identificacao p {
 
   font-size: 14px;

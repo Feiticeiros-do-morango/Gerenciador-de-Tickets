@@ -121,6 +121,7 @@ export default {
 
     },
 
+
     methods: {
         openModal() {
             this.displayModal = true;

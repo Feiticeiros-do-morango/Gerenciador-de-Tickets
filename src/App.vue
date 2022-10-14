@@ -3,11 +3,12 @@
   <div class="app">
     
     <div class="navbar">
-      <Navbar v-show="isLogin" v-on:perfil="teste()"/>
+      <Navbar v-show="isLogin" v-on:openPerfil="openPerfil()" v-on:openTicket="openTicket()"/>
     </div>
 
     <div class="container">
-      <Perfil :abre="this.jj"/>
+      <Perfil ref="childPerfil" ></Perfil>
+      <CriarTicket ref="childTicket" ></CriarTicket>
       <router-view></router-view>
     </div>
 
@@ -19,28 +20,28 @@ import Navbar from "@/components/shared/Navbar.vue";
 import TabView from "primevue/tabview";
 import TabPanel from "primevue/tabpanel";
 import Perfil from "./components/Perfil.vue";
+import CriarTicket from "./components/CriarTicket.vue";
 
 export default {
-  components: { Navbar, TabView, TabPanel, Perfil },
+  components: { Navbar, TabView, TabPanel, Perfil, CriarTicket },
   data() {
     return{
-      jj : false
+      x : false,
+      y : false
       
   }
   },
   methods: {
-        teste() {
+        openPerfil() {
+          this.$refs.childPerfil.openModal()
+               
+        },
+        openTicket(){
+          this.$refs.childTicket.openModal()
 
-          this.jj = true
-          
-          
         }
       },
 
-  props: {
-    abre : Boolean
-
-  },
 
     
   computed: {
