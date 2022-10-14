@@ -32,7 +32,7 @@ export default {
         teste() {
 
           this.jj = true
-          console.log(this.jj)
+          
           
         }
       },

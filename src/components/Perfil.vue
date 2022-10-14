@@ -1,9 +1,13 @@
 <template>
-       <Dialog header="Novo Ticket" :visible.sync="displayModal" :modal="true" :dismissableMask="true" :closable="true">
+    <div>
+       <Dialog header="Novo Ticket" :visible.sync="this.abre" :modal="true"  >
 	AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-    <button @click="oi">Aaaaaa</button>
+    <button @click="oi">Aqui Fecha</button>
+    
 </Dialog>
 
+
+</div>
 </template>
 
 <script>
@@ -13,15 +17,19 @@ import Dialog from 'primevue/dialog';
         components: { Dialog },
         data() {
             return {
-                displayModal: this.abre
+                
             }
         },
         props: [ "abre" ],
 
         methods: {
             oi : function (params) {
-                console.log(this.abre)
+               this.abre = false
                 
+            },
+            teste : function(){
+                console.log(this.abre)
+
             }
         }
 

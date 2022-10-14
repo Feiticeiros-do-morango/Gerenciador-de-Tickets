@@ -89,7 +89,7 @@ export default {
 
     data() {
         return {
-            displayModal: true,
+            displayModal: false,
             prioridade: [
                 { name: 'Não Urgente' },
                 { name: 'Pouco Urgente' },
