@@ -1,36 +1,60 @@
 
 <template>
   <div class="app">
+    
     <div class="navbar">
-      <Navbar v-show="isLogin" />
+      <Navbar v-show="isLogin" v-on:openPerfil="openPerfil()" v-on:openTicket="openTicket()"/>
     </div>
 
     <div class="container">
+      <Perfil ref="childPerfil" ></Perfil>
+      <CriarTicket ref="childTicket" ></CriarTicket>
       <router-view></router-view>
     </div>
 
   </div>
+
 </template>
 <script>
 import Navbar from "@/components/shared/Navbar.vue";
 import TabView from "primevue/tabview";
 import TabPanel from "primevue/tabpanel";
+import Perfil from "./components/Perfil.vue";
+import CriarTicket from "./components/CriarTicket.vue";
 
 export default {
-  components: { Navbar, TabView, TabPanel },
+  components: { Navbar, TabView, TabPanel, Perfil, CriarTicket },
   data() {
-    return isLogin;
+    return{
+      x : false,
+      y : false
+      
+  }
   },
+  methods: {
+        openPerfil() {
+          this.$refs.childPerfil.openModal()
+               
+        },
+        openTicket(){
+          this.$refs.childTicket.openModal()
+
+        }
+      },
+
+
+    
   computed: {
     isLogin() {
       if (this.$route.name == 'login' || this.$route.name == 'registration' 
-            || this.$route.name == 'land') {
+            || this.$route.name == 'land' || this.$route.name == 'recovery') {
         return false
       } else {
         return true
       }
     }
-  }
+  },
+
 
 };
 </script>
@@ -44,6 +68,8 @@ export default {
   padding: 0;
   box-sizing: border-box;
   font-family: "Roboto Mono", monospace;
+  scroll-behavior: smooth;
+
 }
 
 .app {
@@ -57,7 +83,10 @@ export default {
 }
 
 .container {
-  width: 100%;
+
+  width: auto;
+  background-color: #040414;
+
 }
 
 </style>

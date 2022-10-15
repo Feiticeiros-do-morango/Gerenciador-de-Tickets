@@ -26,8 +26,7 @@ export default {
     height: 8vw;
     padding: 2vh;
     margin: 2em;
-
-        border-left: solid 10px black;
+    border-left: solid 10px rgb(0, 240, 160);
     background-color: blue;
   
 }

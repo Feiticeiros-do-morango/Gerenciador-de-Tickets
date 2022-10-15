@@ -2,7 +2,10 @@
   <div class="navbar">
     <div class="identificacao">
       <div class="avatar">
-        <Icon icon="carbon:user-avatar" width="40" height="40" />
+        <button @click="openPerfil">
+          <img src="@/assets/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws-removebg-preview.png"
+            alt="Perfil de Usuario">
+        </button>
       </div>
       <div class="perfil">
         <div class="nome">
@@ -13,19 +16,17 @@
         </div>
       </div>
     </div>
-
     <div class="informacao">
-      <span>Projeto</span>
-      <span>Time</span>
+      <p>Projeto:</p>
     </div>
-    <div>
-      <PanelMenu :model="items" />
+    <div class="items">
+      <PanelMenu :model="items" v-on:sai="sendEmit"/>
     </div>
     <div class="dados">
       <p>Nome</p>
       <p>Empresa</p>
     </div>
-   
+
   </div>
 </template>
 <script>
@@ -36,77 +37,109 @@ export default {
   components: { PanelMenu },
   data() {
     return {
+
+      display: false,
       items: [
         {
           label: "Dashboard",
-          icon: "pi pi-fw pi-file",
+          icon: "pi pi-table",
           to: "/dashboard",
           items: [
             {
               label: "Criar Ticket",
               icon: "pi pi-fw pi-plus",
-              to: "/ticketView",
+              command: (event) => {
+                
+                this.$emit('openTicket')
+                
+                
+              }
+
+
             },
           ],
         },
         {
           label: "Meus Tickets",
-          icon: "pi pi-fw pi-file",
+          icon: "pi pi-ticket",
           to: "/MyTickets"
         },
         {
-          label: "Times",
-          icon: "pi pi-fw pi-file",
-          items: [
-            {
-              label: "Time A",
-            },
-            {
-              label: "Time B",
-            },
-          ],
-        },
-        {
           label: "Projetos",
-          icon: "pi pi-fw pi-file",
-          items: [
-            {
-              label: "Projeto A",
-              icon: "",
-            },
-            {
-              label: "Projeto B",
-              icon: "",
-            },
-            {
-              label: "Projeto C",
-              icon: "",
-            },
-          ],
-        },
-        {
-          label: "Estatísticas",
-          icon: "pi pi-fw pi-file",
-        },
-        {
-          label: "Configuração",
-          icon: "pi pi-fw pi-file",
-          items: [],
+          icon: "pi pi-box",
+          to: "/projects",
+          // items: [
+          //   {
+          //     label: "Projeto A",
+          //     icon: "",
+          //   },
+          //   {
+          //     label: "Projeto B",
+          //     icon: "",
+          //   },
+          //   {
+          //     label: "Projeto C",
+          //     icon: "",
+          //   },
+          // ],
         },
       ],
     };
+
+  },
+  methods: {
+    
+    openPerfil : function() {
+      this.$emit('openPerfil')
+
+    },
+
   },
 };
 </script>
 
 <style scoped>
+p-menuitem-text {
+  color: #040414;
+
+}
+
 .identificacao {
   display: flex;
-  gap: 10px;
-  padding-top: 2vh;
+  gap: 20px;
+  padding: 20px 20px 20px 20px;
 }
+
+.identificacao .avatar {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+}
+
+.identificacao .avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+}
+
+.identificacao .avatar button {
+  background: none;
+  cursor: pointer;
+  outline: none;
+  width: 100%;
+  height: 100%;
+}
+
+.perfil {
+  width: 10vw;
+  height: auto;
+}
+
 .identificacao p {
-  
+
   font-size: 14px;
 }
 
@@ -114,27 +147,24 @@ export default {
   font-size: 14px;
   margin: auto;
 }
+
 .informacao {
   display: flex;
   justify-content: space-between;
-  margin: 5% 12%;
+  padding: 20px;
   font-size: 12px;
 }
+
 .navbar {
   height: 100vh;
   width: 20vw;
   font-family: "Roboto Mono";
   font-size: 16px;
-  background-color: rgb(1, 1, 52);
+  background-color: #040414;
   color: white;
   margin-left: 0;
-  grid-area: navbar;
 }
 
-.itens li {
-  list-style: none;
-  padding: 12%;
-}
 .dados {
   display: flex;
   flex-flow: column-wrap;
@@ -146,6 +176,7 @@ export default {
   margin-left: 12vh;
   max-width: 10vh;
 }
+
 .dados p {
   word-wrap: break-word;
 }
