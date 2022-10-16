@@ -3,7 +3,7 @@
   <div class="app">
     
     <div class="navbar">
-      <Navbar v-show="isLogin" v-on:openPerfil="openPerfil()" v-on:openTicket="openTicket()"/>
+      <Navbar v-show="isLogin" v-on:openPerfil="openPerfil()" v-on:userName="seeName()" v-on:openTicket="openTicket()"/>
     </div>
 
     <div class="container">
@@ -39,6 +39,9 @@ export default {
         openTicket(){
           this.$refs.childTicket.openModal()
 
+    },
+    seeName() {
+          console.log('userName')
         }
       },
 

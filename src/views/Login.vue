@@ -10,18 +10,29 @@
           <div class="icon">
             <iconify-icon icon="akar-icons:person"></iconify-icon>
           </div>
-          <input type="text" name="email" id="email" placeholder="Usuário ou E-mail" v-model="state.email" />
+          <input
+            type="text"
+            name="email"
+            id="email"
+            placeholder="Usuário ou E-mail"
+            v-model="state.email"
+          />
         </div>
         <div class="input-wrapper">
           <div class="icon">
             <iconify-icon icon="akar-icons:key"></iconify-icon>
           </div>
-          <input type="password" name="senha" id="senha" placeholder="Senha" v-model="state.senha" />
+          <input
+            type="password"
+            name="senha"
+            id="senha"
+            placeholder="Senha"
+            v-model="state.senha"
+          />
         </div>
         <div class="recovery">
           <router-link to="/recovery">
-            <p>Esqueceu a senha?
-            </p>
+            <p>Esqueceu a senha?</p>
           </router-link>
         </div>
       </div>
@@ -31,7 +42,12 @@
       <div class="login-with-google">
         <button @click="loginWithGoogle()">
           <div class="icon-google">
-            <iconify-icon inline icon="flat-color-icons:google" width="20" height="20"></iconify-icon>
+            <iconify-icon
+              inline
+              icon="flat-color-icons:google"
+              width="20"
+              height="20"
+            ></iconify-icon>
           </div>
           Sign-in With Google
         </button>
@@ -52,6 +68,8 @@
 </template>
 
 <script>
+import { db } from "../Firebase/index.js";
+import { collection, query, where, getDocs } from "firebase/firestore";
 import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { ref, reactive, computed } from "vue"
 import { useVuelidate } from '@vuelidate/core'
@@ -86,18 +104,35 @@ export default {
       const auth = getAuth()
       signInWithEmailAndPassword(auth, this.state.email, this.state.senha).then((data) => {
         this.goToDashboard();
+        this.verifyUser();
       })
     },
     loginWithGoogle() {
       const provider = new GoogleAuthProvider();
       signInWithPopup(getAuth(), provider)
         .then((result) => {
-          console.log(result.user);
+          let user = result.user;
+          let userArray = Object.values(user)
+          let resultArray = userArray.at(8);
+          // colocar emmit aqui talvez, aqui transformo a informação passada do firestore que vem em um objeto, passo ela para array e pego a posição que quero
           this.goToDashboard();
         })
     },
     goToDashboard() {
       this.$router.push({ name: "dashboard" })
+    },
+    async verifyUser() {
+      const q = query(collection(db, "usuarios"), where("email", "==", this.state.email));
+
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        let document = doc.data()
+        let documentArray = Object.values(document)
+        let documentResult = documentArray.at(2)
+        console.log(doc.id, " => ", documentResult);
+        // colocar emmit aqui talvez, aqui transformo a informação passada do firestore que vem em um objeto, passo ela para array e pego a posição que quero
+});
     }
   }
 }
@@ -327,14 +362,13 @@ button {
 }
 
 .login button {
-  border: 1px solid #378BED;
+  border: 1px solid #378bed;
   border-radius: 10px;
   padding: 10px;
   margin: auto;
   text-align: center;
   background-color: black;
-  color: #378BED;
-
+  color: #378bed;
 }
 
 .cadastra {
@@ -349,7 +383,7 @@ a {
 }
 
 .google {
-  font-family: 'PT Sans', sans-serif;
+  font-family: "PT Sans", sans-serif;
 }
 
 .comeback {
