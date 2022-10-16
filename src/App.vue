@@ -23,7 +23,7 @@ import Perfil from "./components/Perfil.vue";
 import CriarTicket from "./components/CriarTicket.vue";
 
 export default {
-  components: { Navbar, TabView, TabPanel, Perfil, CriarTicket },
+  components: { Navbar, TabView, TabPanel, Perfil, CriarTicket, },
   data() {
     return{
       x : false,

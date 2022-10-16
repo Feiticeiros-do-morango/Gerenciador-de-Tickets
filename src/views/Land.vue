@@ -309,11 +309,15 @@
         <h1>Copyright &copy; 2022.</h1><p>GO</p><h1> .All rights reserved</h1>
       </div>
     </footer>
+    <ScrollTop />
   </div>
 </template>
 
 <script>
-export default {};
+import ScrollTop from 'primevue/scrolltop';
+export default {
+  components: { ScrollTop, },
+};
 </script>
 
 <style scoped>

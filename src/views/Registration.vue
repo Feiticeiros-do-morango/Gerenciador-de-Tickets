@@ -1,6 +1,6 @@
 <template>
     <div class="main">
-
+        <Toast position="top-right" />
         <form class="registration-form" @submit.prevent="registrar">
             <div class="text-area">
                 <h1>Cadastre-se</h1>
@@ -51,6 +51,9 @@
     </div>
 </template>
 <script>
+
+import Toast from 'primevue/toast';
+import InlineMessage from 'primevue/inlinemessage';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { collection, addDoc, } from "firebase/firestore";
 import { db, auth } from "../Firebase/index"
@@ -59,6 +62,7 @@ import { useVuelidate } from '@vuelidate/core'
 import { required, email, sameAs, minLength } from '@vuelidate/validators'
 
 export default {
+    components: { Toast, InlineMessage },
     setup() {
         const state = reactive({ // pega todos os valores dos inputs do html
                 email: '',
@@ -87,21 +91,19 @@ export default {
         }
     },
     methods: {
-
         registrar() {
             const auth = getAuth();
-
+        
             this.v$.$validate()
             if (!this.v$.$error) {
                 createUserWithEmailAndPassword(auth, this.state.email, this.state.senha)
                     .then((data) => {
-                        alert("Conta criada")
                         this.saveOnDatabase();
                         this.goTologin();
-
                     })
-            } else {
-                alert("Seu Registro falhou!!")
+            }
+            else {
+                this.$toast.add({severity:'error', summary: 'Sua conta não foi criada', detail:'Você digitou alguma informação errada ou sua conta ja existe tente novamente', life: 4000});
             }
         },
         goTologin() {
@@ -119,15 +121,13 @@ export default {
 }
 </script>
 <style scoped>
-.main {
+.main{
     width: 100vw;
     height: 100vh;
     display: flex;
-    justify-content: center;
     align-items: center;
-
+    justify-content: center;
     background: #040414;
-
 }
 
 .registration-form {
