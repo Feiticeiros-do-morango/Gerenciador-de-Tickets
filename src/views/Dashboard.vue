@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { db, auth } from "../Firebase/index"
+import { db} from "../Firebase/index"
 import { collection, doc, setDoc, getDocs } from "firebase/firestore";
 import { GridLayout, GridItem } from "vue-grid-layout"
 import Menu from "@/components/Menu.vue";

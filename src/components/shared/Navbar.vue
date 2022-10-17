@@ -8,7 +8,7 @@
       </div>
       <div class="perfil">
         <div class="nome">
-          <p>Nome Completo</p>
+          <p>{{ nome }}</p>
         </div>
         <div class="cargo">
           <p>Cargo</p>
@@ -34,9 +34,11 @@ import PanelMenu from "primevue/panelmenu";
 
 export default {
   components: { PanelMenu },
+
   data() {
     return {
-
+      
+      nome: localStorage.getItem("userName"),
       display: false,
       items: [
         {
@@ -87,7 +89,7 @@ export default {
 
   },
   methods: {
-    
+
     openPerfil : function() {
       this.$emit('openPerfil')
 

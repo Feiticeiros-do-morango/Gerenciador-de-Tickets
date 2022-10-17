@@ -71,13 +71,14 @@
 import { db } from "../Firebase/index.js";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { ref, reactive, computed } from "vue"
+import { reactive, computed } from "vue"
 import { useVuelidate } from '@vuelidate/core'
 import { required, email, minLength } from '@vuelidate/validators'
 
 
 
 export default {
+  
   setup() {
     const state = reactive({
       email: '',
@@ -103,18 +104,16 @@ export default {
     login() {
       const auth = getAuth()
       signInWithEmailAndPassword(auth, this.state.email, this.state.senha).then((data) => {
-        this.goToDashboard();
         this.verifyUser();
+        this.goToDashboard();
+        
       })
     },
     loginWithGoogle() {
       const provider = new GoogleAuthProvider();
       signInWithPopup(getAuth(), provider)
         .then((result) => {
-          let user = result.user;
-          let userArray = Object.values(user)
-          let resultArray = userArray.at(8);
-          // colocar emmit aqui talvez, aqui transformo a informação passada do firestore que vem em um objeto, passo ela para array e pego a posição que quero
+          
           this.goToDashboard();
         })
     },
@@ -127,11 +126,10 @@ export default {
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
-        let document = doc.data()
-        let documentArray = Object.values(document)
-        let documentResult = documentArray.at(2)
-        console.log(doc.id, " => ", documentResult);
-        // colocar emmit aqui talvez, aqui transformo a informação passada do firestore que vem em um objeto, passo ela para array e pego a posição que quero
+        let document = doc.data().UserName
+        localStorage.setItem("userName", document)
+        console.log(doc.id, " => ", document);
+        
 });
     }
   }
