@@ -5,15 +5,15 @@
       <div class="inicio">
         <div class="logo">
           <Icon icon="iconoir:keyframe" width="30" />
-          <h1>NOVO TICKET</h1>
+          {{this.ticket.assunto}}
         </div>
         <button>Branches</button>
       </div>
       <div class="tech">
-        <p>Dev/Javascript</p>
+      {{this.ticket.tecnologia}}
       </div>
-      <p>ID nº</p>
-      <p>Aberto em : 10/08/2022</p>
+       <p>Id nº {{this.ticket.Id}}</p>
+      <p>Aberto em : {{this.ticket.abertura}}</p>
       <p>Data limite: 21/08/2022</p>
       <div class="criado">
         <p>Criado por</p>
@@ -41,17 +41,57 @@
 <script>
 import Textarea from "primevue/textarea";
 import { Icon } from "@iconify/vue2";
+import { useRoute } from "vue2-helpers/vue-router";
+import { db } from "../Firebase/index";
+import { doc, getDoc } from "firebase/firestore";
 export default {
+  // acessa o path e pega o ID
+  // Com o ID vai no banco de dados e retorna as informações do ticket
+  mounted() {
+    const route = useRoute();
+    const ticketId = route.params.id;
+    this.searchData(ticketId);
+  },
   components: {
     Icon,
     Textarea,
   },
   data() {
     return {
-      value1: "",
-      value2: "",
-      value3: "",
+      ticket: {
+        assunto: "",
+        tecnologia: "",
+        Id: "",
+        abertura: "",
+        dataLimite: "",
+        criador: "",
+        descricao: "",
+        colaboradores: "",
+        comentarios: "",
+        fechamento: "",
+      },
     };
+  },
+
+  methods: {
+    searchData: async function (ticketId) {
+      const docRef = doc(db, "ticket", ticketId);
+      const docSnap = await getDoc(docRef);
+
+      const ticketDoBanco = docSnap.data();
+      console.log("ticketDoBanco ---->", ticketDoBanco);
+      this.ticket.Id = ticketId;
+      this.ticket.assunto = ticketDoBanco.assunto;
+      this.ticket.tecnologia = ticketDoBanco.tecnologia;
+      this.ticket.abertura = ticketDoBanco.abertura?.toDate();
+      this.ticket.dataLimite = ticketDoBanco.dataLimite?.toDate();
+      this.ticket.criador = ticketDoBanco.criador;
+      this.ticket.descricao = ticketDoBanco.descricao;
+      this.ticket.colaboradores = ticketDoBanco.colaboradores;
+      this.ticket.comentarios = ticketDoBanco.comentarios;
+      this.ticket.fechamento = ticketDoBanco.fechamento;
+      console.log("ticket  ---->", this.ticket);
+    },
   },
 };
 </script>
@@ -60,7 +100,7 @@ export default {
 .container {
   width: 100%;
   height: 100vh;
-  background-image: url("../assets/telaok.png");
+  background-image: url("../assets/engenharia-pattern.png");
   backdrop-filter: opacity(50%);
   background-size: 210vh;
   box-shadow: inset 0px 4px 4px rgba(184, 182, 182, 0.25);
@@ -110,7 +150,6 @@ export default {
   margin-bottom: 3vh;
 }
 
-
 .sectionB {
   color: rgba(186, 186, 186, 0.504);
   grid-area: sectionB;
@@ -118,7 +157,7 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 18vh;
-  margin-right:10vh ;
+  margin-right: 10vh;
 }
 .colaboracao p {
   margin-top: 3vh;
@@ -139,5 +178,4 @@ export default {
 .p-inputtextarea {
   background-color: rgb(3, 3, 32);
 }
-
 </style>
