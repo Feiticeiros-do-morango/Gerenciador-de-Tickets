@@ -13,7 +13,8 @@
           :h="item.h" :i="item.i" :titulo="item.titulo" :key="item.i"
           v-bind:class="getPrioridade(item.prioridade) + ' ' + getTipo(item.tipo)">
           <span class="text">
-            <svg viewBox="0 0 250 250" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="0 0 250 250" xmlns="http://www.w3.org/2000/svg"  
+              @dblclick="visualizarTicket(item.i)">
               <text id="tituloText" x="1" y="20" >{{item.titulo}}</text>
               <text id="idText" x="1" y="35" fill="gray" >{{item.i}}</text>
               <text id="techText" x="1" y="80" >{{item.tech}}</text>
@@ -27,8 +28,8 @@
 </template>
 
 <script>
-import { db, auth } from "../Firebase/index"
-import { collection, doc, setDoc, getDocs } from "firebase/firestore";
+import { db } from "../Firebase/index"
+import { collection, getDocs } from "firebase/firestore";
 import { GridLayout, GridItem } from "vue-grid-layout"
 import Menu from "@/components/Menu.vue";
 import CriarTicket from "@/components/CriarTicket.vue";
@@ -62,6 +63,9 @@ export default {
 
   },
   methods: {
+    visualizarTicket: function(ticketId){
+       this.$router.push('/ticketView/' + ticketId)
+    },
     addItem: async function () {
 
       const querySnapshot = await getDocs(collection(db, "ticket"));
