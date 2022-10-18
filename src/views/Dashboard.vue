@@ -28,8 +28,8 @@
 </template>
 
 <script>
-import { db } from "../Firebase/index"
-import { collection, getDocs } from "firebase/firestore";
+import { db} from "../Firebase/index"
+import { collection, doc, setDoc, getDocs } from "firebase/firestore";
 import { GridLayout, GridItem } from "vue-grid-layout"
 import Menu from "@/components/Menu.vue";
 import CriarTicket from "@/components/CriarTicket.vue";

@@ -309,17 +309,21 @@
         <h1>Copyright &copy; 2022.</h1><p>GO</p><h1> .All rights reserved</h1>
       </div>
     </footer>
+    <ScrollTop />
   </div>
 </template>
 
 <script>
-export default {};
+import ScrollTop from 'primevue/scrolltop';
+export default {
+  components: { ScrollTop, },
+};
 </script>
 
 <style scoped>
 .main {
   width: 100%;
-  height: 430vh;
+  height: 475vh;
   z-index: 0;
   background-color: #040414;
 }
@@ -464,7 +468,7 @@ main {
 .left-main .text-area h1 {
   width: 100%;
   font-family: "Roboto Mono";
-  font-size: 64px;
+  font-size: 3rem;
   font-weight: 700;
   text-align: left;
   letter-spacing: 3px;
@@ -594,7 +598,7 @@ section .section-text .linha-color {
 .cards .card1,
 .card2,
 .card3 {
-  width: 420px;
+  width: 400px;
   height: 250px;
   display: flex;
   border-radius: 16px;
@@ -715,7 +719,7 @@ section .section-text .linha-color {
 
 .about {
   width: 100%;
-  height: 80vh;
+  height: 120vh;
   padding: 0 40px 40px 40px;
   
   display: flex;
@@ -767,12 +771,14 @@ section .section-text .linha-color {
 }
 .about .cards-about {
   width: 100%;
-  height: 80vh;
+  height: 100vh;
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-evenly;
   align-items: center;
   flex-wrap: wrap;
+  gap: 2px;
+  overflow: hidden;
   padding: 50px 50px 0 30px;
 }
 .about .cards-about .card-about {
@@ -886,7 +892,7 @@ section .section-text .linha-color {
 
 }
 .contact .info-contact .button-contact .wrapper-contact {
-  width: 8vw;
+  width: 10vw;
   height: 100%;
   border-radius: 5px;
   background: #47a0c8;
@@ -942,7 +948,7 @@ section .section-text .linha-color {
 }
 footer {
   width: 100%;
-  height: 34vh;
+  height: 30vh;
   display: flex;
   flex-direction: column;
   align-items: center;

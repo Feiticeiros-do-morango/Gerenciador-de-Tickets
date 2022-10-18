@@ -3,7 +3,8 @@
   <div class="app">
     
     <div class="navbar">
-      <Navbar v-show="isLogin" v-on:openPerfil="openPerfil()" v-on:openTicket="openTicket()"/>
+      <Navbar v-show="isLogin" v-on:openPerfil="openPerfil()"  v-on:openTicket="openTicket()"/>
+      
     </div>
 
     <div class="container">
@@ -23,11 +24,10 @@ import Perfil from "./components/Perfil.vue";
 import CriarTicket from "./components/CriarTicket.vue";
 
 export default {
-  components: { Navbar, TabView, TabPanel, Perfil, CriarTicket },
+  
+  components: { Navbar, TabView, TabPanel, Perfil, CriarTicket, },
   data() {
     return{
-      x : false,
-      y : false
       
   }
   },
@@ -39,11 +39,9 @@ export default {
         openTicket(){
           this.$refs.childTicket.openModal()
 
-        }
-      },
-
-
-    
+    },
+  },
+  
   computed: {
     isLogin() {
       if (this.$route.name == 'login' || this.$route.name == 'registration' 

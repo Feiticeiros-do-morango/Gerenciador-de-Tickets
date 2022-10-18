@@ -10,18 +10,29 @@
           <div class="icon">
             <iconify-icon icon="akar-icons:person"></iconify-icon>
           </div>
-          <input type="text" name="email" id="email" placeholder="Usuário ou E-mail" v-model="state.email" />
+          <input
+            type="text"
+            name="email"
+            id="email"
+            placeholder="Usuário ou E-mail"
+            v-model="state.email"
+          />
         </div>
         <div class="input-wrapper">
           <div class="icon">
             <iconify-icon icon="akar-icons:key"></iconify-icon>
           </div>
-          <input type="password" name="senha" id="senha" placeholder="Senha" v-model="state.senha" />
+          <input
+            type="password"
+            name="senha"
+            id="senha"
+            placeholder="Senha"
+            v-model="state.senha"
+          />
         </div>
         <div class="recovery">
           <router-link to="/recovery">
-            <p>Esqueceu a senha?
-            </p>
+            <p>Esqueceu a senha?</p>
           </router-link>
         </div>
       </div>
@@ -31,7 +42,12 @@
       <div class="login-with-google">
         <button @click="loginWithGoogle()">
           <div class="icon-google">
-            <iconify-icon inline icon="flat-color-icons:google" width="20" height="20"></iconify-icon>
+            <iconify-icon
+              inline
+              icon="flat-color-icons:google"
+              width="20"
+              height="20"
+            ></iconify-icon>
           </div>
           Sign-in With Google
         </button>
@@ -52,8 +68,11 @@
 </template>
 
 <script>
-import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { ref, reactive, computed } from "vue"
+import { router } from "../router/index"
+import { db } from "../Firebase/index.js";
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
+import { reactive, computed } from "vue"
 import { useVuelidate } from '@vuelidate/core'
 import { required, email, minLength } from '@vuelidate/validators'
 
@@ -85,20 +104,35 @@ export default {
     login() {
       const auth = getAuth()
       signInWithEmailAndPassword(auth, this.state.email, this.state.senha).then((data) => {
+        this.verifyUser();
         this.goToDashboard();
+        localStorage.setItem("token", 'true')
+        
       })
     },
     loginWithGoogle() {
       const provider = new GoogleAuthProvider();
       signInWithPopup(getAuth(), provider)
         .then((result) => {
-          console.log(result.user);
+          localStorage.setItem("token", 'true')
           this.goToDashboard();
         })
     },
     goToDashboard() {
       this.$router.push({ name: "dashboard" })
+    },
+    async verifyUser() {
+      const q = query(collection(db, "usuarios"), where("email", "==", this.state.email));
+
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        let document = doc.data().UserName
+        localStorage.setItem("userName", document)
+        
+});
     }
+    
   }
 }
 </script>
@@ -327,14 +361,13 @@ button {
 }
 
 .login button {
-  border: 1px solid #378BED;
+  border: 1px solid #378bed;
   border-radius: 10px;
   padding: 10px;
   margin: auto;
   text-align: center;
   background-color: black;
-  color: #378BED;
-
+  color: #378bed;
 }
 
 .cadastra {
@@ -349,7 +382,7 @@ a {
 }
 
 .google {
-  font-family: 'PT Sans', sans-serif;
+  font-family: "PT Sans", sans-serif;
 }
 
 .comeback {

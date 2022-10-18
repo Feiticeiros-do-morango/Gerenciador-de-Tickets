@@ -3,13 +3,12 @@
     <div class="identificacao">
       <div class="avatar">
         <button @click="openPerfil">
-          <img src="@/assets/360_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws-removebg-preview.png"
-            alt="Perfil de Usuario">
+          <iconify-icon icon="healthicons:ui-user-profile-outline" id="perfil-image" style="color: white;" width="38" height="38"></iconify-icon>
         </button>
       </div>
       <div class="perfil">
         <div class="nome">
-          <p>Nome Completo</p>
+          <p>{{ nome }}</p>
         </div>
         <div class="cargo">
           <p>Cargo</p>
@@ -35,9 +34,15 @@ import PanelMenu from "primevue/panelmenu";
 
 export default {
   components: { PanelMenu },
+
+  created: function(){
+    this.nome = localStorage.getItem("userName")
+  },
+
   data() {
     return {
-
+      
+      nome: "",
       display: false,
       items: [
         {
@@ -88,7 +93,7 @@ export default {
 
   },
   methods: {
-    
+
     openPerfil : function() {
       this.$emit('openPerfil')
 
@@ -128,9 +133,14 @@ p-menuitem-text {
 .identificacao .avatar button {
   background: none;
   cursor: pointer;
+  border: none;
   outline: none;
-  width: 100%;
-  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  width: 40px;
+  height: 40px;
 }
 
 .perfil {
