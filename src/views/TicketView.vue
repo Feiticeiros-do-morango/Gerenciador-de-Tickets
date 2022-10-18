@@ -14,25 +14,25 @@
       </div>
        <p>Id nº {{this.ticket.Id}}</p>
       <p>Aberto em : {{this.ticket.abertura}}</p>
-      <p>Data limite: 21/08/2022</p>
+      <p>Data limite: {{this.ticket.dataLimite}}</p>
       <div class="criado">
-        <p>Criado por</p>
+        <p>Criado por {{this.ticket.criador}}</p>
       </div>
       <div class="quadrado">
         <h3>Descrição</h3>
-        <Textarea v-model="value2" :autoResize="false" rows="10" cols="70" />
+        <Textarea v-model="this.ticket.descricao" :autoResize="false" rows="10" cols="70" />
       </div>
     </div>
     <div class="sectionB">
       <div class="colaboracao">
-        <p>Colaboradores</p>
+        <p>Colaboradores {{this.ticket.colaboradores}}</p>
       </div>
       <div class="comentarios">
         <h3>Comentários...</h3>
-        <Textarea v-model="value1" :autoResize="false" rows="10" cols="40" />
+        <Textarea v-model="this.ticket.comentarios" :autoResize="false" rows="10" cols="40" />
       </div>
       <div class="fechamento">
-        <p>Fechado em: 20/08/2022</p>
+        <p>Fechado em:{{ this.ticket.fechamento}}</p>
       </div>
     </div>
   </div>
@@ -79,7 +79,7 @@ export default {
       const docSnap = await getDoc(docRef);
 
       const ticketDoBanco = docSnap.data();
-      console.log("ticketDoBanco ---->", ticketDoBanco);
+     
       this.ticket.Id = ticketId;
       this.ticket.assunto = ticketDoBanco.assunto;
       this.ticket.tecnologia = ticketDoBanco.tecnologia;
@@ -90,7 +90,7 @@ export default {
       this.ticket.colaboradores = ticketDoBanco.colaboradores;
       this.ticket.comentarios = ticketDoBanco.comentarios;
       this.ticket.fechamento = ticketDoBanco.fechamento;
-      console.log("ticket  ---->", this.ticket);
+     
     },
   },
 };
@@ -106,7 +106,7 @@ export default {
   box-shadow: inset 0px 4px 4px rgba(184, 182, 182, 0.25);
   border-radius: 30px 30px 0px 0px;
   display: grid;
-  grid-template-columns: 9fr 3fr;
+  grid-template-columns: 8fr 4fr;
   grid-template-areas: "sectionA sectionB";
 }
 .icon {
@@ -137,12 +137,15 @@ export default {
   grid-area: sectionA;
   padding: 2vh;
   margin-left: 6vh;
+  margin-right: 8vh;
   color: black;
 }
 .tech {
   color: gray;
 }
-
+.quadrado{
+  width: 100%;
+}
 .quadrado h3 {
   margin: auto;
   text-align: center;
@@ -156,8 +159,8 @@ export default {
   color: black;
   display: flex;
   flex-direction: column;
-  gap: 18vh;
-  margin-right: 10vh;
+  gap: 15vh;
+  margin-right: 14vh;
 }
 .colaboracao p {
   margin-top: 3vh;
@@ -177,5 +180,6 @@ export default {
 
 .p-inputtextarea {
   background-color: rgb(3, 3, 32);
+  width: 100%;
 }
 </style>
