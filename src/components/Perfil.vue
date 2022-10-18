@@ -123,7 +123,7 @@
             </div>
           </div>
         </div>
-        <div class="perfil-item p-ripple" v-ripple>
+        <div class="perfil-item p-ripple" v-ripple @click="logOut()">
           <div class="left-item">
             <div class="icon">
               <iconify-icon
@@ -155,12 +155,13 @@
 <script>
 import Ripple from "primevue/ripple";
 import Dialog from "primevue/dialog";
+import { getAuth, signOut } from "firebase/auth";
 import { addDoc } from "firebase/firestore";
 import AutoComplete from "primevue/autocomplete";
 import Calendar from "primevue/calendar";
 
 export default {
-  components: { Dialog,},
+  components: { Dialog },
   data() {
     return {
       displayModal: false,
@@ -172,6 +173,18 @@ export default {
   methods: {
     openModal() {
       this.displayModal = true;
+    },
+    logOut() {
+      const auth = getAuth();
+      signOut(auth)
+        .then(() => {
+          localStorage.removeItem('token');
+          this.$router.push({ name: "login" })
+          // Sign-out successful.
+        })
+        .catch((error) => {
+          // An error happened.
+        });
     },
   },
 };
@@ -256,10 +269,9 @@ export default {
   align-items: center;
 }
 .perfil-item.p-ripple {
-    border-radius: 8px;
-    cursor: pointer;
+  border-radius: 8px;
+  cursor: pointer;
 }
-
 
 .perfil-item .left-item {
   width: 40%;
@@ -274,7 +286,6 @@ export default {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-
 }
 .perfil-item .right-item .icon {
   display: flex;
