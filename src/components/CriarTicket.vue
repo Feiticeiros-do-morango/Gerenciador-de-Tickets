@@ -26,6 +26,8 @@
 
                 </form>
 
+                <button @click="teste()">TESTE</button>
+
                 <div class="inputDiv">
                     <label for=""> Prioridade </label>
                     <Dropdown v-model="ticket.prioridade" :options="prioridade" optionLabel="name"
@@ -40,7 +42,8 @@
                 <form>
                     <div class="inputDiv">
                         <label for="">Colaboradores</label>
-                        <select name="colegas" id="colegas" v-model="ticket.colaboradores"></select>
+                        <MultiSelect v-model="ticket.colaboradores" :options="colaboradores" optionLabel="name" placeholder="Selecione"
+                            display="chip" />
                     </div>
                 </form>
 
@@ -66,26 +69,37 @@
     </Dialog>
 
 
-
-
-
-
 </template>
 
 <script>
 import Dropdown from 'primevue/dropdown';
-import AutoComplete from 'primevue/autocomplete';
+import MultiSelect from 'primevue/multiselect';
 import Calendar from "primevue/calendar";
 import Dialog from "primevue/dialog";
-import { addDoc, collection } from "firebase/firestore";
+import { collection, addDoc , getDocs} from "firebase/firestore";
 import { db } from "../Firebase/index";
 import { reactive } from "vue";
 
 
 
+
 export default {
 
-    components: { Dialog, Calendar, AutoComplete, Dropdown },
+    components: { Dialog, Calendar, Dropdown, MultiSelect },
+
+    mounted:
+        
+        async function fetchData() {
+            let obj = {}
+            const querySnapshot = await getDocs(collection(db, "usuarios"));
+            querySnapshot.forEach((doc) => {
+
+                obj = { name: `${doc.data().UserName}`}
+                this.colaboradores.push(obj)
+                
+            })  
+        },
+        
 
     data() {
         return {
@@ -105,6 +119,10 @@ export default {
 
             ],
 
+            colaboradores: [
+                
+            ],
+
             ticket: reactive({
                 // pega todos os valores dos inputs do html
                 assunto: "",
@@ -113,7 +131,8 @@ export default {
                 fechamento: "",
                 tipo: "",
                 prioridade: "",
-                dataLimite: ""
+                dataLimite: "",
+                colaboradores: [],
 
             })
         };
@@ -123,6 +142,20 @@ export default {
 
 
     methods: {
+
+        async teste() {
+            let obj = {}
+            const querySnapshot = await getDocs(collection(db, "usuarios"));
+            querySnapshot.forEach((doc) => {
+
+                obj = { name: `${doc.data().UserName}`}
+                this.colaboradores.push(obj)
+                
+            })
+
+           
+        },
+
         openModal() {
             this.displayModal = true;
         },
@@ -140,10 +173,10 @@ export default {
             const data = {
                 assunto: this.ticket.assunto,
                 tecnologia: this.ticket.tecnologia,
-                // colaboradores: this.ticket.colaboradores,
-                // dataLimite: this.ticket.dataLimite,
-                // prioridade: this.ticket.prioridade,
-                // tipo: this.ticket.tipo,
+                colaboradores: this.ticket.colaboradores,
+                dataLimite: this.ticket.dataLimite,
+                prioridade: this.ticket.prioridade,
+                tipo: this.ticket.tipo,
             };
             console.log('dbref -> ', dbRef)
             console.log('data -> ', data)

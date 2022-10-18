@@ -35,10 +35,14 @@ import PanelMenu from "primevue/panelmenu";
 export default {
   components: { PanelMenu },
 
+  created: function(){
+    this.nome = localStorage.getItem("userName")
+  },
+
   data() {
     return {
       
-      nome: localStorage.getItem("userName"),
+      nome: "",
       display: false,
       items: [
         {
