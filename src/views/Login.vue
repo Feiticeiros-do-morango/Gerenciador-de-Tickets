@@ -68,9 +68,10 @@
 </template>
 
 <script>
+import { router } from "../router/index"
 import { db } from "../Firebase/index.js";
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import { reactive, computed } from "vue"
 import { useVuelidate } from '@vuelidate/core'
 import { required, email, minLength } from '@vuelidate/validators'
@@ -78,7 +79,6 @@ import { required, email, minLength } from '@vuelidate/validators'
 
 
 export default {
-  
   setup() {
     const state = reactive({
       email: '',
@@ -106,6 +106,7 @@ export default {
       signInWithEmailAndPassword(auth, this.state.email, this.state.senha).then((data) => {
         this.verifyUser();
         this.goToDashboard();
+        localStorage.setItem("token", 'true')
         
       })
     },
@@ -132,6 +133,7 @@ export default {
         
 });
     }
+    
   }
 }
 </script>
