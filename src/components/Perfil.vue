@@ -178,6 +178,7 @@ export default {
       const auth = getAuth();
       signOut(auth)
         .then(() => {
+          localStorage.removeItem('userName')
           localStorage.removeItem('token');
           this.$router.push({ name: "login" })
           // Sign-out successful.
