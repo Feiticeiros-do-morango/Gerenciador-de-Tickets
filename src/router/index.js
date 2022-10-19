@@ -26,7 +26,7 @@ const router = new Router({
     { path: "/teams", name: "teams", component: Teams },
     { path: "/statistics", component: Statistics },
     { path: "/settings", component: Settings },
-    { path: "/ticketView", component: TicketView },
+    { path: "/ticketView/:id", component: TicketView },
     { path: "/recovery", name: "recovery", component: PasswordRecovery },
     { path: "/", name: "land", component: Land },
   ],
