@@ -3,13 +3,14 @@
   <div class="app">
     
     <div class="navbar">
-      <Navbar v-show="isLogin" v-on:openPerfil="openPerfil()"  v-on:openTicket="openTicket()"/>
+      <Navbar v-show="isLogin" v-on:openPerfil="openPerfil()" v-on:openProject="openProject()"  v-on:openTicket="openTicket()"/>
       
     </div>
 
     <div class="container">
       <Perfil ref="childPerfil" ></Perfil>
       <CriarTicket ref="childTicket" ></CriarTicket>
+      <Project ref="childProject"></Project>
       <router-view></router-view>
     </div>
 
@@ -22,16 +23,20 @@ import TabView from "primevue/tabview";
 import TabPanel from "primevue/tabpanel";
 import Perfil from "./components/Perfil.vue";
 import CriarTicket from "./components/CriarTicket.vue";
+import Project from "./components/Project.vue"
 
 export default {
   
-  components: { Navbar, TabView, TabPanel, Perfil, CriarTicket, },
+  components: { Navbar, TabView, TabPanel, Perfil, CriarTicket,Project },
   data() {
     return{
       
   }
   },
   methods: {
+        openProject() {
+        this.$refs.childProject.openModal()
+        },
         openPerfil() {
           this.$refs.childPerfil.openModal()
                
@@ -82,7 +87,7 @@ export default {
 
 .container {
 
-  width: auto;
+  width: 100vw;
   background-color: #040414;
 
 }

@@ -6,7 +6,6 @@ import Registration from '../views/Registration.vue'
 import Dashboard from '../views/Dashboard.vue'
 import MyTickets from '../views/MyTickets.vue'
 import Teams from '../views/Teams.vue'
-import Projects from '../views/Projects.vue'
 import Statistics from '../views/Statistics.vue'
 import Settings from '../views/Settings.vue'
 import TicketView from '../views/TicketView.vue'
@@ -25,7 +24,6 @@ const router = new Router({
     { path: "/dashboard", name: "dashboard", component: Dashboard },
     { path: "/myTickets", component: MyTickets },
     { path: "/teams", name: "teams", component: Teams },
-    { path: "/projects", name: "projects", component: Projects },
     { path: "/statistics", component: Statistics },
     { path: "/settings", component: Settings },
     { path: "/ticketView", component: TicketView },
