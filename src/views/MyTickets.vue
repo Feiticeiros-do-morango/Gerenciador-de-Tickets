@@ -65,23 +65,23 @@ export default {
     addItem: async function () {
 
       const q = query(collection(db, "ticket"), where("colaboradores", "array-contains", { name: `${localStorage.getItem("userName")}`}));
-      console.log(q)
+      
       const querySnapshot = await getDocs(q);
-      console.log(querySnapshot)
+      
       
       querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
-        console.log("doc"+doc)
+        
         this.layout.push({
           x: (this.layout.length * 2) % (this.colNum || 12),
           y: this.layout.length + (this.colNum || 12), // puts it at the bottom
           w: 2,
           h: 3,
           i: doc.id,
-          titulo: doc.data().titulo,
+          titulo: doc.data().assunto,
           tech: doc.data().tecnologia,
-          prioridade: doc.data().prioridade,
-          tipo: doc.data().tipo,
+          prioridade: doc.data().prioridade['name'],
+          tipo: doc.data().tipo['name'],
         });
 
         console.log(doc.id, " => ", doc.data());
@@ -94,23 +94,23 @@ export default {
     },
     getPrioridade: function (prioridade){
       switch (prioridade) {
-        case "naoUrgente":
+        case "Não Urgente":
           return "naoUrgente"
           break;
 
-          case "urgente":
+          case "Urgente":
           return "urgente"
           break;
 
-          case "poucoUrgente":
+          case "Pouco Urgente":
           return "poucoUrgente"
           break;
 
-          case "muitoUrgente":
+          case "Muito Urgente":
           return "muitoUrgente"
           break;
 
-          case "emergencia":
+          case "Emergência":
           return "emergencia"
           break;
       
@@ -121,16 +121,20 @@ export default {
     },
     getTipo: function(tipo){
       switch (tipo) {
-        case "dev":
+        case "Desenvolvimento":
           return "dev"
           break;
 
-          case "design":
+          case "UX/UI":
           return "design"
           break;
 
-          case "engenharia":
+          case "Engenharia":
           return "engenharia"
+          break;
+
+          case "Infra":
+          return "infra"
           break;
       
         default:
@@ -232,6 +236,12 @@ Configuração dos cards
   background: url(../assets/design-pattern.jpg);
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+.infra {
+    background: url(../assets/8245.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 
