@@ -12,6 +12,11 @@
           <li><a href="#contact">Contatos</a></li>
         </ul>
       </div>
+      <div class="right-nav">
+        <div class="nav-button">
+          <router-link to="/login"><button>Login</button></router-link>
+        </div>
+      </div>
     </header>
 
     <main id="home">
@@ -340,7 +345,41 @@ header {
   justify-content: space-between;
   border-bottom: 0.8px solid rgba(95, 95, 95, 0.488);
 }
+header .right-nav {
+  width: 10vw;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 30px;
+}
+header .right-nav .nav-button {
+  width: 130px;
+  height: 45px;
+  border-radius: 2px;
+  background: transparent;
+  border: 1px solid #378bed;
+  transition: 0.3s ease-out;
+}
+header .right-nav .nav-button:hover {
+  transform: scale(1.0175);
+}
+header .right-nav .nav-button a {
+width: 100%;
+height: 100%;
 
+}
+header .right-nav .nav-button a button {
+  width: 100%;
+  height: 100%;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: #378bed;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
 .linha {
   width: 100%;
   height: 0.5px;
@@ -369,8 +408,8 @@ header {
 }
 
 .logo {
-  width: 140px;
-  height: 140px;
+  width: 100px;
+  height: 100px;
   display: flex;
   margin-left: 6.5vw;
   justify-content: center;
@@ -509,28 +548,28 @@ main {
 }
 
 .button-area .button-wrapper {
-  width: 11.2vw;
-  height: 60px;
+  width: 160px;
+  height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #47a0c8;
   border-width: 2px;
   border-style: solid;
-  border-radius: 5px;
-  transition: background-color 0.4s ease-in-out, color 0.2s ease-in-out,
-    border-color 0.2s ease-in-out;
+  border-radius: 2px;
+  
+  border: 1px solid #378bed;
   margin-top: 25px;
+  transition: 0.3s ease-out;
 }
 
 .button-area .button-wrapper:hover {
-  background: #479fc8ab;
+  transform: scale(1.0175);
 }
 
 .button-area .button-wrapper a {
   width: 100%;
   height: 100%;
-  color: #fff;
+  color: #8ac0fd;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -540,6 +579,7 @@ main {
   font-weight: 700;
   text-transform: uppercase;
   text-align: center;
+  padding: 20px;
   border: none;
   background: transparent;
 }

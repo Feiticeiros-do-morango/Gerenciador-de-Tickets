@@ -5,52 +5,8 @@
 
     <Dialog header="Novo Ticket" :visible.sync="displayModal" :modal="true" :dismissableMask="true" :closable="true">
         <div class="main">
-            <div class="left">
-                <form>
-                    <div class="inputDiv">
-                        <label for=""> Assunto </label>
-                        <input type="text" id="assunto" name="assunto" placeholder="" v-model="ticket.assunto" />
-                    </div>
 
-                    <div class="inputDiv">
-                        <label for=""> Data limite </label>
-                        <Calendar v-model="ticket.dataLimite" dateFormat="dd.mm.yy" />
-                    </div>
-
-
-                    <div class="inputDiv">
-                        <label for="">Tecnologia</label>
-                        <input type="text" id="tecnologia" placeholder="" v-model="ticket.tecnologia" />
-                    </div>
-
-
-                </form>
-
-                <button @click="teste()">TESTE</button>
-
-                <div class="inputDiv">
-                    <label for=""> Prioridade </label>
-                    <Dropdown v-model="ticket.prioridade" :options="prioridade" optionLabel="name"
-                        placeholder="Selecione" />
-                </div>
-
-                <div class="inputDiv">
-                    <label> Tipo </label>
-                    <Dropdown v-model="ticket.tipo" :options="tipos" optionLabel="name" placeholder="Selecione" />
-                </div>
-
-                <form>
-                    <div class="inputDiv">
-                        <label for="">Colaboradores</label>
-                        <MultiSelect v-model="ticket.colaboradores" :options="colaboradores" optionLabel="name" placeholder="Selecione"
-                            display="chip" />
-                    </div>
-                </form>
-
-
-
-            </div>
-            <div class="right">
+            <div class="top">
 
                 <div class="ticket"
                     v-bind:class="getPrioridade(ticket.prioridade.name) + ' ' + getTipo(ticket.tipo.name)">
@@ -59,13 +15,72 @@
                     <p id="techText"> {{ticket.tecnologia}} </p>
 
                 </div>
+            </div>
+
+            <div class="bottom">
+
+                <form>
+                    <div class="first">
+                        <div class="inputDiv">
+                            <label for=""> Assunto </label>
+                            <input type="text" id="assunto" name="assunto" placeholder="" v-model="ticket.assunto" />
+                        </div>
+
+                        <div class="inputDiv">
+                            <label for="">Tecnologia</label>
+                            <input type="text" id="tecnologia" placeholder="" v-model="ticket.tecnologia" />
+                        </div>
+
+                    </div>
+                </form>
+
+                <div class="second">
+
+
+                    <div class="inputDiv">
+                        <label for="">Colaboradores</label>
+                        <MultiSelect v-model="ticket.colaboradores" :options="colaboradores" optionLabel="name"
+                            placeholder="Selecione" display="chip" />
+                    </div>
+
+                    <div class="inputDiv">
+                        <label for=""> Data limite </label>
+                        <Calendar v-model="ticket.dataLimite" dateFormat="dd.mm.yy" />
+                    </div>
+
+
+                </div>
+
+
+                <div class="third">
+                    <div class="inputDiv">
+                        <label for=""> Prioridade </label>
+                        <Dropdown v-model="ticket.prioridade" :options="prioridade" optionLabel="name"
+                            placeholder="Selecione" inputClass="dropdownCustom" />
+                    </div>
+
+                    <div class="inputDiv">
+                        <label> Tipo </label>
+                        <Dropdown v-model="ticket.tipo" :options="tipos" optionLabel="name" placeholder="Selecione" />
+                    </div>
+                </div>
+
+                <div class="forth">
+                    <div class="inputDiv">
+                        <label> Projetos </label>
+                        <MultiSelect v-model="ticket.projeto" :options="projetos" optionLabel="name" placeholder="Selecione" />
+                    </div>
+
+                </div>
 
             </div>
 
+            <div class="enviar">
+                <button @click="enviarDados">Enviar</button>
+            </div>
+
         </div>
-        <div class="enviar">
-            <button @click="enviarDados">Enviar</button>
-        </div>
+
     </Dialog>
 
 
@@ -76,7 +91,7 @@ import Dropdown from 'primevue/dropdown';
 import MultiSelect from 'primevue/multiselect';
 import Calendar from "primevue/calendar";
 import Dialog from "primevue/dialog";
-import { collection, addDoc , getDocs} from "firebase/firestore";
+import { collection, addDoc, getDocs } from "firebase/firestore";
 import { db } from "../Firebase/index";
 import { reactive } from "vue";
 
@@ -87,19 +102,32 @@ export default {
 
     components: { Dialog, Calendar, Dropdown, MultiSelect },
 
-    mounted:
-        
+    mounted: 
+
         async function fetchData() {
             let obj = {}
             const querySnapshot = await getDocs(collection(db, "usuarios"));
             querySnapshot.forEach((doc) => {
 
-                obj = { name: `${doc.data().UserName}`}
+                obj = { name: `${doc.data().UserName}` }
                 this.colaboradores.push(obj)
-                
-            })  
+
+            })
+
+            let obj2 = {}
+            const querySnap = await getDocs(collection(db, "projeto"));
+            querySnap.forEach((doc) => {
+
+                obj2 = { name: `${doc.data().name}` }
+                this.projetos.push(obj2)
+
+            })
+
+
         },
+
         
+
 
     data() {
         return {
@@ -119,9 +147,9 @@ export default {
 
             ],
 
-            colaboradores: [
-                
-            ],
+            colaboradores: [],
+
+            projetos: [],
 
             ticket: reactive({
                 // pega todos os valores dos inputs do html
@@ -132,7 +160,9 @@ export default {
                 tipo: "",
                 prioridade: "",
                 dataLimite: "",
+                projeto: [],
                 colaboradores: [],
+                
 
             })
         };
@@ -143,18 +173,6 @@ export default {
 
     methods: {
 
-        async teste() {
-            let obj = {}
-            const querySnapshot = await getDocs(collection(db, "usuarios"));
-            querySnapshot.forEach((doc) => {
-
-                obj = { name: `${doc.data().UserName}`}
-                this.colaboradores.push(obj)
-                
-            })
-
-           
-        },
 
         openModal() {
             this.displayModal = true;
@@ -170,17 +188,17 @@ export default {
 
         async saveOnDatabase() {
             const dbRef = collection(db, "ticket");
-            const data = {
+            const docRef = {
                 assunto: this.ticket.assunto,
                 tecnologia: this.ticket.tecnologia,
                 colaboradores: this.ticket.colaboradores,
                 dataLimite: this.ticket.dataLimite,
                 prioridade: this.ticket.prioridade,
                 tipo: this.ticket.tipo,
+                projeto: this.ticket.projeto,
             };
-            console.log('dbref -> ', dbRef)
-            console.log('data -> ', data)
-            await addDoc(dbRef, data)
+           
+            await addDoc(dbRef, docRef)
                 .then(() => {
                     console.log("Document has been added successfully");
                 })
@@ -229,6 +247,11 @@ export default {
                     return "engenharia"
                     break;
 
+                case "Infra":
+                    return "infra"
+                    break;
+
+
                 default:
                     break;
             }
@@ -247,50 +270,73 @@ export default {
 }
 
 .main {
+    margin-top: 3vh;
     display: flex;
-    height: 63vh;
+    height: 65vh;
+    width: 50vw;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-.left {
-    width: 20vw;
+.top {
+    height: 15vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bottom {
+    height: 20vh;
+    display: flex;
+    justify-content:center;
+}
+
+.first {
+    width: 12.5vw;
+}
+
+.second {
+    width: 12.5vw;
+}
+
+.third {
+    width: 12.5vw;
+}
+
+.forth {
+    width: 12.5vw;
 }
 
 .inputDiv {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     gap: 10px;
     flex-direction: column;
 }
 
 .inputDiv input {
-    width: 58%;
+    width: 90%;
     height: 5vh;
     background: #040d19;
     border: 1px solid #0b213f;
+    color: ghostwhite;
 
 }
 
-.inputDiv select {
-    width: 58%;
-    height: 5vh;
-    background: #040d19;
-    border: 1px solid #0b213f;
+.p-multiselect{
+    width: 90%;
+}
 
+.p-dropdown{
+    width: 90%;
 }
 
 .inputDiv label {
-    margin-top: 1vh;
-    font-size: 20px;
+    margin-top: 3vh;
+    font-size: 22px;
 }
 
-
-.right {
-    width: 30vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 .ticket {
     height: 15vh;
@@ -302,6 +348,7 @@ export default {
 
     overflow: hidden;
     background-color: rgba(187, 187, 187, 0.664);
+    color: black;
 }
 
 .naoUrgente {
@@ -342,7 +389,14 @@ export default {
     background-repeat: no-repeat;
 }
 
+.infra {
+    background: url(../assets/8245.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
 .enviar {
+    height: 5vh;
     display: flex;
     align-items: center;
     justify-content: center;
