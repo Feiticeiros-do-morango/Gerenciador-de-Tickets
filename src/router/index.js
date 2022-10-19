@@ -28,7 +28,7 @@ const router = new Router({
     { path: "/projects", name: "projects", component: Projects },
     { path: "/statistics", component: Statistics },
     { path: "/settings", component: Settings },
-    { path: "/ticketView:id", component: TicketView },
+    { path: "/ticketView/:id", component: TicketView },
     { path: "/recovery", name: "recovery", component: PasswordRecovery },
     { path: "/", name: "land", component: Land },
   ],

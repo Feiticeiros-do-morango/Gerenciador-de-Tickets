@@ -41,14 +41,13 @@
 <script>
 import Textarea from "primevue/textarea";
 import { Icon } from "@iconify/vue2";
-import { useRoute } from "vue2-helpers/vue-router";
 import { db } from "../Firebase/index";
 import { doc, getDoc } from "firebase/firestore";
 export default {
   // acessa o path e pega o ID
   // Com o ID vai no banco de dados e retorna as informações do ticket
   mounted() {
-    const route = useRoute();
+    const route = this.$router.currentRoute;
     const ticketId = route.params.id;
     this.searchData(ticketId);
   },
