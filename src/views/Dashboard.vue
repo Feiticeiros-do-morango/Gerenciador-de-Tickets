@@ -29,10 +29,11 @@
 
 <script>
 import { db} from "../Firebase/index"
-import { collection, doc, setDoc, getDocs } from "firebase/firestore";
+import { collection, doc, setDoc, getDocs, query, where} from "firebase/firestore";
 import { GridLayout, GridItem } from "vue-grid-layout"
 import Menu from "@/components/Menu.vue";
 import CriarTicket from "@/components/CriarTicket.vue";
+
 
 
 export default {
@@ -63,54 +64,59 @@ export default {
 
   },
   methods: {
+
     visualizarTicket: function(ticketId){
        this.$router.push('/ticketView/' + ticketId)
     },
+
     addItem: async function () {
 
-      const querySnapshot = await getDocs(collection(db, "ticket"));
+      const q = query(collection(db, "ticket"), where("projeto", "array-contains", { name: "projeto1"}));
+      
+      const querySnapshot = await getDocs(q);
+      
       querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-
+       
         this.layout.push({
           x: (this.layout.length * 2) % (this.colNum || 12),
           y: this.layout.length + (this.colNum || 12), // puts it at the bottom
           w: 2,
           h: 3,
           i: doc.id,
-          titulo: doc.data().titulo,
+          titulo: doc.data().assunto,
           tech: doc.data().tecnologia,
-          prioridade: doc.data().prioridade,
-          tipo: doc.data().tipo,
+          prioridade: doc.data().prioridade['name'] ,
+          tipo: doc.data().tipo['name'],
         });
 
-        console.log(doc.id, " => ", doc.data());
       });
     },
 
     removeItem: function (val) {
       const index = this.layout.map(item => item.i).indexOf(val);
       this.layout.splice(index, 1);
+      
     },
+
     getPrioridade: function (prioridade){
       switch (prioridade) {
-        case "naoUrgente":
+        case "Não Urgente":
           return "naoUrgente"
           break;
 
-          case "urgente":
+          case "Urgente":
           return "urgente"
           break;
 
-          case "poucoUrgente":
+          case "Pouco Urgente":
           return "poucoUrgente"
           break;
 
-          case "muitoUrgente":
+          case "Muito Urgente":
           return "muitoUrgente"
           break;
 
-          case "emergencia":
+          case "Emergência":
           return "emergencia"
           break;
       
@@ -121,16 +127,20 @@ export default {
     },
     getTipo: function(tipo){
       switch (tipo) {
-        case "dev":
+        case "Desenvolvimento":
           return "dev"
           break;
 
-          case "design":
+          case "UX/UI":
           return "design"
           break;
 
-          case "engenharia":
+          case "Engenharia":
           return "engenharia"
+          break;
+
+          case "Infra":
+          return "infra"
           break;
       
         default:
@@ -232,6 +242,12 @@ Configuração dos cards
   background: url(../assets/design-pattern.jpg);
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+.infra {
+    background: url(../assets/8245.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 
