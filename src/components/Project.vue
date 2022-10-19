@@ -8,6 +8,7 @@
       :closable="true"
     >
       <main>
+        
         <div class="top">
         <div class="project p-ripple" v-ripple v-for="item in projetos" :key="item.name" >
           <div class="left">
@@ -28,6 +29,8 @@
             </div>
           </div>
         </div>
+    </div>
+    <div class="bottom">
         <div class="create">
             <div class="left">
             <div class="icon">
@@ -100,8 +103,23 @@ export default {
 main {
   width: 30vw;
   height: 40vh;
-  position: relative;
-  overflow: auto;
+}
+.top {
+    width: 100%;
+    height: 30vh;
+    overflow: auto;
+}
+.p-dialog-content {
+    padding: 0;
+}
+.bottom {
+    width: 100%;
+    height: 7vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #fff;
 }
 .p-dialog-content {
     height: 100vh;
@@ -174,7 +192,6 @@ input::placeholder{
   border: 1px solid rgba(255, 255, 255, 0.05);
   transition: 0.5s ease-out;
   display: flex;
-  position: sticky;
   cursor: pointer;
 }
 .left {
