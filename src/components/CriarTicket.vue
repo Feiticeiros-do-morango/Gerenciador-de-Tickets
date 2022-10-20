@@ -324,11 +324,14 @@ export default {
     background: #040d19;
     border: 1px solid #0b213f;
     color: ghostwhite;
+   
+}
 
+.inputDiv input:focus{
+    border: 1px solid #85b1f9;
+    outline: none;
 }
-.inputDiv input :focus{
-    border: 2px solid #85b1f9ab;
-}
+
 
 .p-multiselect{
     width: 90%;
@@ -411,7 +414,7 @@ font-weight: bold;
 }
 .bt:hover{
 
-    border: 2px solid #85b1f952;
+    border: 2px solid #85b1f9;
 }
 
 .enviar{
