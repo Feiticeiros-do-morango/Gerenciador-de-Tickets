@@ -498,7 +498,7 @@ main {
 
 .left-main .text-area {
   width: 100%;
-  height: 77%;
+  height: 65%;
   display: flex;
   flex-direction: column;
   align-items: left;
@@ -507,7 +507,7 @@ main {
 .left-main .text-area h1 {
   width: 100%;
   font-family: "Roboto Mono";
-  font-size: 3rem;
+  font-size: 3.1rem;
   font-weight: 700;
   text-align: left;
   letter-spacing: 3px;

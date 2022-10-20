@@ -86,7 +86,7 @@ export default {
 
 .container {
 
-  width: auto;
+  width: 100vw;
   background-color: #040414;
 
 }

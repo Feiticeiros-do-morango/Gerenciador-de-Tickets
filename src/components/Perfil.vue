@@ -185,6 +185,7 @@ export default {
         .then(() => {
           localStorage.removeItem('userName')
           localStorage.removeItem('token');
+          localStorage.removeItem('projectToken')
           this.$router.push({ name: "login" })
           // Sign-out successful.
         })
