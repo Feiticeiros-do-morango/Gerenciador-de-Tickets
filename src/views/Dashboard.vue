@@ -71,7 +71,7 @@ export default {
 
     addItem: async function () {
 
-      const q = query(collection(db, "ticket"), where("projeto", "array-contains", { name: "projeto1"}));
+      const q = query(collection(db, "ticket"), where("projeto", "array-contains", { name: localStorage.getItem("projectToken")}));
       
       const querySnapshot = await getDocs(q);
       

@@ -43,10 +43,12 @@
             <div class="text">
             <p>Criar Projeto</p>
           </div>
-            <form class="createInput">
-              <input type="text" placeholder="Titulo do Projeto" v-show="toggle" v-model="name">
-              <button v-show="toggle" @click="openTittle()">Enviar</button>
+          <transition name="fade">
+            <form class="createInput" v-if="toggle">
+              <input type="text" placeholder="Titulo do Projeto" v-if="toggle" v-model="name">
+              <button v-if="toggle" @click="openTittle()">Enviar</button>
             </form>
+          </transition>
           </div>
           <div class="right">
             <div class="icon"  @click="toggle =!toggle">
@@ -99,14 +101,14 @@ export default {
     setProjectName(name) {
       console.log("teste")
       localStorage.setItem("projectToken", name)
+      location.reload()
     },
     openModal() {
       this.displayModal = true;
     },
     openTittle() {
       this.saveOnDatabase();
-
-      this.toggle = !this.toggle
+      location.reload();
     },
     async saveOnDatabase() {
       await addDoc(collection(db, "projeto"), {
@@ -138,6 +140,12 @@ export default {
   border-radius: 3px;
   -webkit-backdrop-filter: blur(3.4px);
   border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.3s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 main {
   width: 30vw;
@@ -210,7 +218,7 @@ button:hover {
   height: 100%;
   width: 40%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 input {
