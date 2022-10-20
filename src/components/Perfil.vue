@@ -17,7 +17,7 @@
               height="68"
             ></iconify-icon>
           </div>
-          <h1>Nome completo</h1>
+          <h1>{{nome}}</h1>
           <p>Cargo</p>
           <button>Editar Perfil</button>
         </div>
@@ -162,8 +162,13 @@ import Calendar from "primevue/calendar";
 
 export default {
   components: { Dialog },
+   created: function(){
+    this.nome = localStorage.getItem("userName")
+      },
   data() {
     return {
+    
+  nome: "",
       displayModal: false,
     };
   },
