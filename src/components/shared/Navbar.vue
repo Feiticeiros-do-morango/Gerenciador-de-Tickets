@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="informacao">
-      <p>Projeto:</p>
+      <p>Projeto: {{ project }}</p>
     </div>
     <div class="items">
       <PanelMenu :model="items" v-on:sai="sendEmit"/>
@@ -36,13 +36,14 @@ export default {
   components: { PanelMenu },
 
   created: function(){
-    this.nome = localStorage.getItem("userName")
+    this.nome = localStorage.getItem("userName");
+    this.project = localStorage.getItem("projectToken");
   },
 
   data() {
     return {
-      
       nome: "",
+      project: "",
       display: false,
       items: [
         {
