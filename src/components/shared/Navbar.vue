@@ -72,21 +72,14 @@ export default {
         {
           label: "Projetos",
           icon: "pi pi-box",
-          to: "/projects",
-          // items: [
-          //   {
-          //     label: "Projeto A",
-          //     icon: "",
-          //   },
-          //   {
-          //     label: "Projeto B",
-          //     icon: "",
-          //   },
-          //   {
-          //     label: "Projeto C",
-          //     icon: "",
-          //   },
-          // ],
+          to: "",
+          command: (event) => {
+                
+                this.$emit('openProject')
+                
+                
+              }
+
         },
       ],
     };
