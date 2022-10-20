@@ -19,7 +19,6 @@
 
             <div class="bottom">
 
-                <form>
                     <div class="first">
                         <div class="inputDiv">
                             <label for=""> Assunto </label>
@@ -32,7 +31,7 @@
                         </div>
 
                     </div>
-                </form>
+                
 
                 <div class="second">
 
@@ -76,7 +75,8 @@
             </div>
 
             <div class="enviar">
-                <button @click="enviarDados">Enviar</button>
+                <button label="Enviar" @click="enviarDados" class="bt"> Enviar </button>
+                
             </div>
 
         </div>
@@ -87,6 +87,7 @@
 </template>
 
 <script>
+
 import Dropdown from 'primevue/dropdown';
 import MultiSelect from 'primevue/multiselect';
 import Calendar from "primevue/calendar";
@@ -183,6 +184,7 @@ export default {
             e.preventDefault();
 
             this.saveOnDatabase();
+            alert("Salvo com sucesso")
 
         },
 
@@ -323,6 +325,9 @@ export default {
     color: ghostwhite;
 
 }
+.inputDiv input :focus{
+    border: 2px solid #85b1f9ab;
+}
 
 .p-multiselect{
     width: 90%;
@@ -394,12 +399,23 @@ export default {
     background-size: cover;
     background-repeat: no-repeat;
 }
+.bt {
+  width: 6vw;
+  height: 4vh;
+  background-color: #040d19; 
+  color: white;
+  border: none;
+  border-radius: 4px;
+font-weight: bold;
+}
+.bt:hover{
 
-.enviar {
-    height: 5vh;
+    border: 2px solid #85b1f952;
+}
+
+.enviar{
     display: flex;
-    align-items: center;
     justify-content: center;
-    color: white;
+    align-items: center;
 }
 </style>
