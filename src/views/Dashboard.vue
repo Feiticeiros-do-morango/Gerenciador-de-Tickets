@@ -227,7 +227,7 @@ Configuração dos cards
 }
 
 .dev{
-  background: url(../assets/dev-pattern.jpg);
+  background: url(../assets/dev-pattern.png);
   background-size: cover;
   background-repeat: no-repeat;
 }

@@ -75,6 +75,7 @@
 
             </div>
 
+
             <div class="enviar">
                 <button @click="enviarDados">Enviar</button>
             </div>
@@ -372,7 +373,7 @@ export default {
 }
 
 .dev {
-    background: url(../assets/dev-pattern.jpg);
+    background: url(../assets/dev-pattern.png);
     background-size: cover;
     background-repeat: no-repeat;
 }
