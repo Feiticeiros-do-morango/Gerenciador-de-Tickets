@@ -27,16 +27,16 @@ import Project from "./components/Project.vue"
 
 export default {
   
-  components: { Navbar, TabView, TabPanel, Perfil, CriarTicket,Project },
+  components: { Navbar, TabView, TabPanel, Perfil, CriarTicket, Project },
   data() {
     return{
       
   }
   },
   methods: {
-        openProject() {
-        this.$refs.childProject.openModal()
-        },
+    openProject() {
+    this.$refs.childProject.openModal()
+    },
         openPerfil() {
           this.$refs.childPerfil.openModal()
                
@@ -74,7 +74,6 @@ export default {
   scroll-behavior: smooth;
 
 }
-
 .app {
   display: flex;
   height: 100vh;

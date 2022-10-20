@@ -1,64 +1,70 @@
 <template>
-    <Dialog
-      header="Seus Projetos"
-      :visible.sync="displayModal"
-      :modal="true"
-      dismissableMask="true"
-      :closable="true"
-    >
-      <main>
-        
-        <div class="top">
-        <div class="project p-ripple" v-ripple v-for="item in projetos" :key="item.name" @click="setProjectName(item.projectName)">
+  <Dialog
+    header="Seus Projetos"
+    :visible.sync="displayModal"
+    :modal="true"
+    dismissableMask="true"
+    :closable="true"
+  >
+    <div class="main">
+      <div class="top">
+        <div class="projectRow p-ripple" v-ripple>
           <div class="left">
             <div class="icon">
-                <iconify-icon icon="ant-design:folder-filled" style="color: #6181cd;" width="20" height="20"></iconify-icon>
+              <iconify-icon
+                icon="ant-design:folder-add-filled"
+                style="color: #6181cd"
+                width="20"
+                height="20"
+              ></iconify-icon>
             </div>
-            <p>{{item.projectName}}</p>
+            <p>Projeto 1</p>
           </div>
-          <div class="right">
+          <div class="right p-ripple" v-ripple @click="toggle = !toggle">
             <div class="icon">
               <iconify-icon
-                icon="dashicons:arrow-up-alt2"
+                icon="bx:plus"
                 style="color: #6181cd"
                 width="20"
                 height="20"
-                rotate="90deg"
               ></iconify-icon>
             </div>
           </div>
         </div>
-    </div>
-    <div class="bottom">
-        <div class="create">
-            <div class="left">
-            <div class="icon">
-                <iconify-icon
-                icon="ic:baseline-create-new-folder"
-                style="color: #6181cd"
-                width="20"
-                height="20"
-              ></iconify-icon>
-            </div>
-            <div class="text">
+      </div>
+      <div class="bottom">
+        <div class="left">
+          <div class="icon">
+            <iconify-icon
+              icon="ant-design:folder-add-filled"
+              style="color: #6181cd"
+              width="20"
+              height="20"
+            ></iconify-icon>
+          </div>
+          <div class="create">
             <p>Criar Projeto</p>
-          </div>
-          <transition name="fade">
-            <form class="createInput" v-if="toggle">
-              <input type="text" placeholder="Titulo do Projeto" v-if="toggle" v-model="name">
-              <button v-if="toggle" @click="openTittle()">Enviar</button>
-            </form>
-          </transition>
-          </div>
-          <div class="right">
-            <div class="icon"  @click="toggle =!toggle">
-                <iconify-icon icon="ant-design:plus-outlined" style="color: #6181cd;" width="20" height="20"></iconify-icon>
-            </div>
+            <input
+              type="text"
+              placeholder="inserir Titulo projeto"
+              v-show="toggle"
+            />
+            <button v-show="toggle" @click="saveOnDatabase()">Enviar</button>
           </div>
         </div>
+        <div class="right p-ripple" v-ripple @click="toggle = !toggle">
+          <div class="icon">
+            <iconify-icon
+              icon="bx:plus"
+              style="color: #6181cd"
+              width="20"
+              height="20"
+            ></iconify-icon>
+          </div>
+        </div>
+      </div>
     </div>
-      </main>
-    </Dialog>
+  </Dialog>
 </template>
   
   <script>
@@ -68,56 +74,27 @@ import Dialog from "primevue/dialog";
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import { db } from "../Firebase/index";
 
+<script>
+import Ripple from "primevue/ripple";
+import Dialog from "primevue/dialog";
 export default {
-    
-    mounted: 
-    async function fetchData() {
-            const querySnapshot = await getDocs(collection(db, "projeto"));
-            querySnapshot.forEach((doc) => {
-
-                let p = doc.data().name
-                this.projetos.push({
-                    projectName : p
-                })
-
-            })
-
-            console.log(this.projetos)
-        },
-
   components: { Dialog },
   data() {
     return {
-      name: "",
       toggle: false,
       displayModal: false,
-      projetos: [],
     };
   },
   directives: {
     ripple: Ripple,
   },
   methods: {
-    setProjectName(name) {
-      console.log("teste")
-      localStorage.setItem("projectToken", name)
-      location.reload()
-    },
     openModal() {
       this.displayModal = true;
     },
-    openTittle() {
-      this.saveOnDatabase();
-      location.reload();
-    },
-    async saveOnDatabase() {
-      await addDoc(collection(db, "projeto"), {
-        name: this.name
-      });
-    },
-    goToDashboard() {
-      this.$router.push({ name: "dashboard" });
-    },
+    saveOnDatabase() {
+      this.toggle = !this.toggle
+    }
   },
 };
 </script>
@@ -167,103 +144,98 @@ main {
     position: absolute;
     bottom: 0;
 
-  }
-.project {
-  width: 100%;
-  height: 50px;
-  display: flex;
-  cursor: pointer;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.13);
-  margin-bottom: 10px;
+<style scoped>
+.main {
+  width: 35vw;
+  height: 45vh;
+  border: 1px solid red;
 }
 p {
     font-size: 14px;
-    text-align: left;
-    letter-spacing: 1px;
-}
-p::first-letter {
-    text-transform: uppercase;
-}
-
-.buttonCreate {
-    height: 100%;
+    font-weight: 400;
     display: flex;
     align-items: center;
+    text-align: center;
+    font-family: 'Roboto Mono';
 }
-button {
-    width: 30%;
-    height: 30px;
-    border: none;
-    background: none;
-    cursor: pointer;
-    color: #fff;
-    background: rgba(255, 255, 255, 0.13);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(3.4px);
-  -webkit-backdrop-filter: blur(3.4px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  transition: 0.5s ease-out;
-}
-button:hover {
-    background: rgba(255, 255, 255, 0.337);
-}
-.createInput {
-  height: 100%;
-  width: 60%;
+.top {
+  width: 100%;
+  height: 85%;
   display: flex;
-  gap: 5px;
+  flex-direction: column;
+  column-gap: 15px;
+  border: 1px solid red;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.projectRow {
+  width: 100%;
+  height: 40px;
+  display: flex;
   align-items: center;
+  overflow: hidden;
 }
-.text {
-  height: 100%;
-  width: 40%;
+.bottom {
+  width: 100%;
+  height: 15%;
   display: flex;
-  justify-content: flex-start;
   align-items: center;
-}
-input {
-    width: 70%;
-    height: 30px;
-    margin-left: 5px;
-    border: none;
-    color: #fff;
-    text-indent: 5px;
-    outline: none;
-    background: rgba(255, 255, 255, 0.13);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(3.4px);
-  -webkit-backdrop-filter: blur(3.4px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  transition: 0.5s ease-out;
-}
-input::placeholder{
-    font-size: 12px;
-    text-indent: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.create {
-    width: 100%;
-  height: 50px;
-  bottom: 0;
-  background: rgba(255, 255, 255, 0.052);
-  border-radius: 5px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(3.4px);
-  -webkit-backdrop-filter: blur(3.4px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  transition: 0.5s ease-out;
-  display: flex;
+  overflow: hidden;
 }
 .left {
   width: 90%;
-  height: 100%;
+  height: 45px;
   display: flex;
   gap: 10px;
   align-items: center;
   padding: 0 0 0 10px;
-
+}
+.create {
+    display: flex;
+    position: relative;
+    gap: 5px;
+}
+.create input {
+    color: #fff;
+  padding: 5px;
+  border-radius: 3px;
+  outline: none;
+  background: rgba(255, 255, 255, 0.13);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3.4px);
+  -webkit-backdrop-filter: blur(3.4px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: 0.5s ease-out;
+}
+.create input::placeholder {
+    font-size: 12px;
+    text-align: left;
+    color: rgba(255, 255, 255, 0.411);
+}
+.create button {
+      color: #fff;
+  padding: 5px;
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.13);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3.4px);
+  -webkit-backdrop-filter: blur(3.4px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: 0.5s ease-out;
+}
+.create button:hover {
+  transition: 0.5s ease;
+  background: rgba(255, 255, 255, 0.24);
+}
+.right {
+  width: 10%;
+  cursor: pointer;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .icon {
   display: flex;
@@ -280,17 +252,7 @@ input::placeholder{
   transition: 0.5s ease-out;
 }
 .icon:hover {
-    transition: 0.5s ease;
+  transition: 0.5s ease;
   background: rgba(255, 255, 255, 0.24);
 }
-
-.right {
-  width: 10%;
-  height: 100%;
-  display: flex;
-  margin-right: 20px;
-  justify-content: flex-end;
-  align-items: center;
-}
 </style>
-  
