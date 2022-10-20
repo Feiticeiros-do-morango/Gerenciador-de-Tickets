@@ -9,36 +9,50 @@
     <div class="main">
       <div class="top">
         <div class="projectRow p-ripple" v-ripple>
-        <div class="left">
+          <div class="left">
             <div class="icon">
-              <iconify-icon icon="ant-design:folder-add-filled" style="color: #6181cd;" width="20" height="20"></iconify-icon>
+              <iconify-icon
+                icon="ant-design:folder-add-filled"
+                style="color: #6181cd"
+                width="20"
+                height="20"
+              ></iconify-icon>
             </div>
             <p>Projeto 1</p>
+          </div>
+          <div class="right p-ripple" v-ripple @click="toggle = !toggle">
+            <div class="icon">
+              <iconify-icon
+                icon="bx:plus"
+                style="color: #6181cd"
+                width="20"
+                height="20"
+              ></iconify-icon>
+            </div>
+          </div>
         </div>
-        <div class="right p-ripple" v-ripple  @click='toggle = !toggle'>
+      </div>
+      <div class="bottom">
+        <div class="left">
           <div class="icon">
             <iconify-icon
-              icon="bx:plus"
+              icon="ant-design:folder-add-filled"
               style="color: #6181cd"
               width="20"
               height="20"
             ></iconify-icon>
           </div>
+          <div class="create">
+            <p>Criar Projeto</p>
+            <input
+              type="text"
+              placeholder="inserir Titulo projeto"
+              v-show="toggle"
+            />
+            <button v-show="toggle" @click="saveOnDatabase()">Enviar</button>
+          </div>
         </div>
-        </div>
-      </div>
-      <div class="bottom">
-      <div class="left">
-            <div class="icon">
-              <iconify-icon icon="ant-design:folder-add-filled" style="color: #6181cd;" width="20" height="20"></iconify-icon>
-            </div>
-            <div class="create" >
-                <p>Criar Projeto</p>
-                <input type="text" placeholder="inserir Titulo projeto" v-show='toggle'>
-                <button v-show='toggle' @click="saveOnDatabase()">Enviar</button>
-            </div>
-        </div>
-        <div class="right p-ripple" v-ripple  @click='toggle = !toggle'>
+        <div class="right p-ripple" v-ripple @click="toggle = !toggle">
           <div class="icon">
             <iconify-icon
               icon="bx:plus"
@@ -52,6 +66,13 @@
     </div>
   </Dialog>
 </template>
+  
+  <script>
+  import Toast from "primevue/toast";
+import Ripple from "primevue/ripple";
+import Dialog from "primevue/dialog";
+import { collection, addDoc, getDocs } from "firebase/firestore";
+import { db } from "../Firebase/index";
 
 <script>
 import Ripple from "primevue/ripple";
@@ -77,6 +98,51 @@ export default {
   },
 };
 </script>
+  
+  <style scoped>
+  ::-webkit-scrollbar {
+  width: 20px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.13);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3.4px);
+  -webkit-backdrop-filter: blur(3.4px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.13);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(3.4px);
+  border-radius: 3px;
+  -webkit-backdrop-filter: blur(3.4px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.3s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+main {
+  width: 30vw;
+  height: 40vh;
+  position: relative;
+}
+.top {
+    width: 100%;
+    height: 33vh;
+    overflow: auto;
+}
+.bottom {
+    width: 100%;
+    height: 7vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
 
 <style scoped>
 .main {

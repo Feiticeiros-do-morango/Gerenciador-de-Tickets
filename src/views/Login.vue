@@ -114,8 +114,8 @@ export default {
       const provider = new GoogleAuthProvider();
       signInWithPopup(getAuth(), provider)
         .then((result) => {
-          localStorage.setItem("token", 'true')
           this.goToDashboard();
+          localStorage.setItem("token", 'true')
         })
     },
     goToDashboard() {
@@ -129,7 +129,6 @@ export default {
         // doc.data() is never undefined for query doc snapshots
         let document = doc.data().UserName
         localStorage.setItem("userName", document)
-        
 });
     }
     
