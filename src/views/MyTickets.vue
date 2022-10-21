@@ -239,8 +239,8 @@ Configuração dos cards
 }
 
 .infra {
-    background: url(../assets/8245.jpg);
-    background-size: cover;
+    background: url(../assets/infra-pattern.jpg);
+    background-size:cover;
     background-repeat: no-repeat;
 }
 

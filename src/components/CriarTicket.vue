@@ -387,7 +387,7 @@ export default {
 }
 
 .engenharia {
-    background: url(../assets/engenharia-pattern.png);
+    background: url(../assets/engenharia-pattern.jpg);
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -399,8 +399,8 @@ export default {
 }
 
 .infra {
-    background: url(../assets/8245.jpg);
-    background-size: cover;
+    background: url(../assets/infra-pattern.jpg);
+    background-size:cover;
     background-repeat: no-repeat;
 }
 .bt {

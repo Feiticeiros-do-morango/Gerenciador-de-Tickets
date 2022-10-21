@@ -233,7 +233,7 @@ Configuração dos cards
 }
 
 .engenharia{
-  background: url(../assets/engenharia-pattern.png);
+  background: url(../assets/engenharia-pattern.jpg);
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -245,8 +245,8 @@ Configuração dos cards
 }
 
 .infra {
-    background: url(../assets/8245.jpg);
-    background-size: cover;
+    background: url(../assets/infra-pattern.jpg);
+    background-size:cover;
     background-repeat: no-repeat;
 }
 
