@@ -58,7 +58,7 @@
                 height="20"
               ></iconify-icon>
             </div>
-            <p>Billing Details</p>
+            <p>Detalhes de Cobrança</p>
           </div>
           <div class="right-item">
             <div class="icon">
@@ -82,7 +82,7 @@
                 height="20"
               ></iconify-icon>
             </div>
-            <p>User Management</p>
+            <p>Gerenciamento de Usuario</p>
           </div>
           <div class="right-item">
             <div class="icon">
@@ -109,7 +109,7 @@
                 height="20"
               ></iconify-icon>
             </div>
-            <p>Information</p>
+            <p>Informação</p>
           </div>
           <div class="right-item">
             <div class="icon">
