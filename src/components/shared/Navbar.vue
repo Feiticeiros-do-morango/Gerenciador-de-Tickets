@@ -11,7 +11,7 @@
           <p>{{ nome }}</p>
         </div>
         <div class="cargo">
-          <p>Cargo</p>
+          <p>Desenvolvedor</p>
         </div>
       </div>
     </div>
