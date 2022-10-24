@@ -21,10 +21,7 @@
     <div class="items">
       <PanelMenu :model="items" v-on:sai="sendEmit"/>
     </div>
-    <div class="dados">
-      <p>Nome</p>
-      <p>Empresa</p>
-    </div>
+   
 
   </div>
 </template>

@@ -22,10 +22,9 @@
     <main id="home">
       <div class="left-main">
         <div class="text-area">
-          <h1>Tenha Controle Sobre Seu Projetos De TI.</h1>
+          <h1>Tenha Controle Sobre Seus Projetos De TI.</h1>
           <p>
-            We provide full transparency of development processes, so you can
-            stay on top of you business needs.
+            Proporcionamos uma experiência única na gestão de projetos
           </p>
         </div>
         <div class="button-area">
@@ -758,7 +757,7 @@ section .section-text .linha-color {
 }
 
 .about {
-  width: 100%;
+  width: 90%;
   height: 120vh;
   padding: 0 40px 40px 40px;
   

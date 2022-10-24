@@ -1,36 +1,37 @@
 <template>
   <div class="container">
 
-    <div class="sectionA">
+    <div class="top">
+      <div class="mainInfo">
 
-      <div class="inicio">
 
         <div class="logo">
           <Icon icon="iconoir:keyframe" width="30" />
           {{this.ticket.assunto}}
         </div>
-      </div>
-
+     
       <div class="tech">
       {{this.ticket.Id}}
       </div>
        <p>Tecnologia: {{this.ticket.tecnologia}}</p>
       <p>Data limite: {{this.ticket.dataLimite}}</p>
 
-      <div class="quadrado">
-        <h3>Descrição</h3>
-        <Textarea v-model="this.ticket.descricao" :autoResize="false" rows="10" cols="70" />
+    </div>
+      <h3>Colaboradores: </h3>
+      <div class="colaboracao" v-for="item in this.ticket.colaboradores">
+        <p>{{item.name}}</p>
       </div>
     </div>
 
-    <div class="sectionB">
-      <div class="colaboracao">
-        <p>Colaboradores {{this.ticket.colaboradores}}</p>
+    <div class="bottom">
+      <div class="quadrado">
+        <h3>Descrição</h3>
+        <Textarea v-model="this.ticket.descricao" :autoResize="false" rows="20" cols="80" />
       </div>
-
+ 
       <div class="comentarios">
-        <h3>Comentários...</h3>
-        <Textarea v-model="this.ticket.comentarios" :autoResize="false" rows="10" cols="40" />
+        <h3>Comentários</h3>
+        <Textarea v-model="this.ticket.comentarios" :autoResize="false" rows="20" cols="60" />
       </div>
 
     </div>
@@ -103,32 +104,35 @@ export default {
   box-shadow: inset 0px 4px 4px rgba(184, 182, 182, 0.25);
   border-radius: 30px 30px 0px 0px;
   display: flex;
+  flex-direction: column;
   
   
 }
 
-.inicio {
-  display: flex;
-  color: black;
-}
-.inicio h1 {
-  font-size: 12px;
-}
 .logo {
   display: flex;
   align-items: center;
 }
 
-.sectionA {
-  grid-area: sectionA;
+.mainInfo{
+  gap: 15px;
+  margin-bottom: 2vh;
+}
+.top {
   padding: 2vh;
   color: black;
 }
 .tech {
   color: gray;
 }
-.quadrado{
-  width: 30vw;
+
+.bottom {
+  color: rgba(186, 186, 186, 0.504);
+  color: black;
+  display: flex;
+  justify-content:space-around;
+  margin-top: 5vh;
+  
 }
 .quadrado h3 {
   margin: auto;
@@ -136,20 +140,6 @@ export default {
   justify-content: center;
   margin-bottom: 3vh;
 }
-
-.sectionB {
-  color: rgba(186, 186, 186, 0.504);
-  grid-area: sectionB;
-  color: black;
-  display: flex;
-  flex-direction: column;
-  gap: 15vh;
-  margin-right: 14vh;
-}
-.colaboracao p {
-  margin-top: 3vh;
-}
-
 .comentarios h3 {
   margin: auto;
   text-align: center;
@@ -158,7 +148,7 @@ export default {
 }
 
 .p-inputtextarea {
-  background-color: rgb(3, 3, 32);
-  width: 100%;
+  background-color: #040414;
+  border: none;
 }
 </style>
