@@ -26,7 +26,14 @@ const router = new Router({
   ],
 });
 router.beforeEach((to, from, next) => {
-  if (to.name !== "land" && to.name !== "login" && to.name !== "registration" && !localStorage.getItem('token')) next({ name: "login" });
+  if (
+    to.name !== "land" &&
+    to.name !== "login" &&
+    to.name !== "registration" &&
+    to.name !== "recovery" &&
+    !localStorage.getItem("token")
+  )
+    next({ name: "login" });
   else next();
 });
 
